@@ -1,0 +1,807 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		0AA8974311C81FAF0B709D6F /* Pods-Tests-KMMTMDBAPIClient-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 31B6B11433B39E3CC71E0A46 /* Pods-Tests-KMMTMDBAPIClient-dummy.m */; };
+		10FF4E695841AF467978FD69 /* Pods-KMMTMDBAPIClient-KMMTMDBAPIClient-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 82E5745B736FFD0F1978C033 /* Pods-KMMTMDBAPIClient-KMMTMDBAPIClient-dummy.m */; };
+		28EFBB3E14C74AB110299681 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F485639AA153C10765F7301C /* Foundation.framework */; };
+		2BA04EAC3DF2FFE04CC6E7B3 /* Pods-Tests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 282A52AE0FB74D6CBE26CE66 /* Pods-Tests-dummy.m */; };
+		44CA0F5EC670D92F5193665B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F485639AA153C10765F7301C /* Foundation.framework */; };
+		573B218D1A61940C00051EA7 /* KMMTMDBAPIClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 573B218C1A61940C00051EA7 /* KMMTMDBAPIClient.m */; };
+		66865BBB54E6F5EADE725139 /* Pods-KMMTMDBAPIClient-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = FFE9471B899C8C4C0ED30D31 /* Pods-KMMTMDBAPIClient-dummy.m */; };
+		A3856055B90F0284F3924182 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F485639AA153C10765F7301C /* Foundation.framework */; };
+		A41E8EBEC6D884D2BB5C8910 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F485639AA153C10765F7301C /* Foundation.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		291056FDB1E0A5A4C6495CA8 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B028ACDEB2578546DC9C0A1C /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = D0013E4845EBBCDAB782FA61;
+			remoteInfo = "Pods-KMMTMDBAPIClient-KMMTMDBAPIClient";
+		};
+		45E2D333C3C68DF7B0AC07F5 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B028ACDEB2578546DC9C0A1C /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = AB5731EEF75501F43DB07610;
+			remoteInfo = "Pods-Tests-KMMTMDBAPIClient";
+		};
+		50EA0A7D8C051E3E6BED9B2F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B028ACDEB2578546DC9C0A1C /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 589AFCEEEDCEA8B688AF042F;
+			remoteInfo = KMMTMDBAPIClient;
+		};
+		78A3987090DA1C0150851B8A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B028ACDEB2578546DC9C0A1C /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 589AFCEEEDCEA8B688AF042F;
+			remoteInfo = KMMTMDBAPIClient;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		19197B04DBAC5945693ED283 /* Pods-KMMTMDBAPIClient-KMMTMDBAPIClient-Private.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-KMMTMDBAPIClient-KMMTMDBAPIClient-Private.xcconfig"; sourceTree = "<group>"; };
+		282A52AE0FB74D6CBE26CE66 /* Pods-Tests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-Tests-dummy.m"; sourceTree = "<group>"; };
+		282ADFE5684ABF0BFE464957 /* Pods-Tests-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-Tests-resources.sh"; sourceTree = "<group>"; };
+		29B18B75625052576EE3A955 /* Pods-Tests-KMMTMDBAPIClient-Private.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tests-KMMTMDBAPIClient-Private.xcconfig"; path = "../Pods-Tests-KMMTMDBAPIClient/Pods-Tests-KMMTMDBAPIClient-Private.xcconfig"; sourceTree = "<group>"; };
+		31B6B11433B39E3CC71E0A46 /* Pods-Tests-KMMTMDBAPIClient-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "Pods-Tests-KMMTMDBAPIClient-dummy.m"; path = "../Pods-Tests-KMMTMDBAPIClient/Pods-Tests-KMMTMDBAPIClient-dummy.m"; sourceTree = "<group>"; };
+		439BA24016D19BD74D5AF863 /* Pods-Tests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-Tests-acknowledgements.plist"; sourceTree = "<group>"; };
+		4B034545B724B6A8D6544B9F /* Pods-Tests-KMMTMDBAPIClient.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tests-KMMTMDBAPIClient.xcconfig"; path = "../Pods-Tests-KMMTMDBAPIClient/Pods-Tests-KMMTMDBAPIClient.xcconfig"; sourceTree = "<group>"; };
+		573B218B1A61940C00051EA7 /* KMMTMDBAPIClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KMMTMDBAPIClient.h; path = Pod/Classes/KMMTMDBAPIClient.h; sourceTree = "<group>"; };
+		573B218C1A61940C00051EA7 /* KMMTMDBAPIClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = KMMTMDBAPIClient.m; path = Pod/Classes/KMMTMDBAPIClient.m; sourceTree = "<group>"; };
+		5AA5E0E1139032AD65A03B33 /* Pods-Tests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-Tests-acknowledgements.markdown"; sourceTree = "<group>"; };
+		66579F3CF3340A1932DB324A /* Podfile */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		7431DF1EE8B419F0FD899BE8 /* Pods-KMMTMDBAPIClient-environment.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-KMMTMDBAPIClient-environment.h"; sourceTree = "<group>"; };
+		74DF1BA275A892682EA7A32C /* Pods-KMMTMDBAPIClient.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-KMMTMDBAPIClient.debug.xcconfig"; sourceTree = "<group>"; };
+		82E5745B736FFD0F1978C033 /* Pods-KMMTMDBAPIClient-KMMTMDBAPIClient-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-KMMTMDBAPIClient-KMMTMDBAPIClient-dummy.m"; sourceTree = "<group>"; };
+		86C01CAF66C91BA4524D4500 /* Pods-KMMTMDBAPIClient-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-KMMTMDBAPIClient-acknowledgements.markdown"; sourceTree = "<group>"; };
+		8ECD5ABCF894D6FF63AC5795 /* Pods-KMMTMDBAPIClient-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-KMMTMDBAPIClient-resources.sh"; sourceTree = "<group>"; };
+		99C13C37B6F6792E70961957 /* Pods-Tests-KMMTMDBAPIClient-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "Pods-Tests-KMMTMDBAPIClient-prefix.pch"; path = "../Pods-Tests-KMMTMDBAPIClient/Pods-Tests-KMMTMDBAPIClient-prefix.pch"; sourceTree = "<group>"; };
+		9CB92A4ED2A46E3FFE28603B /* Pods-KMMTMDBAPIClient-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-KMMTMDBAPIClient-acknowledgements.plist"; sourceTree = "<group>"; };
+		A2A16C527F83B19D14D31EA5 /* Pods-KMMTMDBAPIClient-KMMTMDBAPIClient.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-KMMTMDBAPIClient-KMMTMDBAPIClient.xcconfig"; sourceTree = "<group>"; };
+		B19C087D75997451F2BA2CDB /* Pods-Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Tests.release.xcconfig"; sourceTree = "<group>"; };
+		CA1A2B50B7875B41DE72CF26 /* libPods-KMMTMDBAPIClient.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-KMMTMDBAPIClient.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		CB34B772770973B3CD870D67 /* Pods-KMMTMDBAPIClient.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-KMMTMDBAPIClient.release.xcconfig"; sourceTree = "<group>"; };
+		CBBA3EC573C4ED7865A6FE8D /* KMMTMDBAPIClient.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = KMMTMDBAPIClient.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
+		CC1DF0862900B690B024E447 /* Pods-Tests-environment.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-Tests-environment.h"; sourceTree = "<group>"; };
+		DE1402605FC0B36B425CE0D1 /* libPods-KMMTMDBAPIClient-KMMTMDBAPIClient.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-KMMTMDBAPIClient-KMMTMDBAPIClient.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		E27FB63421C4AE3C1C97EC73 /* Pods-Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Tests.debug.xcconfig"; sourceTree = "<group>"; };
+		ED399149C4B432981A557DE7 /* Pods-KMMTMDBAPIClient-KMMTMDBAPIClient-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-KMMTMDBAPIClient-KMMTMDBAPIClient-prefix.pch"; sourceTree = "<group>"; };
+		F3F3365CBB7A36EF404D5BE2 /* libPods-Tests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Tests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		F485639AA153C10765F7301C /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS7.1.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
+		FEFAF4ECC3B960C3EDFEDB04 /* libPods-Tests-KMMTMDBAPIClient.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Tests-KMMTMDBAPIClient.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		FFE9471B899C8C4C0ED30D31 /* Pods-KMMTMDBAPIClient-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-KMMTMDBAPIClient-dummy.m"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		0231442AAE2EFAD170BB0A1D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				28EFBB3E14C74AB110299681 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		62054339BB25C4171E60EFBE /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A3856055B90F0284F3924182 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		818FDB646AEC40288FE2209B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A41E8EBEC6D884D2BB5C8910 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C0DF9DCA64121E9FC56A4098 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F80DE10D3AFD62039036202F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				44CA0F5EC670D92F5193665B /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		2AA24C6DD66CA7ED7893DA75 = {
+			isa = PBXGroup;
+			children = (
+				66579F3CF3340A1932DB324A /* Podfile */,
+				430A701216AEDF2D67C0F7EA /* Development Pods */,
+				7E223E51E26738A6C586F18F /* Frameworks */,
+				9E085B6E05053A4463682EDA /* Products */,
+				6D96AEED8568885939D05C7B /* Targets Support Files */,
+			);
+			sourceTree = "<group>";
+		};
+		3BFFFECAE4BE63EB36B2CCAC /* iOS */ = {
+			isa = PBXGroup;
+			children = (
+				F485639AA153C10765F7301C /* Foundation.framework */,
+			);
+			name = iOS;
+			sourceTree = "<group>";
+		};
+		430A701216AEDF2D67C0F7EA /* Development Pods */ = {
+			isa = PBXGroup;
+			children = (
+				B990701849189499A338C393 /* KMMTMDBAPIClient */,
+			);
+			name = "Development Pods";
+			sourceTree = "<group>";
+		};
+		596D77E54604363A4436B4F6 /* Pods-KMMTMDBAPIClient */ = {
+			isa = PBXGroup;
+			children = (
+				86C01CAF66C91BA4524D4500 /* Pods-KMMTMDBAPIClient-acknowledgements.markdown */,
+				9CB92A4ED2A46E3FFE28603B /* Pods-KMMTMDBAPIClient-acknowledgements.plist */,
+				FFE9471B899C8C4C0ED30D31 /* Pods-KMMTMDBAPIClient-dummy.m */,
+				7431DF1EE8B419F0FD899BE8 /* Pods-KMMTMDBAPIClient-environment.h */,
+				8ECD5ABCF894D6FF63AC5795 /* Pods-KMMTMDBAPIClient-resources.sh */,
+				74DF1BA275A892682EA7A32C /* Pods-KMMTMDBAPIClient.debug.xcconfig */,
+				CB34B772770973B3CD870D67 /* Pods-KMMTMDBAPIClient.release.xcconfig */,
+			);
+			name = "Pods-KMMTMDBAPIClient";
+			path = "Target Support Files/Pods-KMMTMDBAPIClient";
+			sourceTree = "<group>";
+		};
+		68EA3C0F2376704F9763DA45 /* Pods-Tests */ = {
+			isa = PBXGroup;
+			children = (
+				5AA5E0E1139032AD65A03B33 /* Pods-Tests-acknowledgements.markdown */,
+				439BA24016D19BD74D5AF863 /* Pods-Tests-acknowledgements.plist */,
+				282A52AE0FB74D6CBE26CE66 /* Pods-Tests-dummy.m */,
+				CC1DF0862900B690B024E447 /* Pods-Tests-environment.h */,
+				282ADFE5684ABF0BFE464957 /* Pods-Tests-resources.sh */,
+				E27FB63421C4AE3C1C97EC73 /* Pods-Tests.debug.xcconfig */,
+				B19C087D75997451F2BA2CDB /* Pods-Tests.release.xcconfig */,
+			);
+			name = "Pods-Tests";
+			path = "Target Support Files/Pods-Tests";
+			sourceTree = "<group>";
+		};
+		6D96AEED8568885939D05C7B /* Targets Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				596D77E54604363A4436B4F6 /* Pods-KMMTMDBAPIClient */,
+				68EA3C0F2376704F9763DA45 /* Pods-Tests */,
+			);
+			name = "Targets Support Files";
+			sourceTree = "<group>";
+		};
+		7E223E51E26738A6C586F18F /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				3BFFFECAE4BE63EB36B2CCAC /* iOS */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		9E085B6E05053A4463682EDA /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				CBBA3EC573C4ED7865A6FE8D /* KMMTMDBAPIClient.bundle */,
+				CA1A2B50B7875B41DE72CF26 /* libPods-KMMTMDBAPIClient.a */,
+				DE1402605FC0B36B425CE0D1 /* libPods-KMMTMDBAPIClient-KMMTMDBAPIClient.a */,
+				F3F3365CBB7A36EF404D5BE2 /* libPods-Tests.a */,
+				FEFAF4ECC3B960C3EDFEDB04 /* libPods-Tests-KMMTMDBAPIClient.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		B990701849189499A338C393 /* KMMTMDBAPIClient */ = {
+			isa = PBXGroup;
+			children = (
+				D8550EF15E271F5BCBF4CD1F /* Support Files */,
+				573B218B1A61940C00051EA7 /* KMMTMDBAPIClient.h */,
+				573B218C1A61940C00051EA7 /* KMMTMDBAPIClient.m */,
+			);
+			name = KMMTMDBAPIClient;
+			path = ../..;
+			sourceTree = "<group>";
+		};
+		D8550EF15E271F5BCBF4CD1F /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				A2A16C527F83B19D14D31EA5 /* Pods-KMMTMDBAPIClient-KMMTMDBAPIClient.xcconfig */,
+				19197B04DBAC5945693ED283 /* Pods-KMMTMDBAPIClient-KMMTMDBAPIClient-Private.xcconfig */,
+				82E5745B736FFD0F1978C033 /* Pods-KMMTMDBAPIClient-KMMTMDBAPIClient-dummy.m */,
+				ED399149C4B432981A557DE7 /* Pods-KMMTMDBAPIClient-KMMTMDBAPIClient-prefix.pch */,
+				4B034545B724B6A8D6544B9F /* Pods-Tests-KMMTMDBAPIClient.xcconfig */,
+				29B18B75625052576EE3A955 /* Pods-Tests-KMMTMDBAPIClient-Private.xcconfig */,
+				31B6B11433B39E3CC71E0A46 /* Pods-Tests-KMMTMDBAPIClient-dummy.m */,
+				99C13C37B6F6792E70961957 /* Pods-Tests-KMMTMDBAPIClient-prefix.pch */,
+			);
+			name = "Support Files";
+			path = "Example/Pods/Target Support Files/Pods-KMMTMDBAPIClient-KMMTMDBAPIClient";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		589AFCEEEDCEA8B688AF042F /* KMMTMDBAPIClient */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = CC43405B9E26EE25363A775F /* Build configuration list for PBXNativeTarget "KMMTMDBAPIClient" */;
+			buildPhases = (
+				72E022B6EB67B004107D3AE5 /* Sources */,
+				C0DF9DCA64121E9FC56A4098 /* Frameworks */,
+				3764DA66AA10C3B3BFD012E4 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = KMMTMDBAPIClient;
+			productName = KMMTMDBAPIClient;
+			productReference = CBBA3EC573C4ED7865A6FE8D /* KMMTMDBAPIClient.bundle */;
+			productType = "com.apple.product-type.bundle";
+		};
+		6C549F5609EAB4180E845BF1 /* Pods-KMMTMDBAPIClient */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 0BE40CA49CCF655DC52E6383 /* Build configuration list for PBXNativeTarget "Pods-KMMTMDBAPIClient" */;
+			buildPhases = (
+				D73AC9E3455472F750A6DFCE /* Sources */,
+				818FDB646AEC40288FE2209B /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				C12182EFFC85E51FFB6E90C4 /* PBXTargetDependency */,
+			);
+			name = "Pods-KMMTMDBAPIClient";
+			productName = "Pods-KMMTMDBAPIClient";
+			productReference = CA1A2B50B7875B41DE72CF26 /* libPods-KMMTMDBAPIClient.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+		9DE329600FB85972277348F5 /* Pods-Tests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 39FBAAF2D345DD256A6AB5B0 /* Build configuration list for PBXNativeTarget "Pods-Tests" */;
+			buildPhases = (
+				4D265CE2169FB8A2982539A3 /* Sources */,
+				62054339BB25C4171E60EFBE /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				9DAF8A7095DD8D18C817DC39 /* PBXTargetDependency */,
+			);
+			name = "Pods-Tests";
+			productName = "Pods-Tests";
+			productReference = F3F3365CBB7A36EF404D5BE2 /* libPods-Tests.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+		AB5731EEF75501F43DB07610 /* Pods-Tests-KMMTMDBAPIClient */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A3A458BAC3571DCD0C50BAF6 /* Build configuration list for PBXNativeTarget "Pods-Tests-KMMTMDBAPIClient" */;
+			buildPhases = (
+				E5ECF9C87DC3B4B72A08136E /* Sources */,
+				0231442AAE2EFAD170BB0A1D /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				FAE58618D2A9B340C94C3831 /* PBXTargetDependency */,
+			);
+			name = "Pods-Tests-KMMTMDBAPIClient";
+			productName = "Pods-Tests-KMMTMDBAPIClient";
+			productReference = FEFAF4ECC3B960C3EDFEDB04 /* libPods-Tests-KMMTMDBAPIClient.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+		D0013E4845EBBCDAB782FA61 /* Pods-KMMTMDBAPIClient-KMMTMDBAPIClient */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 121C64163B0725F4B24D0EED /* Build configuration list for PBXNativeTarget "Pods-KMMTMDBAPIClient-KMMTMDBAPIClient" */;
+			buildPhases = (
+				026F16DFC979B2FD8E16EA36 /* Sources */,
+				F80DE10D3AFD62039036202F /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				78D6839E6106B358248642B9 /* PBXTargetDependency */,
+			);
+			name = "Pods-KMMTMDBAPIClient-KMMTMDBAPIClient";
+			productName = "Pods-KMMTMDBAPIClient-KMMTMDBAPIClient";
+			productReference = DE1402605FC0B36B425CE0D1 /* libPods-KMMTMDBAPIClient-KMMTMDBAPIClient.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		B028ACDEB2578546DC9C0A1C /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0510;
+			};
+			buildConfigurationList = 0EE19FACFE633C82CFD818D2 /* Build configuration list for PBXProject "Pods" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 2AA24C6DD66CA7ED7893DA75;
+			productRefGroup = 9E085B6E05053A4463682EDA /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				589AFCEEEDCEA8B688AF042F /* KMMTMDBAPIClient */,
+				6C549F5609EAB4180E845BF1 /* Pods-KMMTMDBAPIClient */,
+				D0013E4845EBBCDAB782FA61 /* Pods-KMMTMDBAPIClient-KMMTMDBAPIClient */,
+				9DE329600FB85972277348F5 /* Pods-Tests */,
+				AB5731EEF75501F43DB07610 /* Pods-Tests-KMMTMDBAPIClient */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		3764DA66AA10C3B3BFD012E4 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		026F16DFC979B2FD8E16EA36 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				10FF4E695841AF467978FD69 /* Pods-KMMTMDBAPIClient-KMMTMDBAPIClient-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4D265CE2169FB8A2982539A3 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2BA04EAC3DF2FFE04CC6E7B3 /* Pods-Tests-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		72E022B6EB67B004107D3AE5 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				573B218D1A61940C00051EA7 /* KMMTMDBAPIClient.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D73AC9E3455472F750A6DFCE /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				66865BBB54E6F5EADE725139 /* Pods-KMMTMDBAPIClient-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E5ECF9C87DC3B4B72A08136E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0AA8974311C81FAF0B709D6F /* Pods-Tests-KMMTMDBAPIClient-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		78D6839E6106B358248642B9 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = KMMTMDBAPIClient;
+			target = 589AFCEEEDCEA8B688AF042F /* KMMTMDBAPIClient */;
+			targetProxy = 50EA0A7D8C051E3E6BED9B2F /* PBXContainerItemProxy */;
+		};
+		9DAF8A7095DD8D18C817DC39 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "Pods-Tests-KMMTMDBAPIClient";
+			target = AB5731EEF75501F43DB07610 /* Pods-Tests-KMMTMDBAPIClient */;
+			targetProxy = 45E2D333C3C68DF7B0AC07F5 /* PBXContainerItemProxy */;
+		};
+		C12182EFFC85E51FFB6E90C4 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "Pods-KMMTMDBAPIClient-KMMTMDBAPIClient";
+			target = D0013E4845EBBCDAB782FA61 /* Pods-KMMTMDBAPIClient-KMMTMDBAPIClient */;
+			targetProxy = 291056FDB1E0A5A4C6495CA8 /* PBXContainerItemProxy */;
+		};
+		FAE58618D2A9B340C94C3831 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = KMMTMDBAPIClient;
+			target = 589AFCEEEDCEA8B688AF042F /* KMMTMDBAPIClient */;
+			targetProxy = 78A3987090DA1C0150851B8A /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		0F175675DC0CC4C1718D9DA1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 29B18B75625052576EE3A955 /* Pods-Tests-KMMTMDBAPIClient-Private.xcconfig */;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = YES;
+				DSTROOT = /tmp/xcodeproj.dst;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/Pods-Tests-KMMTMDBAPIClient/Pods-Tests-KMMTMDBAPIClient-prefix.pch";
+				INSTALL_PATH = "$(BUILT_PRODUCTS_DIR)";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				OTHER_CFLAGS = (
+					"-DNS_BLOCK_ASSERTIONS=1",
+					"$(inherited)",
+				);
+				OTHER_CPLUSPLUSFLAGS = (
+					"-DNS_BLOCK_ASSERTIONS=1",
+					"$(inherited)",
+				);
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PUBLIC_HEADERS_FOLDER_PATH = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		1361473C6240D547A6FADAAC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 74DF1BA275A892682EA7A32C /* Pods-KMMTMDBAPIClient.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = NO;
+				DSTROOT = /tmp/xcodeproj.dst;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				INSTALL_PATH = "$(BUILT_PRODUCTS_DIR)";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PUBLIC_HEADERS_FOLDER_PATH = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		26CA852985C9144A2503BF38 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 29B18B75625052576EE3A955 /* Pods-Tests-KMMTMDBAPIClient-Private.xcconfig */;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = NO;
+				DSTROOT = /tmp/xcodeproj.dst;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/Pods-Tests-KMMTMDBAPIClient/Pods-Tests-KMMTMDBAPIClient-prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				INSTALL_PATH = "$(BUILT_PRODUCTS_DIR)";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PUBLIC_HEADERS_FOLDER_PATH = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		279259A3ED57F58857B9320A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES;
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				ONLY_ACTIVE_ARCH = YES;
+				STRIP_INSTALLED_PRODUCT = NO;
+			};
+			name = Debug;
+		};
+		37D3633D09F5B6AE7DA0A0EC /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = CB34B772770973B3CD870D67 /* Pods-KMMTMDBAPIClient.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = YES;
+				DSTROOT = /tmp/xcodeproj.dst;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				INSTALL_PATH = "$(BUILT_PRODUCTS_DIR)";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				OTHER_CFLAGS = (
+					"-DNS_BLOCK_ASSERTIONS=1",
+					"$(inherited)",
+				);
+				OTHER_CPLUSPLUSFLAGS = (
+					"-DNS_BLOCK_ASSERTIONS=1",
+					"$(inherited)",
+				);
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PUBLIC_HEADERS_FOLDER_PATH = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		3C27B1EC5A04E180F642FA00 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES;
+				COPY_PHASE_STRIP = NO;
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_PREPROCESSOR_DEFINITIONS = "RELEASE=1";
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				STRIP_INSTALLED_PRODUCT = NO;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		3F4A80A245680CE36A1567C9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				WRAPPER_EXTENSION = bundle;
+			};
+			name = Debug;
+		};
+		6FCB70F2607A701D16514460 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 19197B04DBAC5945693ED283 /* Pods-KMMTMDBAPIClient-KMMTMDBAPIClient-Private.xcconfig */;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = NO;
+				DSTROOT = /tmp/xcodeproj.dst;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/Pods-KMMTMDBAPIClient-KMMTMDBAPIClient/Pods-KMMTMDBAPIClient-KMMTMDBAPIClient-prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				INSTALL_PATH = "$(BUILT_PRODUCTS_DIR)";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PUBLIC_HEADERS_FOLDER_PATH = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		90F82DD2E49059954E10E297 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = B19C087D75997451F2BA2CDB /* Pods-Tests.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = YES;
+				DSTROOT = /tmp/xcodeproj.dst;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				INSTALL_PATH = "$(BUILT_PRODUCTS_DIR)";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				OTHER_CFLAGS = (
+					"-DNS_BLOCK_ASSERTIONS=1",
+					"$(inherited)",
+				);
+				OTHER_CPLUSPLUSFLAGS = (
+					"-DNS_BLOCK_ASSERTIONS=1",
+					"$(inherited)",
+				);
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PUBLIC_HEADERS_FOLDER_PATH = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		965E5875255E6AD77ADD9B25 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 19197B04DBAC5945693ED283 /* Pods-KMMTMDBAPIClient-KMMTMDBAPIClient-Private.xcconfig */;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = YES;
+				DSTROOT = /tmp/xcodeproj.dst;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/Pods-KMMTMDBAPIClient-KMMTMDBAPIClient/Pods-KMMTMDBAPIClient-KMMTMDBAPIClient-prefix.pch";
+				INSTALL_PATH = "$(BUILT_PRODUCTS_DIR)";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				OTHER_CFLAGS = (
+					"-DNS_BLOCK_ASSERTIONS=1",
+					"$(inherited)",
+				);
+				OTHER_CPLUSPLUSFLAGS = (
+					"-DNS_BLOCK_ASSERTIONS=1",
+					"$(inherited)",
+				);
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PUBLIC_HEADERS_FOLDER_PATH = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		BCB4EF8E17740F91DAC7005B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				WRAPPER_EXTENSION = bundle;
+			};
+			name = Release;
+		};
+		F1A58C45CF2A0970052BF4CA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = E27FB63421C4AE3C1C97EC73 /* Pods-Tests.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = NO;
+				DSTROOT = /tmp/xcodeproj.dst;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				INSTALL_PATH = "$(BUILT_PRODUCTS_DIR)";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PUBLIC_HEADERS_FOLDER_PATH = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		0BE40CA49CCF655DC52E6383 /* Build configuration list for PBXNativeTarget "Pods-KMMTMDBAPIClient" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1361473C6240D547A6FADAAC /* Debug */,
+				37D3633D09F5B6AE7DA0A0EC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		0EE19FACFE633C82CFD818D2 /* Build configuration list for PBXProject "Pods" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				279259A3ED57F58857B9320A /* Debug */,
+				3C27B1EC5A04E180F642FA00 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		121C64163B0725F4B24D0EED /* Build configuration list for PBXNativeTarget "Pods-KMMTMDBAPIClient-KMMTMDBAPIClient" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6FCB70F2607A701D16514460 /* Debug */,
+				965E5875255E6AD77ADD9B25 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		39FBAAF2D345DD256A6AB5B0 /* Build configuration list for PBXNativeTarget "Pods-Tests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F1A58C45CF2A0970052BF4CA /* Debug */,
+				90F82DD2E49059954E10E297 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A3A458BAC3571DCD0C50BAF6 /* Build configuration list for PBXNativeTarget "Pods-Tests-KMMTMDBAPIClient" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				26CA852985C9144A2503BF38 /* Debug */,
+				0F175675DC0CC4C1718D9DA1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		CC43405B9E26EE25363A775F /* Build configuration list for PBXNativeTarget "KMMTMDBAPIClient" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3F4A80A245680CE36A1567C9 /* Debug */,
+				BCB4EF8E17740F91DAC7005B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = B028ACDEB2578546DC9C0A1C /* Project object */;
+}
