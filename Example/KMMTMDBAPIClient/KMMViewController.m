@@ -8,7 +8,15 @@
 
 #import "KMMViewController.h"
 
+#import <KMMTMDBAPIClient/KMMTMDBAPIClient.h>
+
+#import "UIImageView+AFNetworking.h"
+
 @interface KMMViewController ()
+
+@property(nonatomic, weak) IBOutlet UILabel *titleLabel;
+@property(nonatomic, weak) IBOutlet UILabel *releaseDateLabel;
+@property(nonatomic, weak) IBOutlet UILabel *popularityLabel;
 
 @end
 
@@ -18,12 +26,12 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
-}
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+    [[KMMTMDBAPIClient client] fetchPopularMoviesInPage:1 complete:^(id results, NSError *error) {
+        NSDictionary *firstMovie = results[@"results"][0];
+        self.titleLabel.text = firstMovie[@"original_title"];
+        self.releaseDateLabel.text = firstMovie[@"release_date"];
+        self.popularityLabel.text = [@"Popularity: " stringByAppendingFormat: @"%f", [firstMovie[@"popularity"] doubleValue] ];
+    }];
 }
 
 @end

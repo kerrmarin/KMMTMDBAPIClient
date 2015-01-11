@@ -52,7 +52,6 @@
     [config setTimeoutIntervalForRequest:5];
     
     if(self = [super initWithBaseURL:baseURL sessionConfiguration:config]) {
-        [self updateConfigURL];
         _includeAdult = @"false";
         _language = @"en";
     }
@@ -316,6 +315,7 @@
 -(void)setAPIKey:(NSString *)apiKey {
     if(apiKey == _apiKey) return;
     _apiKey = [apiKey copy];
+    [self updateConfigURL];
 }
 
 

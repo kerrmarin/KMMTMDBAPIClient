@@ -29,6 +29,5 @@ Pod::Spec.new do |s|
   }
 
   s.dependency 'AFNetworking', '~> 2.5'
-  s.dependency 'KMMParseConfigurationManager', '~> 1.0'
 
 end
