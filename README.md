@@ -25,8 +25,8 @@ This project has a dependency on AFNetworking.
 
 Other requirements: 
 
-iOS 7.0 and greater
-ARC
+- iOS 7.0 or greater
+- ARC
 
 ## Installation
 
@@ -44,7 +44,7 @@ In your app delegate, set your API key:
 ```objc
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    [[KMMTMDBAPIClient client] setAPIKey:@"dad3be1c54d32a605ed8931859ed6f0f"];
+    [[KMMTMDBAPIClient client] setAPIKey:@"MY API KEY"];
     return YES;
 }
 
