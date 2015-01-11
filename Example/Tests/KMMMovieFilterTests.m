@@ -37,8 +37,8 @@
     XCTAssert(self.filter.yearRange.length == NSNotFound);
 }
 
-- (void)testInitialGenreIsNotFound {
-    XCTAssert(self.filter.genreId == NSNotFound);
+- (void)testInitialGenresIsEmptyArray {
+    XCTAssert(self.filter.genres.count == 0);
 }
 
 - (void)testInitialSortByIsKMMFilterSortByPopular {

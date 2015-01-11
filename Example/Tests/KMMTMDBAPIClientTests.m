@@ -159,7 +159,7 @@
     
     KMMMovieFilter *filter = [KMMMovieFilter new];
     filter.yearRange = NSMakeRange(1999, 10); //1999-2009
-    filter.genreId = 18; //Drama
+    filter.genres = @[@18]; //Drama
     filter.sortBy = KMMFilterSortByPopular;
     
     NSInteger pageNumber = 2;

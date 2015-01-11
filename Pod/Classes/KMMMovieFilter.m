@@ -29,7 +29,7 @@ NSString* NSStringFromKMMFilterSortBy(KMMFilterSortBy sortBy) {
 -(id)init {
     if (self = [super init])  {
         _yearRange = NSMakeRange(NSNotFound, NSNotFound);
-        _genreId = NSNotFound;
+        _genres = @[];
         _sortBy = KMMFilterSortByPopular;
     }
     return self;

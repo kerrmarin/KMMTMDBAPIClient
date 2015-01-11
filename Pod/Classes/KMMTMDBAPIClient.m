@@ -164,8 +164,8 @@
         params[@"release_date.lte"] = releaseDateLTE;
     }
 
-    if(filter.genreId != NSNotFound) {
-        params[@"with_genres"] = @(filter.genreId);
+    if(filter.genres.count != 0) {
+        params[@"with_genres"] = [filter.genres componentsJoinedByString:@","];
     }
 
     params[@"sort_by"] = NSStringFromKMMFilterSortBy(filter.sortBy);

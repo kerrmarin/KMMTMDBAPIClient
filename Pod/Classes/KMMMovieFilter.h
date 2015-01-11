@@ -20,6 +20,6 @@ NSString* NSStringFromKMMFilterSortBy(KMMFilterSortBy sortBy);
 
 @property(nonatomic, assign) NSRange yearRange;
 @property(nonatomic, assign) KMMFilterSortBy sortBy;
-@property(nonatomic, assign) NSInteger genreId;
+@property(nonatomic, copy) NSArray *genres;
 
 @end
