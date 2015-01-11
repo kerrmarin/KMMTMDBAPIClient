@@ -18,6 +18,8 @@
 @property(nonatomic, weak) IBOutlet UILabel *releaseDateLabel;
 @property(nonatomic, weak) IBOutlet UILabel *popularityLabel;
 
+@property(nonatomic, weak) IBOutlet UIImageView *posterImageView;;
+
 @end
 
 @implementation KMMViewController
@@ -31,6 +33,10 @@
         self.titleLabel.text = firstMovie[@"original_title"];
         self.releaseDateLabel.text = firstMovie[@"release_date"];
         self.popularityLabel.text = [@"Popularity: " stringByAppendingFormat: @"%f", [firstMovie[@"popularity"] doubleValue] ];
+        NSString *path = [@"w342" stringByAppendingString:firstMovie[@"poster_path"]];
+        [[KMMTMDBAPIClient client] getImageWithPath:path complete:^(UIImage *image, NSError *error) {
+            self.posterImageView.image = image;
+        }];
     }];
 }
 

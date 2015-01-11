@@ -35,11 +35,15 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9wq-8H-bpW">
+                                <rect key="frame" x="40" y="200" width="240" height="348"/>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <connections>
                         <outlet property="popularityLabel" destination="Wf6-dV-EVY" id="8yX-sV-2iS"/>
+                        <outlet property="posterImageView" destination="9wq-8H-bpW" id="l8I-V1-0UX"/>
                         <outlet property="releaseDateLabel" destination="DOm-Ym-LaX" id="R7E-vs-gEe"/>
                         <outlet property="titleLabel" destination="bt5-hA-NYg" id="6Ps-0W-6Uv"/>
                     </connections>

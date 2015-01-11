@@ -281,27 +281,35 @@
  *
  *  @return an AFHTTPRequestOperation with the current request
  */
--(AFHTTPRequestOperation *)getImageWithPath:(NSString*)path
-                                   complete:(void (^)(UIImage *image, NSError *error))complete {
-    
-    NSURL *url = [NSURL URLWithString: [self.configurationURL stringByAppendingString:path]];
-    NSURLRequest *request = [NSURLRequest requestWithURL:url];
-    
-    AFHTTPRequestOperation *postOperation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
-    postOperation.responseSerializer = [AFImageResponseSerializer serializer];
-    
-    [postOperation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
-        dispatch_async(dispatch_get_main_queue(), ^{
-            complete(responseObject, nil);
-        });
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        dispatch_async(dispatch_get_main_queue(), ^{
-            complete(nil, error);
-        });
+-(void)getImageWithPath:(NSString*)path
+               complete:(void (^)(UIImage *image, NSError *error))complete {
+
+    NSBlockOperation *operation = [NSBlockOperation blockOperationWithBlock:^{
+        NSURL *url = [NSURL URLWithString: [self.configurationURL stringByAppendingString:path]];
+        NSURLRequest *request = [NSURLRequest requestWithURL:url];
+        
+        AFHTTPRequestOperation *postOperation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
+        postOperation.responseSerializer = [AFImageResponseSerializer serializer];
+        
+        [postOperation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                complete(responseObject, nil);
+            });
+        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                complete(nil, error);
+            });
+        }];
+        [postOperation start];
     }];
     
-    [postOperation start];
-    return postOperation;
+    //Images can only be loaded if the config URL has been retrieved, so lets add them to the
+    // operation queue if the config url hasn't finished yet
+    if(!self.configurationURL) {
+        [self.operationQueue addOperation:operation];
+    } else {
+        [operation start];
+    }
 }
 
 
@@ -374,13 +382,21 @@
  * Gets and updates the configuration URL for images
  */
 -(void) updateConfigURL {
-    [self getWithPath:@"configuration"
-               params:@{}
-             complete:^(id results, NSError *error) {
-                 if(!error) {
-                     _configurationURL = results[@"images"][@"base_url"];
-                 }
-             }];
+    NSString *pathAndParameters = [@"configuration?" stringByAppendingString:[@"api_key=" stringByAppendingString:self.apiKey]];
+    NSURL *url = [NSURL URLWithString:[self.baseURL.absoluteString stringByAppendingString:pathAndParameters]];
+    
+    NSURLRequest *request = [NSURLRequest requestWithURL:url];
+    
+    AFHTTPRequestOperation *getConfigOperation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
+    getConfigOperation.responseSerializer = [AFJSONResponseSerializer serializer];
+    
+    [getConfigOperation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            _configurationURL = responseObject[@"images"][@"base_url"];
+        });
+    } failure:nil];
+    
+    [self.operationQueue addOperation:getConfigOperation];
 }
 
 @end

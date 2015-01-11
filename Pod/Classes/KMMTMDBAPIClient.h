@@ -178,8 +178,8 @@ typedef void (^KMMNetworkingCompletionBlock)(id results, NSError *error);
  *
  *  @return an NSURLSessionDataTask with the current task
  */
--(AFHTTPRequestOperation *)getImageWithPath:(NSString*)path
-                                   complete:(void (^)(UIImage *image, NSError *error))complete;
+-(void)getImageWithPath:(NSString*)path
+               complete:(void (^)(UIImage *image, NSError *error))complete;
 
 
 
