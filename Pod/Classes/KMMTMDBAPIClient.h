@@ -17,6 +17,16 @@ typedef void (^KMMNetworkingCompletionBlock)(id results, NSError *error);
 @interface KMMTMDBAPIClient : AFHTTPSessionManager
 
 /**
+ *  Must be one of "false" or "true". Defaults to "false"
+ */
+@property(nonatomic, copy) NSString *includeAdult;
+
+/**
+ *  ISO 639-1 string for language. e.g. "en"
+ */
+@property(nonatomic, copy) NSString *language;
+
+/**
  *  Returns an instance of the TMDB API client
  *
  *  @return a fully initialized KMMTMDBAPIClient
