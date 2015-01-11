@@ -9,20 +9,16 @@
 
 Pod::Spec.new do |s|
   s.name             = "KMMTMDBAPIClient"
-  s.version          = "0.1.0"
-  s.summary          = "A short description of KMMTMDBAPIClient."
+  s.version          = "1.0"
+  s.summary          = "A TMDB API client"
   s.description      = <<-DESC
-                       An optional longer description of KMMTMDBAPIClient
-
-                       * Markdown format.
-                       * Don't worry about the indent, we strip it!
+                        A client to interact with the TMDB API and perform queries.
                        DESC
-  s.homepage         = "https://github.com/<GITHUB_USERNAME>/KMMTMDBAPIClient"
-  # s.screenshots     = "www.example.com/screenshots_1", "www.example.com/screenshots_2"
+  s.homepage         = "https://github.com/kerrmarin/KMMTMDBAPIClient"
   s.license          = 'MIT'
   s.author           = { "Kerr Marin Miller" => "kerr@kerrmarin.com" }
-  s.source           = { :git => "https://github.com/<GITHUB_USERNAME>/KMMTMDBAPIClient.git", :tag => s.version.to_s }
-  # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
+  s.source           = { :git => "https://github.com/kerrmarin/KMMTMDBAPIClient.git", :tag => s.version.to_s }
+  # s.social_media_url = 'https://twitter.com/kerrmarin'
 
   s.platform     = :ios, '7.0'
   s.requires_arc = true
@@ -32,7 +28,7 @@ Pod::Spec.new do |s|
     'KMMTMDBAPIClient' => ['Pod/Assets/*.png']
   }
 
-  # s.public_header_files = 'Pod/Classes/**/*.h'
-  # s.frameworks = 'UIKit', 'MapKit'
-  # s.dependency 'AFNetworking', '~> 2.3'
+  s.dependency 'AFNetworking', '~> 2.5'
+  s.dependency 'KMMParseConfigurationManager', '~> 1.0'
+
 end

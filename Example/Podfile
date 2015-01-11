@@ -1,11 +1,12 @@
 source 'https://github.com/CocoaPods/Specs.git'
 
+pod 'AFNetworking', '~> 2.5'
+pod 'KMMParseConfigurationManager', '~> 1.0'
+
 target 'KMMTMDBAPIClient', :exclusive => true do
   pod "KMMTMDBAPIClient", :path => "../"
 end
 
 target 'Tests', :exclusive => true do
   pod "KMMTMDBAPIClient", :path => "../"
-
-  
 end

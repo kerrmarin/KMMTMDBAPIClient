@@ -41,6 +41,26 @@
 			<key>isa</key>
 			<string>PBXBuildFile</string>
 		</dict>
+		<key>2D8899BA4065729A403EDC41</key>
+		<dict>
+			<key>explicitFileType</key>
+			<string>archive.ar</string>
+			<key>includeInIndex</key>
+			<string>0</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>path</key>
+			<string>libPods.a</string>
+			<key>sourceTree</key>
+			<string>BUILT_PRODUCTS_DIR</string>
+		</dict>
+		<key>4706A9F285E8FF5FF7FA2526</key>
+		<dict>
+			<key>fileRef</key>
+			<string>2D8899BA4065729A403EDC41</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
 		<key>5B8D3E67239F3C091CE30C53</key>
 		<dict>
 			<key>fileRef</key>
@@ -196,6 +216,7 @@ fi
 				<string>6003F592195388D20070C39A</string>
 				<string>6003F58E195388D20070C39A</string>
 				<string>5B8D3E67239F3C091CE30C53</string>
+				<string>4706A9F285E8FF5FF7FA2526</string>
 			</array>
 			<key>isa</key>
 			<string>PBXFrameworksBuildPhase</string>
@@ -282,6 +303,7 @@ fi
 				<string>6003F5AF195388D20070C39A</string>
 				<string>5F8535F26A75406FCDE42686</string>
 				<string>B8434911AC86AD3DDB91B921</string>
+				<string>2D8899BA4065729A403EDC41</string>
 			</array>
 			<key>isa</key>
 			<string>PBXGroup</string>
