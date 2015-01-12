@@ -2,12 +2,14 @@ platform :ios, "7.0"
 
 source 'https://github.com/CocoaPods/Specs.git'
 
+pod 'AFNetworking', '~> 2.5'
+
 target 'KMMTMDBAPIClient', :exclusive => true do
   pod "KMMTMDBAPIClient", :path => "../"
-  
-  pod 'AFNetworking', '~> 2.5'
 end
 
 target 'Tests', :exclusive => true do
   pod "KMMTMDBAPIClient", :path => "../"
 end
+
+link_with 'KMMTMDBAPIPClient', 'Tests'

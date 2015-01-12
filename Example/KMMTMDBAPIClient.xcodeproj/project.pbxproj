@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		29A380EFD94B4C7010F19B23 /* libPods-Tests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B8434911AC86AD3DDB91B921 /* libPods-Tests.a */; };
-		4706A9F285E8FF5FF7FA2526 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D8899BA4065729A403EDC41 /* libPods.a */; };
 		57C0665A1A62BFCC000EB447 /* KMMTMDBAPIClientTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 57C066591A62BFCC000EB447 /* KMMTMDBAPIClientTests.m */; };
 		57C0665C1A62CC66000EB447 /* KMMMovieFilterTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 57C0665B1A62CC66000EB447 /* KMMMovieFilterTests.m */; };
 		5B8D3E67239F3C091CE30C53 /* libPods-KMMTMDBAPIClient.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F8535F26A75406FCDE42686 /* libPods-KMMTMDBAPIClient.a */; };
@@ -82,7 +81,6 @@
 				6003F592195388D20070C39A /* UIKit.framework in Frameworks */,
 				6003F58E195388D20070C39A /* Foundation.framework in Frameworks */,
 				5B8D3E67239F3C091CE30C53 /* libPods-KMMTMDBAPIClient.a in Frameworks */,
-				4706A9F285E8FF5FF7FA2526 /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
