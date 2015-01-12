@@ -1,6 +1,6 @@
 # KMMTMDBAPIClient
 
-[![CI Status](http://img.shields.io/travis/kerrmarin/KMMTMDBAPIClient.svg?style=flat)](https://travis-ci.org/Kerr Marin Miller/KMMTMDBAPIClient)
+[![CI Status](http://img.shields.io/travis/kerrmarin/KMMTMDBAPIClient.svg?style=flat)](https://travis-ci.org/kerrmarin/KMMTMDBAPIClient)
 [![Version](https://img.shields.io/cocoapods/v/KMMTMDBAPIClient.svg?style=flat)](http://cocoadocs.org/docsets/KMMTMDBAPIClient)
 [![License](https://img.shields.io/cocoapods/l/KMMTMDBAPIClient.svg?style=flat)](http://cocoadocs.org/docsets/KMMTMDBAPIClient)
 [![Platform](https://img.shields.io/cocoapods/p/KMMTMDBAPIClient.svg?style=flat)](http://cocoadocs.org/docsets/KMMTMDBAPIClient)
