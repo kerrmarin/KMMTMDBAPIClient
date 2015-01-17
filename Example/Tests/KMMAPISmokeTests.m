@@ -278,7 +278,7 @@
 -(void)testCanGetListItemStatus {
     XCTestExpectation *getListWithIdExpectation = [self expectationWithDescription:@"getListWithIdExpectation"];
     
-    [[KMMTMDBAPIClient client] checkMovie:1234 isInList:@"509ec17b19c2950a0600050d" complete:^(id results, NSError *error) {
+    [[KMMTMDBAPIClient client] checkMovie:550 isInList:@"509ec17b19c2950a0600050d" complete:^(id results, NSError *error) {
         if(!error) {
             [getListWithIdExpectation fulfill];
         }
@@ -287,13 +287,194 @@
 }
 
 
+#pragma mark -- Movies tests
 
+-(void)testCanGetMovieWithId {
+    XCTestExpectation *getMovieWithIdExpectation = [self expectationWithDescription:@"getMovieWithIdExpectation"];
+    
+    [[KMMTMDBAPIClient client] movieWithId:550 complete:^(id results, NSError *error) {
+        if(!error) {
+            [getMovieWithIdExpectation fulfill];
+        }
+    }];
+    [self waitForExpectationsWithTimeout:3 handler:nil];
+}
 
+-(void)testCanGetMovieAlternativeTitles {
+    XCTestExpectation *testCanGetMovieAlternativeTitlesExpectation = [self expectationWithDescription:@"testCanGetMovieAlternativeTitlesExpectation"];
+    
+    [[KMMTMDBAPIClient client] alternativeTitlesForMovie:550 inCountry:@"GB" complete:^(id results, NSError *error) {
+        if(!error) {
+            [testCanGetMovieAlternativeTitlesExpectation fulfill];
+        }
+    }];
+    [self waitForExpectationsWithTimeout:3 handler:nil];
+}
 
+-(void)testCanGetMovieCredits {
+    XCTestExpectation *getMovieCreditsExpectation = [self expectationWithDescription:@"getMovieCreditsExpectation"];
+    
+    [[KMMTMDBAPIClient client] creditsForMovie:550 complete:^(id results, NSError *error) {
+        if(!error) {
+            [getMovieCreditsExpectation fulfill];
+        }
+    }];
+    [self waitForExpectationsWithTimeout:3 handler:nil];
+}
 
+-(void)testCanGetMovieImages {
+    XCTestExpectation *getMovieImagesExpectation = [self expectationWithDescription:@"getMovieImagesExpectation"];
+    
+    [[KMMTMDBAPIClient client] imagesForMovie:550 complete:^(id results, NSError *error) {
+        if(!error) {
+            [getMovieImagesExpectation fulfill];
+        }
+    }];
+    [self waitForExpectationsWithTimeout:3 handler:nil];
+}
 
+-(void)testCanGetMovieKeywords {
+    XCTestExpectation *getMovieKeywordsExpectation = [self expectationWithDescription:@"getMovieKeywordsExpectation"];
+    
+    [[KMMTMDBAPIClient client] keywordsForMovie:550 complete:^(id results, NSError *error) {
+        if(!error) {
+            [getMovieKeywordsExpectation fulfill];
+        }
+    }];
+    [self waitForExpectationsWithTimeout:3 handler:nil];
+}
 
+-(void)testCanGetMovieReleases {
+    XCTestExpectation *getMovieReleasesExpectation = [self expectationWithDescription:@"getMovieReleasesExpectation"];
+    
+    [[KMMTMDBAPIClient client] releasesForMovie:550 complete:^(id results, NSError *error) {
+        if(!error) {
+            [getMovieReleasesExpectation fulfill];
+        }
+    }];
+    [self waitForExpectationsWithTimeout:3 handler:nil];
+}
 
+-(void)testCanGetMovieVideos {
+    XCTestExpectation *getMovieVideosExpectation = [self expectationWithDescription:@"getMovieVideosExpectation"];
+    
+    [[KMMTMDBAPIClient client] videosForMovie:550 complete:^(id results, NSError *error) {
+        if(!error) {
+            [getMovieVideosExpectation fulfill];
+        }
+    }];
+    [self waitForExpectationsWithTimeout:3 handler:nil];
+}
+
+-(void)testCanGetMovieTranslations {
+    XCTestExpectation *getMovieTranslationsExpectation = [self expectationWithDescription:@"getMovieTranslationsExpectation"];
+    
+    [[KMMTMDBAPIClient client] translationsForMovie:550 complete:^(id results, NSError *error) {
+        if(!error) {
+            [getMovieTranslationsExpectation fulfill];
+        }
+    }];
+    [self waitForExpectationsWithTimeout:3 handler:nil];
+}
+
+-(void)testCanGetMovieSimilar {
+    XCTestExpectation *getMovieSimilarExpectation = [self expectationWithDescription:@"getMovieSimilarExpectation"];
+    
+    [[KMMTMDBAPIClient client] similarMoviesForMovie:550 inPage:1 complete:^(id results, NSError *error) {
+        if(!error) {
+            [getMovieSimilarExpectation fulfill];
+        }
+    }];
+    [self waitForExpectationsWithTimeout:3 handler:nil];
+}
+
+-(void)testCanGetMovieReviews {
+    XCTestExpectation *getMovieReviewsExpectation = [self expectationWithDescription:@"getMovieReviewsExpectation"];
+    
+    [[KMMTMDBAPIClient client] reviewsForMovie:550 inPage:1 complete:^(id results, NSError *error) {
+        if(!error) {
+            [getMovieReviewsExpectation fulfill];
+        }
+    }];
+    [self waitForExpectationsWithTimeout:3 handler:nil];
+}
+
+-(void)testCanGetMovieLists {
+    XCTestExpectation *getMovieListsExpectation = [self expectationWithDescription:@"getMovieListsExpectation"];
+    
+    [[KMMTMDBAPIClient client] listsForMovie:550 inPage:1 complete:^(id results, NSError *error) {
+        if(!error) {
+            [getMovieListsExpectation fulfill];
+        }
+    }];
+    [self waitForExpectationsWithTimeout:3 handler:nil];
+}
+
+-(void)testCanGetMovieChanges {
+    XCTestExpectation *getMovieChangesExpectation = [self expectationWithDescription:@"getMovieChangesExpectation"];
+    
+    [[KMMTMDBAPIClient client] changesForMovie:550 from:[NSDate date] to:[NSDate date] complete:^(id results, NSError *error) {
+        if(!error) {
+            [getMovieChangesExpectation fulfill];
+        }
+    }];
+    [self waitForExpectationsWithTimeout:3 handler:nil];
+}
+
+-(void)testCanGetLatestMovie {
+    XCTestExpectation *getLatestMovieExpectation = [self expectationWithDescription:@"getLatestMovieExpectation"];
+    
+    [[KMMTMDBAPIClient client] latestMovieWithBlock:^(id results, NSError *error) {
+        if(!error) {
+            [getLatestMovieExpectation fulfill];
+        }
+    }];
+    [self waitForExpectationsWithTimeout:3 handler:nil];
+}
+
+-(void)testCanGetUpcomingMovies {
+    XCTestExpectation *getUpcomingMoviesExpectation = [self expectationWithDescription:@"getUpcomingMoviesExpectation"];
+    
+    [[KMMTMDBAPIClient client] upcomingMoviesInPage:1 complete:^(id results, NSError *error) {
+        if(!error) {
+            [getUpcomingMoviesExpectation fulfill];
+        }
+    }];
+    [self waitForExpectationsWithTimeout:3 handler:nil];
+}
+
+-(void)testCanGetNowPlayingMovies {
+    XCTestExpectation *getNowPlayingMoviesExpectation = [self expectationWithDescription:@"getNowPlayingMoviesExpectation"];
+    
+    [[KMMTMDBAPIClient client] nowPlayingMoviesInPage:1 complete:^(id results, NSError *error) {
+        if(!error) {
+            [getNowPlayingMoviesExpectation fulfill];
+        }
+    }];
+    [self waitForExpectationsWithTimeout:3 handler:nil];
+}
+
+-(void)testCanGetPopularMovies {
+    XCTestExpectation *getPopularMoviesExpectation = [self expectationWithDescription:@"getPopularMoviesExpectation"];
+    
+    [[KMMTMDBAPIClient client] nowPlayingMoviesInPage:1 complete:^(id results, NSError *error) {
+        if(!error) {
+            [getPopularMoviesExpectation fulfill];
+        }
+    }];
+    [self waitForExpectationsWithTimeout:3 handler:nil];
+}
+
+-(void)testCanGetTopRatedMovies {
+    XCTestExpectation *getTopRatedMoviesExpectation = [self expectationWithDescription:@"getTopRatedMoviesExpectation"];
+    
+    [[KMMTMDBAPIClient client] nowPlayingMoviesInPage:1 complete:^(id results, NSError *error) {
+        if(!error) {
+            [getTopRatedMoviesExpectation fulfill];
+        }
+    }];
+    [self waitForExpectationsWithTimeout:3 handler:nil];
+}
 
 
 
