@@ -257,11 +257,11 @@ NSString* NSStringFromTMDBSearchType(TMDBSearchType type) {
 #pragma mark -- Find
 
 
--(NSURLSessionDataTask *)findResource:(NSInteger)resourceId
+-(NSURLSessionDataTask *)findResource:(NSString*)resourceId
                      inExternalSource:(TMDBExternalSource)source
                              complete:(KMMNetworkingCompletionBlock)complete {
     NSString *sourceString = NSStringFromTMDBExternalSource(source);
-    NSString *path = [NSString stringWithFormat:@"find/%ld", (long)resourceId];
+    NSString *path = [NSString stringWithFormat:@"find/%@", resourceId];
     NSURLSessionDataTask *task = [self getWithPath:path
                                             params:@{ @"external_source" : sourceString }
                                           complete:complete];

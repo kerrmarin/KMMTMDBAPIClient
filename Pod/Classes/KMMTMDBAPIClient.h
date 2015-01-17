@@ -264,7 +264,7 @@ typedef void (^KMMNetworkingCompletionBlock)(id results, NSError *error);
  *
  *  @return an NSURLSessionDataTask with the current task
  */
--(NSURLSessionDataTask *)findResource:(NSInteger)resourceId
+-(NSURLSessionDataTask *)findResource:(NSString*)resourceId
                      inExternalSource:(TMDBExternalSource)source
                              complete:(KMMNetworkingCompletionBlock)complete;
 

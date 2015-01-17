@@ -178,9 +178,53 @@
     [self waitForExpectationsWithTimeout:3 handler:nil];
 }
 
-#pragma mark -- Find
+#pragma mark -- Find tests
+
+-(void)testCanFindByExternalId {
+    XCTestExpectation *findByExternalIdExpectation = [self expectationWithDescription:@"findByExternalIdExpectation"];
+    
+    [[KMMTMDBAPIClient client] findResource:@"tt2179136" inExternalSource:TMDBExternalSourceIMDB complete:^(id results, NSError *error) {
+        if(!error) {
+            [findByExternalIdExpectation fulfill];
+        }
+    }];
+    [self waitForExpectationsWithTimeout:3 handler:nil];
+}
 
 
+#pragma mark -- Genres tests
 
+-(void)testCanfFindByExternalId {
+    XCTestExpectation *findByExternalIdExpectation = [self expectationWithDescription:@"findByExternalIdExpectation"];
+    
+    [[KMMTMDBAPIClient client] findResource:@"tt2179136" inExternalSource:TMDBExternalSourceIMDB complete:^(id results, NSError *error) {
+        if(!error) {
+            [findByExternalIdExpectation fulfill];
+        }
+    }];
+    [self waitForExpectationsWithTimeout:3 handler:nil];
+}
+
+-(void)testCanfFindByExternalId {
+    XCTestExpectation *findByExternalIdExpectation = [self expectationWithDescription:@"findByExternalIdExpectation"];
+    
+    [[KMMTMDBAPIClient client] findResource:@"tt2179136" inExternalSource:TMDBExternalSourceIMDB complete:^(id results, NSError *error) {
+        if(!error) {
+            [findByExternalIdExpectation fulfill];
+        }
+    }];
+    [self waitForExpectationsWithTimeout:3 handler:nil];
+}
+
+-(void)testCanfFindByExternalId {
+    XCTestExpectation *findByExternalIdExpectation = [self expectationWithDescription:@"findByExternalIdExpectation"];
+    
+    [[KMMTMDBAPIClient client] findResource:@"tt2179136" inExternalSource:TMDBExternalSourceIMDB complete:^(id results, NSError *error) {
+        if(!error) {
+            [findByExternalIdExpectation fulfill];
+        }
+    }];
+    [self waitForExpectationsWithTimeout:3 handler:nil];
+}
 
 @end
