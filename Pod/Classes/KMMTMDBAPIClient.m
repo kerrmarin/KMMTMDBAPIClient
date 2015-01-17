@@ -178,7 +178,7 @@ NSString* NSStringFromTMDBSearchType(TMDBSearchType type) {
 
 -(NSURLSessionDataTask *)collectionWithId:(NSInteger)collectionId
                                  complete:(KMMNetworkingCompletionBlock)complete {
-    NSString *path = [NSString stringWithFormat:@"collection/%d", collectionId];
+    NSString *path = [NSString stringWithFormat:@"collection/%ld", (long)collectionId];
     NSURLSessionDataTask *task = [self getWithPath:path
                                             params:@{@"append_to_response" : @"images"}
                                           complete:complete];
@@ -188,7 +188,7 @@ NSString* NSStringFromTMDBSearchType(TMDBSearchType type) {
 
 -(NSURLSessionDataTask *)imagesForCollection:(NSInteger)collectionId
                                     complete:(KMMNetworkingCompletionBlock)complete {
-    NSString *path = [NSString stringWithFormat:@"collection/%d/images", collectionId];
+    NSString *path = [NSString stringWithFormat:@"collection/%ld/images", (long)collectionId];
     NSURLSessionDataTask *task = [self getWithPath:path
                                             params:@{}
                                           complete:complete];
@@ -200,7 +200,7 @@ NSString* NSStringFromTMDBSearchType(TMDBSearchType type) {
 
 -(NSURLSessionDataTask *)companyWithID:(NSInteger)companyID
                               complete:(KMMNetworkingCompletionBlock)complete {
-    NSString *path = [NSString stringWithFormat:@"company/%d", companyID];
+    NSString *path = [NSString stringWithFormat:@"company/%ld", (long)companyID];
     NSURLSessionDataTask *task = [self getWithPath:path
                                             params:@{@"append_to_response" : @"movies"}
                                           complete:complete];
@@ -210,7 +210,7 @@ NSString* NSStringFromTMDBSearchType(TMDBSearchType type) {
 -(NSURLSessionDataTask *)moviesForCompany:(NSInteger)companyID
                                    inPage:(NSInteger)page
                                  complete:(KMMNetworkingCompletionBlock)complete {
-    NSString *path = [NSString stringWithFormat:@"company/%d/movies", companyID];
+    NSString *path = [NSString stringWithFormat:@"company/%ld/movies", (long)companyID];
     NSURLSessionDataTask *task = [self getWithPath:path
                                             params:@{@"page" : @(page)}
                                           complete:complete];
@@ -222,7 +222,7 @@ NSString* NSStringFromTMDBSearchType(TMDBSearchType type) {
 
 -(NSURLSessionDataTask *)creditWithId:(NSInteger)creditID
                              complete:(KMMNetworkingCompletionBlock)complete {
-    NSString *path = [NSString stringWithFormat:@"credit/%d", creditID];
+    NSString *path = [NSString stringWithFormat:@"credit/%ld", (long)creditID];
     NSURLSessionDataTask *task = [self getWithPath:path
                                             params:@{}
                                           complete:complete];
@@ -261,7 +261,7 @@ NSString* NSStringFromTMDBSearchType(TMDBSearchType type) {
                      inExternalSource:(TMDBExternalSource)source
                              complete:(KMMNetworkingCompletionBlock)complete {
     NSString *sourceString = NSStringFromTMDBExternalSource(source);
-    NSString *path = [NSString stringWithFormat:@"find/%d", resourceId];
+    NSString *path = [NSString stringWithFormat:@"find/%ld", (long)resourceId];
     NSURLSessionDataTask *task = [self getWithPath:path
                                             params:@{ @"external_source" : sourceString }
                                           complete:complete];
@@ -291,7 +291,7 @@ NSString* NSStringFromTMDBSearchType(TMDBSearchType type) {
 -(NSURLSessionDataTask *)moviesWithGenre:(NSInteger)genreID
                                   inPage:(NSInteger)page
                                 complete:(KMMNetworkingCompletionBlock)complete {
-    NSString *path = [NSString stringWithFormat:@"genre/%d/movies", genreID];
+    NSString *path = [NSString stringWithFormat:@"genre/%ld/movies", (long)genreID];
     NSURLSessionDataTask *task = [self getWithPath:path
                                             params:@{@"page" : @(page)}
                                           complete:complete];
@@ -314,7 +314,7 @@ NSString* NSStringFromTMDBSearchType(TMDBSearchType type) {
 
 -(NSURLSessionDataTask *)keywordWithId:(NSInteger)keywordId
                               complete:(KMMNetworkingCompletionBlock)complete {
-    NSString *path = [NSString stringWithFormat:@"keyword/%d" , keywordId];
+    NSString *path = [NSString stringWithFormat:@"keyword/%ld" , (long)keywordId];
     NSURLSessionDataTask *task = [self getWithPath:path
                                             params:@{}
                                           complete:complete];
@@ -325,7 +325,7 @@ NSString* NSStringFromTMDBSearchType(TMDBSearchType type) {
 -(NSURLSessionDataTask *)moviesWithKeywordId:(NSInteger)keywordId
                                       inPage:(NSInteger)pageNumber
                                     complete:(KMMNetworkingCompletionBlock)complete {
-    NSString *path = [NSString stringWithFormat:@"keyword/%d/movies", keywordId];
+    NSString *path = [NSString stringWithFormat:@"keyword/%ld/movies", (long)keywordId];
     NSURLSessionDataTask *task = [self getWithPath:path
                                             params:@{@"page" : @(pageNumber)}
                                           complete:complete];
@@ -337,7 +337,7 @@ NSString* NSStringFromTMDBSearchType(TMDBSearchType type) {
 
 -(NSURLSessionDataTask *)listWithId:(NSInteger)listId
                            complete:(KMMNetworkingCompletionBlock)complete {
-    NSString *path = [NSString stringWithFormat:@"list/%d", listId];
+    NSString *path = [NSString stringWithFormat:@"list/%ld", (long)listId];
     NSURLSessionDataTask *task = [self getWithPath:path
                                             params:@{}
                                           complete:complete];
@@ -349,7 +349,7 @@ NSString* NSStringFromTMDBSearchType(TMDBSearchType type) {
 -(NSURLSessionDataTask *)checkMovie:(NSInteger)movieId
                            isInList:(NSInteger)listId
                            complete:(KMMNetworkingCompletionBlock)complete {
-    NSString *path = [NSString stringWithFormat:@"list/%d/item_status", listId];
+    NSString *path = [NSString stringWithFormat:@"list/%ld/item_status", (long)listId];
     NSURLSessionDataTask *task = [self getWithPath:path
                                             params:@{@"movie_id" : @(movieId)}
                                           complete:complete];
@@ -361,7 +361,7 @@ NSString* NSStringFromTMDBSearchType(TMDBSearchType type) {
 
 -(NSURLSessionDataTask *)movieWithId:(NSInteger)movieID
                             complete:(KMMNetworkingCompletionBlock)complete {
-    NSURLSessionDataTask *task = [self getWithPath:[@"movie/" stringByAppendingFormat:@"%d", movieID]
+    NSURLSessionDataTask *task = [self getWithPath:[@"movie/" stringByAppendingFormat:@"%ld", (long)movieID]
                                             params:@{@"append_to_response" : @"alternative_titles,videos,credits,images,keywords,releases,similar,reviews"}
                                           complete:complete];
     return task;
@@ -371,7 +371,7 @@ NSString* NSStringFromTMDBSearchType(TMDBSearchType type) {
 -(NSURLSessionDataTask *)alternativeTitlesForMovie:(NSInteger)movieId
                                          inCountry:(NSString*)countryCode
                                           complete:(KMMNetworkingCompletionBlock)complete {
-    NSString *path = [NSString stringWithFormat:@"movie/%d/alternative_titles", movieId];
+    NSString *path = [NSString stringWithFormat:@"movie/%ld/alternative_titles", (long)movieId];
     NSURLSessionDataTask *task = [self getWithPath:path
                                             params:@{@"country" : countryCode}
                                           complete:complete];
@@ -381,7 +381,7 @@ NSString* NSStringFromTMDBSearchType(TMDBSearchType type) {
 
 -(NSURLSessionDataTask *)creditsForMovie:(NSInteger)movieID
                                 complete:(KMMNetworkingCompletionBlock)complete {
-    NSString *path = [NSString stringWithFormat:@"movie/%d/credits", movieID];
+    NSString *path = [NSString stringWithFormat:@"movie/%ld/credits", (long)movieID];
     NSURLSessionDataTask *task = [self getWithPath:path
                                             params:@{}
                                           complete:complete];
@@ -391,7 +391,7 @@ NSString* NSStringFromTMDBSearchType(TMDBSearchType type) {
 
 -(NSURLSessionDataTask *)imagesForMovie:(NSInteger)movieID
                                complete:(KMMNetworkingCompletionBlock)complete {
-    NSString *path = [NSString stringWithFormat:@"movie/%d/images", movieID];
+    NSString *path = [NSString stringWithFormat:@"movie/%ld/images", (long)movieID];
     NSURLSessionDataTask *task = [self getWithPath:path
                                             params:@{}
                                           complete:complete];
@@ -401,7 +401,7 @@ NSString* NSStringFromTMDBSearchType(TMDBSearchType type) {
 
 -(NSURLSessionDataTask *)keywordsForMovie:(NSInteger)movieID
                                  complete:(KMMNetworkingCompletionBlock)complete {
-    NSString *path = [NSString stringWithFormat:@"movie/%d/keywords", movieID];
+    NSString *path = [NSString stringWithFormat:@"movie/%ld/keywords", (long)movieID];
     NSURLSessionDataTask *task = [self getWithPath:path
                                             params:@{}
                                           complete:complete];
@@ -411,7 +411,7 @@ NSString* NSStringFromTMDBSearchType(TMDBSearchType type) {
 
 -(NSURLSessionDataTask *)releasesForMovie:(NSInteger)movieID
                                  complete:(KMMNetworkingCompletionBlock)complete {
-    NSString *path = [NSString stringWithFormat:@"movie/%d/releases", movieID];
+    NSString *path = [NSString stringWithFormat:@"movie/%ld/releases", (long)movieID];
     NSURLSessionDataTask *task = [self getWithPath:path
                                             params:@{}
                                           complete:complete];
@@ -421,7 +421,7 @@ NSString* NSStringFromTMDBSearchType(TMDBSearchType type) {
 
 -(NSURLSessionDataTask *)videosForMovie:(NSInteger)movieID
                                complete:(KMMNetworkingCompletionBlock)complete {
-    NSString *path = [NSString stringWithFormat:@"movie/%d/videos", movieID];
+    NSString *path = [NSString stringWithFormat:@"movie/%ld/videos", (long)movieID];
     NSURLSessionDataTask *task = [self getWithPath:path
                                             params:@{}
                                           complete:complete];
@@ -431,7 +431,7 @@ NSString* NSStringFromTMDBSearchType(TMDBSearchType type) {
 
 -(NSURLSessionDataTask *)translationsForMovie:(NSInteger)movieID
                                      complete:(KMMNetworkingCompletionBlock)complete {
-    NSString *path = [NSString stringWithFormat:@"movie/%d/translations", movieID];
+    NSString *path = [NSString stringWithFormat:@"movie/%ld/translations", (long)movieID];
     NSURLSessionDataTask *task = [self getWithPath:path
                                             params:@{}
                                           complete:complete];
@@ -442,7 +442,7 @@ NSString* NSStringFromTMDBSearchType(TMDBSearchType type) {
 -(NSURLSessionDataTask *)similarMoviesForMovie:(NSInteger)movieID
                                         inPage:(NSInteger)pageNumber
                                       complete:(KMMNetworkingCompletionBlock)complete {
-    NSString *path = [NSString stringWithFormat:@"movie/%d/similar", movieID];
+    NSString *path = [NSString stringWithFormat:@"movie/%ld/similar", (long)movieID];
     NSURLSessionDataTask *task = [self getWithPath:path
                                             params:@{@"page" : @(pageNumber)}
                                           complete:complete];
@@ -453,7 +453,7 @@ NSString* NSStringFromTMDBSearchType(TMDBSearchType type) {
 -(NSURLSessionDataTask *)reviewsForMovie:(NSInteger)movieID
                                   inPage:(NSInteger)pageNumber
                                 complete:(KMMNetworkingCompletionBlock)complete {
-    NSString *path = [NSString stringWithFormat:@"movie/%d/reviews", movieID];
+    NSString *path = [NSString stringWithFormat:@"movie/%ld/reviews", (long)movieID];
     NSURLSessionDataTask *task = [self getWithPath:path
                                             params:@{@"page" : @(pageNumber)}
                                           complete:complete];
@@ -464,7 +464,7 @@ NSString* NSStringFromTMDBSearchType(TMDBSearchType type) {
 -(NSURLSessionDataTask *)listsForMovie:(NSInteger)movieID
                                 inPage:(NSInteger)pageNumber
                               complete:(KMMNetworkingCompletionBlock)complete {
-    NSString *path = [NSString stringWithFormat:@"movie/%d/lists", movieID];
+    NSString *path = [NSString stringWithFormat:@"movie/%ld/lists", (long)movieID];
     NSURLSessionDataTask *task = [self getWithPath:path
                                             params:@{@"page" : @(pageNumber)}
                                           complete:complete];
@@ -476,7 +476,7 @@ NSString* NSStringFromTMDBSearchType(TMDBSearchType type) {
                                     from:(NSDate*)from
                                       to:(NSDate*)to
                                 complete:(KMMNetworkingCompletionBlock)complete {
-    NSString *path = [NSString stringWithFormat:@"movie/%d/changes", movieID];
+    NSString *path = [NSString stringWithFormat:@"movie/%ld/changes", (long)movieID];
     NSString *startDate = [self.formatter stringFromDate:from];
     NSString *endDate = [self.formatter stringFromDate:to];
     NSURLSessionDataTask *task = [self getWithPath:path
@@ -537,7 +537,7 @@ NSString* NSStringFromTMDBSearchType(TMDBSearchType type) {
 
 -(NSURLSessionDataTask *)TVNetworkWithId:(NSInteger)networkId
                                 complete:(KMMNetworkingCompletionBlock)complete {
-    NSString *path = [NSString stringWithFormat:@"network/%d", networkId];
+    NSString *path = [NSString stringWithFormat:@"network/%ld", (long)networkId];
     NSURLSessionDataTask *task = [self getWithPath:path
                                             params:@{}
                                           complete:complete];
@@ -549,7 +549,7 @@ NSString* NSStringFromTMDBSearchType(TMDBSearchType type) {
 
 -(NSURLSessionDataTask *)personWithId:(NSInteger)personID
                              complete:(KMMNetworkingCompletionBlock)complete {
-    NSString *path = [NSString stringWithFormat:@"person/%d", personID];
+    NSString *path = [NSString stringWithFormat:@"person/%ld", (long)personID];
     NSURLSessionDataTask *task = [self getWithPath:path
                                             params:@{@"append_to_response" : @"combined_credits,external_ids,images,tagged_images"}
                                           complete:complete];
@@ -559,7 +559,7 @@ NSString* NSStringFromTMDBSearchType(TMDBSearchType type) {
 
 -(NSURLSessionDataTask *)movieCreditsForPerson:(NSInteger)personId
                                       complete:(KMMNetworkingCompletionBlock)complete {
-    NSString *path = [NSString stringWithFormat:@"person/%d/movie_credits", personId];
+    NSString *path = [NSString stringWithFormat:@"person/%ld/movie_credits", (long)personId];
     NSURLSessionDataTask *task = [self getWithPath:path
                                             params:@{}
                                           complete:complete];
@@ -569,7 +569,7 @@ NSString* NSStringFromTMDBSearchType(TMDBSearchType type) {
 
 -(NSURLSessionDataTask *)TVCreditsForPerson:(NSInteger)personID
                                    complete:(KMMNetworkingCompletionBlock)complete {
-    NSString *path = [NSString stringWithFormat:@"person/%d/tv_credits", personID];
+    NSString *path = [NSString stringWithFormat:@"person/%ld/tv_credits", (long)personID];
     NSURLSessionDataTask *task = [self getWithPath:path
                                             params:@{}
                                           complete:complete];
@@ -579,7 +579,7 @@ NSString* NSStringFromTMDBSearchType(TMDBSearchType type) {
 
 -(NSURLSessionDataTask *)combinedCreditsForPerson:(NSInteger)personID
                                          complete:(KMMNetworkingCompletionBlock)complete {
-    NSString *path = [NSString stringWithFormat:@"person/%d/combined_credits", personID];
+    NSString *path = [NSString stringWithFormat:@"person/%ld/combined_credits", (long)personID];
     NSURLSessionDataTask *task = [self getWithPath:path
                                             params:@{}
                                           complete:complete];
@@ -589,7 +589,7 @@ NSString* NSStringFromTMDBSearchType(TMDBSearchType type) {
 
 -(NSURLSessionDataTask *)externalIdsForPerson:(NSInteger)personID
                                      complete:(KMMNetworkingCompletionBlock)complete {
-    NSString *path = [NSString stringWithFormat:@"person/%d/external_ids", personID];
+    NSString *path = [NSString stringWithFormat:@"person/%ld/external_ids", (long)personID];
     NSURLSessionDataTask *task = [self getWithPath:path
                                             params:@{}
                                           complete:complete];
@@ -599,7 +599,7 @@ NSString* NSStringFromTMDBSearchType(TMDBSearchType type) {
 
 -(NSURLSessionDataTask *)imagesForPerson:(NSInteger)personID
                                 complete:(KMMNetworkingCompletionBlock)complete {
-    NSString *path = [NSString stringWithFormat:@"person/%d/images", personID];
+    NSString *path = [NSString stringWithFormat:@"person/%ld/images", (long)personID];
     NSURLSessionDataTask *task = [self getWithPath:path
                                             params:@{}
                                           complete:complete];
@@ -610,7 +610,7 @@ NSString* NSStringFromTMDBSearchType(TMDBSearchType type) {
 -(NSURLSessionDataTask *)taggedImagesForPerson:(NSInteger)personID
                                         inPage:(NSInteger)pageNumber
                                       complete:(KMMNetworkingCompletionBlock)complete {
-    NSString *path = [NSString stringWithFormat:@"person/%d/tagged_images", personID];
+    NSString *path = [NSString stringWithFormat:@"person/%ld/tagged_images", (long)personID];
     NSURLSessionDataTask *task = [self getWithPath:path
                                             params:@{@"page" : @(pageNumber)}
                                           complete:complete];
@@ -622,7 +622,7 @@ NSString* NSStringFromTMDBSearchType(TMDBSearchType type) {
                                      from:(NSDate*)from
                                        to:(NSDate*)to
                                  complete:(KMMNetworkingCompletionBlock)complete {
-    NSString *path = [NSString stringWithFormat:@"person/%d", personID];
+    NSString *path = [NSString stringWithFormat:@"person/%ld", (long)personID];
     NSString *startDate = [self.formatter stringFromDate:from];
     NSString *endDate = [self.formatter stringFromDate:to];
     NSURLSessionDataTask *task = [self getWithPath:path
@@ -654,7 +654,7 @@ NSString* NSStringFromTMDBSearchType(TMDBSearchType type) {
 
 -(NSURLSessionDataTask *)reviewWithId:(NSInteger)reviewId
                              complete:(KMMNetworkingCompletionBlock)complete {
-    NSString *path = [NSString stringWithFormat:@"review/%d", reviewId];
+    NSString *path = [NSString stringWithFormat:@"review/%ld", (long)reviewId];
     NSURLSessionDataTask *task = [self getWithPath:path
                                             params:@{}
                                           complete:complete];
@@ -784,7 +784,7 @@ NSString* NSStringFromTMDBSearchType(TMDBSearchType type) {
 
 -(NSURLSessionDataTask *)TVSeriesWithId:(NSInteger)seriesId
                                complete:(KMMNetworkingCompletionBlock)complete {
-    NSString *path = [NSString stringWithFormat:@"tv/%d", seriesId];
+    NSString *path = [NSString stringWithFormat:@"tv/%ld", (long)seriesId];
     NSURLSessionDataTask *task = [self getWithPath:path
                                             params:@{@"append_to_response" : @"alternative_titles,content_ratings,credits,external_ids,images,keywords,similar,translations,videos"}
                                           complete:complete];
@@ -792,11 +792,10 @@ NSString* NSStringFromTMDBSearchType(TMDBSearchType type) {
 }
 
 
-
 -(NSURLSessionDataTask *)alternativeTitlesForTVSeries:(NSInteger)seriesId
                                             inCountry:(NSString *)countryCode
                                              complete:(KMMNetworkingCompletionBlock)complete {
-    NSString *path = [NSString stringWithFormat:@"tv/%d/alternative_titles", seriesId];
+    NSString *path = [NSString stringWithFormat:@"tv/%ld/alternative_titles", (long)seriesId];
     NSURLSessionDataTask *task = [self getWithPath:path
                                             params:@{}
                                           complete:complete];
@@ -811,7 +810,7 @@ NSString* NSStringFromTMDBSearchType(TMDBSearchType type) {
                                    complete:(KMMNetworkingCompletionBlock)complete {
     NSString *startDate = [self.formatter stringFromDate:from];
     NSString *endDate = [self.formatter stringFromDate:to];
-    NSString *path = [NSString stringWithFormat:@"tv/%d/changes", seriesId];
+    NSString *path = [NSString stringWithFormat:@"tv/%ld/changes", (long)seriesId];
     NSURLSessionDataTask *task = [self getWithPath:path
                                             params:@{@"start_date" : startDate,
                                                      @"end_date" : endDate}
@@ -822,7 +821,7 @@ NSString* NSStringFromTMDBSearchType(TMDBSearchType type) {
 
 -(NSURLSessionDataTask *)contentRatingsForTVSeries:(NSInteger)seriesId
                                           complete:(KMMNetworkingCompletionBlock)complete {
-    NSString *path = [NSString stringWithFormat:@"tv/%d/content_ratings", seriesId];
+    NSString *path = [NSString stringWithFormat:@"tv/%ld/content_ratings", (long)seriesId];
     NSURLSessionDataTask *task = [self getWithPath:path
                                             params:@{}
                                           complete:complete];
@@ -832,7 +831,7 @@ NSString* NSStringFromTMDBSearchType(TMDBSearchType type) {
 
 -(NSURLSessionDataTask *)creditsForTVSeries:(NSInteger)seriesId
                                    complete:(KMMNetworkingCompletionBlock)complete {
-    NSString *path = [NSString stringWithFormat:@"tv/%d/credits", seriesId];
+    NSString *path = [NSString stringWithFormat:@"tv/%ld/credits",(long)seriesId];
     NSURLSessionDataTask *task = [self getWithPath:path
                                             params:@{}
                                           complete:complete];
@@ -842,7 +841,7 @@ NSString* NSStringFromTMDBSearchType(TMDBSearchType type) {
 
 -(NSURLSessionDataTask *)externalIdsForTVSeries:(NSInteger)seriesId
                                        complete:(KMMNetworkingCompletionBlock)complete {
-    NSString *path = [NSString stringWithFormat:@"tv/%d/external_ids", seriesId];
+    NSString *path = [NSString stringWithFormat:@"tv/%ld/external_ids", (long)seriesId];
     NSURLSessionDataTask *task = [self getWithPath:path
                                             params:@{}
                                           complete:complete];
@@ -852,7 +851,7 @@ NSString* NSStringFromTMDBSearchType(TMDBSearchType type) {
 
 -(NSURLSessionDataTask *)imagesForTVSeries:(NSInteger)seriesId
                                   complete:(KMMNetworkingCompletionBlock)complete {
-    NSString *path = [NSString stringWithFormat:@"tv/%d/alternative_titles", seriesId];
+    NSString *path = [NSString stringWithFormat:@"tv/%ld/alternative_titles", (long)seriesId];
     NSURLSessionDataTask *task = [self getWithPath:path
                                             params:@{}
                                           complete:complete];
@@ -862,7 +861,7 @@ NSString* NSStringFromTMDBSearchType(TMDBSearchType type) {
 
 -(NSURLSessionDataTask *)keywordsForTVSeries:(NSInteger)seriesId
                                     complete:(KMMNetworkingCompletionBlock)complete {
-    NSString *path = [NSString stringWithFormat:@"tv/%d/keywords", seriesId];
+    NSString *path = [NSString stringWithFormat:@"tv/%ld/keywords", (long)seriesId];
     NSURLSessionDataTask *task = [self getWithPath:path
                                             params:@{}
                                           complete:complete];
@@ -873,7 +872,7 @@ NSString* NSStringFromTMDBSearchType(TMDBSearchType type) {
 -(NSURLSessionDataTask *)similarSeriesForTVSeries:(NSInteger)seriesId
                                            inPage:(NSInteger)pageNumber
                                          complete:(KMMNetworkingCompletionBlock)complete {
-    NSString *path = [NSString stringWithFormat:@"tv/%d/similar", seriesId];
+    NSString *path = [NSString stringWithFormat:@"tv/%ld/similar", (long)seriesId];
     NSURLSessionDataTask *task = [self getWithPath:path
                                             params:@{@"page" : @(pageNumber)}
                                           complete:complete];
@@ -883,7 +882,7 @@ NSString* NSStringFromTMDBSearchType(TMDBSearchType type) {
 
 -(NSURLSessionDataTask *)translationsForTVSeries:(NSInteger)seriesId
                                         complete:(KMMNetworkingCompletionBlock)complete {
-    NSString *path = [NSString stringWithFormat:@"tv/%d/translations", seriesId];
+    NSString *path = [NSString stringWithFormat:@"tv/%ld/translations", (long)seriesId];
     NSURLSessionDataTask *task = [self getWithPath:path
                                             params:@{}
                                           complete:complete];
@@ -893,7 +892,7 @@ NSString* NSStringFromTMDBSearchType(TMDBSearchType type) {
 
 -(NSURLSessionDataTask *)videosForTVSeries:(NSInteger)seriesId
                                   complete:(KMMNetworkingCompletionBlock)complete {
-    NSString *path = [NSString stringWithFormat:@"tv/%d/videos", seriesId];
+    NSString *path = [NSString stringWithFormat:@"tv/%ld/videos", (long)seriesId];
     NSURLSessionDataTask *task = [self getWithPath:path
                                             params:@{}
                                           complete:complete];
@@ -953,7 +952,7 @@ NSString* NSStringFromTMDBSearchType(TMDBSearchType type) {
 -(NSURLSessionDataTask *)seasonNumber:(NSInteger)seasonNumber
                           forTVSeries:(NSInteger)seriesId
                              complete:(KMMNetworkingCompletionBlock)complete {
-    NSString *path = [NSString stringWithFormat:@"tv/%d/season/%d", seriesId, seasonNumber];
+    NSString *path = [NSString stringWithFormat:@"tv/%ld/season/%ld",(long)seriesId, (long)seriesId];
     NSURLSessionDataTask *task = [self getWithPath:path
                                             params:@{}
                                           complete:complete];
@@ -967,7 +966,7 @@ NSString* NSStringFromTMDBSearchType(TMDBSearchType type) {
                                  complete:(KMMNetworkingCompletionBlock)complete {
     NSString *startDate = [self.formatter stringFromDate:from];
     NSString *endDate = [self.formatter stringFromDate:to];
-    NSString *path = [NSString stringWithFormat:@"tv/season/%d/changes", seasonId];
+    NSString *path = [NSString stringWithFormat:@"tv/season/%ld/changes", (long)seasonId];
     NSURLSessionDataTask *task = [self getWithPath:path
                                             params:@{@"start_date" : startDate,
                                                      @"end_date" : endDate}
@@ -979,7 +978,7 @@ NSString* NSStringFromTMDBSearchType(TMDBSearchType type) {
 -(NSURLSessionDataTask *)creditsForSeason:(NSInteger)seasonNumber
                               forTVSeries:(NSInteger)seriesId
                                  complete:(KMMNetworkingCompletionBlock)complete {
-    NSString *path = [NSString stringWithFormat:@"tv/%d/season/%d/credits", seriesId, seasonNumber];
+    NSString *path = [NSString stringWithFormat:@"tv/%ld/season/%ld/credits",(long)seriesId, (long)seriesId];
     NSURLSessionDataTask *task = [self getWithPath:path
                                             params:@{}
                                           complete:complete];
@@ -990,7 +989,7 @@ NSString* NSStringFromTMDBSearchType(TMDBSearchType type) {
 -(NSURLSessionDataTask *)externalIdsForSeason:(NSInteger)seasonNumber
                                   forTVSeries:(NSInteger)seriesId
                                      complete:(KMMNetworkingCompletionBlock)complete {
-    NSString *path = [NSString stringWithFormat:@"tv/%d/season/%d/external_ids", seriesId, seasonNumber];
+    NSString *path = [NSString stringWithFormat:@"tv/%ld/season/%ld/external_ids",(long)seriesId, (long)seriesId];
     NSURLSessionDataTask *task = [self getWithPath:path
                                             params:@{}
                                           complete:complete];
@@ -1001,7 +1000,7 @@ NSString* NSStringFromTMDBSearchType(TMDBSearchType type) {
 -(NSURLSessionDataTask *)imagesForSeason:(NSInteger)seasonNumber
                              forTVSeries:(NSInteger)seriesId
                                 complete:(KMMNetworkingCompletionBlock)complete {
-    NSString *path = [NSString stringWithFormat:@"tv/%d/season/%d/images", seriesId, seasonNumber];
+    NSString *path = [NSString stringWithFormat:@"tv/%ld/season/%ld/images",(long)seriesId, (long)seriesId];
     NSURLSessionDataTask *task = [self getWithPath:path
                                             params:@{}
                                           complete:complete];
@@ -1012,7 +1011,7 @@ NSString* NSStringFromTMDBSearchType(TMDBSearchType type) {
 -(NSURLSessionDataTask *)videosForSeason:(NSInteger)seasonNumber
                              forTVSeries:(NSInteger)seriesId
                                 complete:(KMMNetworkingCompletionBlock)complete {
-    NSString *path = [NSString stringWithFormat:@"tv/%d/season/%d/videos", seriesId, seasonNumber];
+    NSString *path = [NSString stringWithFormat:@"tv/%ld/season/%ld/videos",(long)seriesId, (long)seriesId];
     NSURLSessionDataTask *task = [self getWithPath:path
                                             params:@{}
                                           complete:complete];
@@ -1027,7 +1026,7 @@ NSString* NSStringFromTMDBSearchType(TMDBSearchType type) {
                         inSeason:(NSInteger)seasonNumber
                      forTVSeries:(NSInteger)seriesId
                         complete:(KMMNetworkingCompletionBlock)complete {
-    NSString *path = [NSString stringWithFormat:@"tv/%d/season/%d/episode/%d", seriesId, seasonNumber, episodeNumber];
+    NSString *path = [NSString stringWithFormat:@"tv/%ld/season/%ld/episode/%ld",(long)seriesId, (long)seriesId, (long)episodeNumber];
     NSURLSessionDataTask *task = [self getWithPath:path
                                             params:@{@"append_to_response" : @"credits,external_ids,images,videos"}
                                           complete:complete];
@@ -1041,7 +1040,7 @@ NSString* NSStringFromTMDBSearchType(TMDBSearchType type) {
                                   complete:(KMMNetworkingCompletionBlock)complete {
     NSString *startDate = [self.formatter stringFromDate:from];
     NSString *endDate = [self.formatter stringFromDate:to];
-    NSString *path = [NSString stringWithFormat:@"tv/episode/%d/changes", episodeId];
+    NSString *path = [NSString stringWithFormat:@"tv/episode/%ld/changes", (long)episodeId];
     NSURLSessionDataTask *task = [self getWithPath:path
                                             params:@{@"start_date" : startDate,
                                                      @"end_date" :endDate}
@@ -1054,7 +1053,7 @@ NSString* NSStringFromTMDBSearchType(TMDBSearchType type) {
                                   inSeason:(NSInteger)seasonNumber
                                forTVSeries:(NSInteger)seriesId
                                   complete:(KMMNetworkingCompletionBlock)complete {
-    NSString *path = [NSString stringWithFormat:@"tv/%d/season/%d/episode/%d/credits", seriesId, seasonNumber, episodeNumber];
+    NSString *path = [NSString stringWithFormat:@"tv/%ld/season/%ld/episode/%ld/credits",(long)seriesId, (long)seriesId, (long)episodeNumber];
     NSURLSessionDataTask *task = [self getWithPath:path
                                             params:@{}
                                           complete:complete];
@@ -1066,7 +1065,7 @@ NSString* NSStringFromTMDBSearchType(TMDBSearchType type) {
                                       inSeason:(NSInteger)seasonNumber
                                    forTVSeries:(NSInteger)seriesId
                                       complete:(KMMNetworkingCompletionBlock)complete {
-    NSString *path = [NSString stringWithFormat:@"tv/%d/season/%d/episode/%d/external_ids", seriesId, seasonNumber, episodeNumber];
+    NSString *path = [NSString stringWithFormat:@"tv/%ld/season/%ld/episode/%ld/external_ids",(long)seriesId, (long)seriesId, (long)episodeNumber];
     NSURLSessionDataTask *task = [self getWithPath:path
                                             params:@{}
                                           complete:complete];
@@ -1078,7 +1077,7 @@ NSString* NSStringFromTMDBSearchType(TMDBSearchType type) {
                                  inSeason:(NSInteger)seasonNumber
                               forTVSeries:(NSInteger)seriesId
                                  complete:(KMMNetworkingCompletionBlock)complete {
-    NSString *path = [NSString stringWithFormat:@"tv/%d/season/%d/episode/%d/images", seriesId, seasonNumber, episodeNumber];
+    NSString *path = [NSString stringWithFormat:@"tv/%ld/season/%ld/episode/%ld/images",(long)seriesId, (long)seriesId, (long)episodeNumber];
     NSURLSessionDataTask *task = [self getWithPath:path
                                             params:@{}
                                           complete:complete];
@@ -1090,7 +1089,7 @@ NSString* NSStringFromTMDBSearchType(TMDBSearchType type) {
                                  inSeason:(NSInteger)seasonNumber
                               forTVSeries:(NSInteger)seriesId
                                  complete:(KMMNetworkingCompletionBlock)complete {
-    NSString *path = [NSString stringWithFormat:@"tv/%d/season/%d/episode/%d/videos", seriesId, seasonNumber, episodeNumber];
+    NSString *path = [NSString stringWithFormat:@"tv/%ld/season/%ld/episode/%ld/videos",(long)seriesId, (long)seriesId, (long)episodeNumber];
     NSURLSessionDataTask *task = [self getWithPath:path
                                             params:@{}
                                           complete:complete];
