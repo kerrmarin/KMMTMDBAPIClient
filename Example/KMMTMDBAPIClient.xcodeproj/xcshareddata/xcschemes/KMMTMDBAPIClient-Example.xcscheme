@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "017D55737627F60E9E4A8191"
+               BlueprintIdentifier = "D2849CBFDA3B2D659859A588"
                BuildableName = "libPods.a"
                BlueprintName = "Pods"
                ReferencedContainer = "container:Pods/Pods.xcodeproj">
@@ -28,7 +28,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "200F87EB651517E4BA744DA0"
+               BlueprintIdentifier = "F1AB30E4563E63A3B96C32FB"
                BuildableName = "libPods-AFNetworking.a"
                BlueprintName = "Pods-AFNetworking"
                ReferencedContainer = "container:Pods/Pods.xcodeproj">
@@ -42,7 +42,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "301CB20295C85B5D2ABCFB83"
+               BlueprintIdentifier = "F8EB313728DFF357E455BDB6"
                BuildableName = "libPods-KMMTMDBAPIClient-AFNetworking.a"
                BlueprintName = "Pods-KMMTMDBAPIClient-AFNetworking"
                ReferencedContainer = "container:Pods/Pods.xcodeproj">
@@ -56,7 +56,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "07FA8C0180DD3A269DDDAFBA"
+               BlueprintIdentifier = "86FB79FEF1A84848EE3235EC"
                BuildableName = "libPods-KMMTMDBAPIClient-KMMTMDBAPIClient.a"
                BlueprintName = "Pods-KMMTMDBAPIClient-KMMTMDBAPIClient"
                ReferencedContainer = "container:Pods/Pods.xcodeproj">
@@ -70,7 +70,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "0BF0BDF69F56C2D6D68C2AD1"
+               BlueprintIdentifier = "FB43D95083DD3C7F1056A344"
                BuildableName = "libPods-Tests-AFNetworking.a"
                BlueprintName = "Pods-Tests-AFNetworking"
                ReferencedContainer = "container:Pods/Pods.xcodeproj">
@@ -84,7 +84,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "B4AC88AD4561C8C7684C2AC5"
+               BlueprintIdentifier = "C0379A6B7C702A27F9AC5259"
                BuildableName = "libPods-Tests-KMMTMDBAPIClient.a"
                BlueprintName = "Pods-Tests-KMMTMDBAPIClient"
                ReferencedContainer = "container:Pods/Pods.xcodeproj">
@@ -98,7 +98,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "E9A6BE5E9850172CB07C2538"
+               BlueprintIdentifier = "2A0BA017AE163B977D0CB808"
                BuildableName = "libPods-Tests.a"
                BlueprintName = "Pods-Tests"
                ReferencedContainer = "container:Pods/Pods.xcodeproj">
@@ -112,7 +112,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "06880C4286A9B49755D50885"
+               BlueprintIdentifier = "3554E7D41081AF4079C79E8D"
                BuildableName = "libPods-KMMTMDBAPIClient.a"
                BlueprintName = "Pods-KMMTMDBAPIClient"
                ReferencedContainer = "container:Pods/Pods.xcodeproj">
