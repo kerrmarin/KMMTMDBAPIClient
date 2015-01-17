@@ -347,9 +347,9 @@ NSString* NSStringFromTMDBSearchType(TMDBSearchType type) {
 
 
 -(NSURLSessionDataTask *)checkMovie:(NSInteger)movieId
-                           isInList:(NSInteger)listId
+                           isInList:(NSString*)listId
                            complete:(KMMNetworkingCompletionBlock)complete {
-    NSString *path = [NSString stringWithFormat:@"list/%ld/item_status", (long)listId];
+    NSString *path = [NSString stringWithFormat:@"list/%@/item_status", listId];
     NSURLSessionDataTask *task = [self getWithPath:path
                                             params:@{@"movie_id" : @(movieId)}
                                           complete:complete];

@@ -369,7 +369,7 @@ typedef void (^KMMNetworkingCompletionBlock)(id results, NSError *error);
  *  @return an NSURLSessionDataTask with the current task
  */
 -(NSURLSessionDataTask *)checkMovie:(NSInteger)movieId
-                           isInList:(NSInteger)listId
+                           isInList:(NSString*)listId
                            complete:(KMMNetworkingCompletionBlock)complete;
 
 #pragma mark -- Movies

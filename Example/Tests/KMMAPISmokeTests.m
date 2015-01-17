@@ -275,7 +275,16 @@
     [self waitForExpectationsWithTimeout:3 handler:nil];
 }
 
-
+-(void)testCanGetListItemStatus {
+    XCTestExpectation *getListWithIdExpectation = [self expectationWithDescription:@"getListWithIdExpectation"];
+    
+    [[KMMTMDBAPIClient client] checkMovie:1234 isInList:@"509ec17b19c2950a0600050d" complete:^(id results, NSError *error) {
+        if(!error) {
+            [getListWithIdExpectation fulfill];
+        }
+    }];
+    [self waitForExpectationsWithTimeout:3 handler:nil];
+}
 
 
 
