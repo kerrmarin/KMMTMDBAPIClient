@@ -9,7 +9,7 @@
 
 Pod::Spec.new do |s|
   s.name             = "KMMTMDBAPIClient"
-  s.version          = "1.2.1"
+  s.version          = "1.3"
   s.summary          = "A TMDB API client"
   s.description      = <<-DESC
                         A client to interact with the TMDB API and perform queries.
