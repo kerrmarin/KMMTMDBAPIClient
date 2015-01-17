@@ -7,5 +7,5 @@
 + Added methods for all GET requests
 + Amended some existing method signatures to ensure consistency
 
-## 1.0 -> 1.1 
+## Initial release -> 1.1 
 + No log available
