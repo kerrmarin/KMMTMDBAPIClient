@@ -194,37 +194,98 @@
 
 #pragma mark -- Genres tests
 
--(void)testCanfFindByExternalId {
-    XCTestExpectation *findByExternalIdExpectation = [self expectationWithDescription:@"findByExternalIdExpectation"];
+-(void)testCanGetListOfMovieGenres {
+    XCTestExpectation *allMovieGenresExpectation = [self expectationWithDescription:@"allMovieGenresExpectation"];
     
-    [[KMMTMDBAPIClient client] findResource:@"tt2179136" inExternalSource:TMDBExternalSourceIMDB complete:^(id results, NSError *error) {
+    [[KMMTMDBAPIClient client] allMovieGenresWithBlock:^(id results, NSError *error) {
         if(!error) {
-            [findByExternalIdExpectation fulfill];
+            [allMovieGenresExpectation fulfill];
         }
     }];
     [self waitForExpectationsWithTimeout:3 handler:nil];
 }
 
--(void)testCanfFindByExternalId {
-    XCTestExpectation *findByExternalIdExpectation = [self expectationWithDescription:@"findByExternalIdExpectation"];
+-(void)testCanGetListOfTVGenres {
+    XCTestExpectation *allTVGenresExpectation = [self expectationWithDescription:@"allTVGenresExpectation"];
     
-    [[KMMTMDBAPIClient client] findResource:@"tt2179136" inExternalSource:TMDBExternalSourceIMDB complete:^(id results, NSError *error) {
+    [[KMMTMDBAPIClient client] allTVGenresWithBlock:^(id results, NSError *error) {
         if(!error) {
-            [findByExternalIdExpectation fulfill];
+            [allTVGenresExpectation fulfill];
         }
     }];
     [self waitForExpectationsWithTimeout:3 handler:nil];
 }
 
--(void)testCanfFindByExternalId {
-    XCTestExpectation *findByExternalIdExpectation = [self expectationWithDescription:@"findByExternalIdExpectation"];
+-(void)testCanGetListOfMoviesInGenre {
+    XCTestExpectation *moviesInGenreExpectation = [self expectationWithDescription:@"moviesInGenreExpectation"];
     
-    [[KMMTMDBAPIClient client] findResource:@"tt2179136" inExternalSource:TMDBExternalSourceIMDB complete:^(id results, NSError *error) {
+    [[KMMTMDBAPIClient client] moviesWithGenre:18 inPage:1 complete:^(id results, NSError *error) {
         if(!error) {
-            [findByExternalIdExpectation fulfill];
+            [moviesInGenreExpectation fulfill];
         }
     }];
     [self waitForExpectationsWithTimeout:3 handler:nil];
 }
+
+#pragma mark -- Jobs tests
+
+-(void)testCanGetListOfJobs {
+    XCTestExpectation *listOfJobsExpectation = [self expectationWithDescription:@"listOfJobsExpectation"];
+    
+    [[KMMTMDBAPIClient client] allJobsWithBlock:^(id results, NSError *error) {
+        if(!error) {
+            [listOfJobsExpectation fulfill];
+        }
+    }];
+    [self waitForExpectationsWithTimeout:3 handler:nil];
+}
+
+#pragma mark -- Keywords tests
+
+-(void)testCanGetKeywordWithId {
+    XCTestExpectation *keywordWithIdExpectation = [self expectationWithDescription:@"keywordWithIdExpectation"];
+    
+    [[KMMTMDBAPIClient client] keywordWithId:1721 complete:^(id results, NSError *error) {
+        if(!error) {
+            [keywordWithIdExpectation fulfill];
+        }
+    }];
+    [self waitForExpectationsWithTimeout:3 handler:nil];
+}
+
+-(void)testCanGetMoviesForKeywordWithId {
+    XCTestExpectation *moviesForKeywordWithIdExpectation = [self expectationWithDescription:@"moviesForKeywordWithIdExpectation"];
+    
+    [[KMMTMDBAPIClient client] moviesWithKeywordId:1721 inPage:1 complete:^(id results, NSError *error) {
+        if(!error) {
+            [moviesForKeywordWithIdExpectation fulfill];
+        }
+    }];
+    [self waitForExpectationsWithTimeout:3 handler:nil];
+}
+
+-(void)testCanGetListWithId {
+    XCTestExpectation *getListWithIdExpectation = [self expectationWithDescription:@"getListWithIdExpectation"];
+    
+    [[KMMTMDBAPIClient client] listWithId:@"509ec17b19c2950a0600050d" complete:^(id results, NSError *error) {
+        if(!error) {
+            [getListWithIdExpectation fulfill];
+        }
+    }];
+    [self waitForExpectationsWithTimeout:3 handler:nil];
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 @end

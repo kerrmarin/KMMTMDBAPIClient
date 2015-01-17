@@ -355,7 +355,7 @@ typedef void (^KMMNetworkingCompletionBlock)(id results, NSError *error);
  *
  *  @return an NSURLSessionDataTask with the current task
  */
--(NSURLSessionDataTask *)listWithId:(NSInteger)listId
+-(NSURLSessionDataTask *)listWithId:(NSString*)listId
                            complete:(KMMNetworkingCompletionBlock)complete;
 
 

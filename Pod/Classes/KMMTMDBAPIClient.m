@@ -335,9 +335,9 @@ NSString* NSStringFromTMDBSearchType(TMDBSearchType type) {
 
 #pragma mark -- Lists
 
--(NSURLSessionDataTask *)listWithId:(NSInteger)listId
+-(NSURLSessionDataTask *)listWithId:(NSString*)listId
                            complete:(KMMNetworkingCompletionBlock)complete {
-    NSString *path = [NSString stringWithFormat:@"list/%ld", (long)listId];
+    NSString *path = [NSString stringWithFormat:@"list/%@", listId];
     NSURLSessionDataTask *task = [self getWithPath:path
                                             params:@{}
                                           complete:complete];
