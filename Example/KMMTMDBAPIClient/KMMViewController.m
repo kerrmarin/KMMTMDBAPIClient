@@ -28,7 +28,7 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
-    [[KMMTMDBAPIClient client] fetchPopularMoviesInPage:1 complete:^(id results, NSError *error) {
+    [[KMMTMDBAPIClient client] popularMoviesInPage:1 complete:^(id results, NSError *error) {
         NSDictionary *firstMovie = results[@"results"][0];
         self.titleLabel.text = firstMovie[@"original_title"];
         self.releaseDateLabel.text = firstMovie[@"release_date"];

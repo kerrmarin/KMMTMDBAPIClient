@@ -10,14 +10,59 @@
 
 #import "AFHTTPRequestOperation.h"
 
-#import "KMMMovieFilter.h"
+#import "NSDictionary+MovieParameters.h"
+#import "NSDictionary+TVParameters.h"
+
+#import "KMMTimezone.h"
 
 @interface KMMTMDBAPIClient ()
 
 @property(nonatomic, copy) NSString *apiKey;
 @property(nonatomic, copy, readonly) NSString *configurationURL;
+@property(nonatomic, strong) NSDateFormatter *formatter;
 
 @end
+
+//const NSInteger KMMReleaseYearAny = INT_MAX;
+
+NSString* NSStringFromTMDBExternalSource(TMDBExternalSource source) {
+    switch (source) {
+        case TMDBExternalSourceIMDB:
+            return @"imdb_id";
+            break;
+        case TMDBExternalSourceFreebaseMid:
+            return @"freebase_mid";
+            break;
+        case TMDBExternalSourceFreebaseId:
+            return @"freebase_id";
+            break;
+        case TMDBExternalSourceTVRageId:
+            return @"tvrage_id";
+            break;
+        case TMDBExternalSourceTVDBId:
+            return @"tvdb_id";
+            break;
+        case TMDBExternalSourceUnknown:
+        default:
+            return @"";
+            break;
+    }
+}
+
+NSString* NSStringFromTMDBSearchType(TMDBSearchType type) {
+    switch (type) {
+        case TMDBSearchTypePhrase:
+            return @"phrase";
+            break;
+        case TMDBSearchTypeNgram:
+            return @"ngram";
+            break;
+        case TMDBSearchTypeUnknown:
+        default:
+            return @"phrase";
+            break;
+    }
+}
 
 @implementation KMMTMDBAPIClient
 
@@ -36,7 +81,6 @@
  *  @return a fully initialized API client
  */
 -(instancetype)init {
-    
     NSURL *baseURL = [NSURL URLWithString:@"http://api.themoviedb.org/3/"];
     
     NSURLSessionConfiguration *config = [NSURLSessionConfiguration defaultSessionConfiguration];
@@ -44,7 +88,6 @@
     NSURLCache *cache = [[NSURLCache alloc] initWithMemoryCapacity:100 * 1024 * 1024
                                                       diskCapacity:200 * 1024 * 1024
                                                           diskPath:nil];
-    
     [config setURLCache:cache];
     //10 seconds timeout for whole resource
     [config setTimeoutIntervalForResource:10];
@@ -54,6 +97,8 @@
     if(self = [super initWithBaseURL:baseURL sessionConfiguration:config]) {
         _includeAdult = @"false";
         _language = @"en";
+        _formatter = [NSDateFormatter new];
+        _formatter.dateFormat = @"yyyy-MM-dd";
     }
     
     return self;
@@ -61,47 +106,164 @@
 
 #pragma mark -- Data fetching
 
-/**
- *  Fetches the popular movies in a given page
- *
- *  @param pageNumber the page number to fetch
- *  @param complete   the block to execute once the request has finished
- *
- *  @return an NSURLSessionDataTask with the current request
- */
--(NSURLSessionDataTask *)fetchPopularMoviesInPage:(NSInteger)pageNumber complete:(KMMNetworkingCompletionBlock) complete {
-    NSURLSessionDataTask *task = [self getWithPath:@"movie/popular"
-                                            params:@{@"page" : @(pageNumber)}
-                                          complete:complete];
-    return task;
-}
+#pragma mark -- Certifications
 
-/**
- *  Fetches the details for a particular movie
- *
- *  @param movieID  the movie ID to fetch the details for
- *  @param complete the block to execute once the request has finished
- *
- *  @return an NSURLSessionDataTask with the current request
- */
--(NSURLSessionDataTask *)fetchMovieWithID:(NSInteger)movieID complete:(KMMNetworkingCompletionBlock) complete {
-    NSURLSessionDataTask *task = [self getWithPath:[@"movie/" stringByAppendingFormat:@"%lu", (unsigned long)movieID]
-                                            params:@{@"append_to_response" : @"alternative_titles,videos,credits,images,keywords,releases,similar,reviews"}
-                                          complete:complete];
-    return task;
-}
 
-/**
- *  Fetches the details of a company given a particular ID
- *
- *  @param companyID the company ID
- *  @param complete  the block to execute once the request has finished
- *
- *  @return an NSURLSessionDataTask with the current request
- */
--(NSURLSessionDataTask *)fetchCompanyWithID:(NSInteger)companyID complete:(KMMNetworkingCompletionBlock) complete {
-    NSURLSessionDataTask *task = [self getWithPath:[@"company/" stringByAppendingFormat:@"%ld", (long)companyID]
+-(NSURLSessionDataTask *)supportedMovieCertificationsWithBlock:(KMMNetworkingCompletionBlock)complete {
+    NSURLSessionDataTask *task = [self getWithPath: @"certification/movie/list"
                                             params:@{}
+                                          complete:complete];
+    return task;
+}
+
+
+-(NSURLSessionDataTask *)supportedTVCertificationsWithBlock:(KMMNetworkingCompletionBlock)complete {
+    NSURLSessionDataTask *task = [self getWithPath: @"certification/tv/list"
+                                            params:@{}
+                                          complete:complete];
+    return task;
+}
+
+#pragma mark -- Changes
+
+
+-(NSURLSessionDataTask *)latestMovieChangesFrom:(NSDate*)from
+                                             to:(NSDate*)to
+                                         inPage:(NSInteger)pageNumber
+                                       complete:(KMMNetworkingCompletionBlock)complete {
+    NSString *startDate = [self.formatter stringFromDate:from];
+    NSString *endDate = [self.formatter stringFromDate:to];
+    NSURLSessionDataTask *task = [self getWithPath: @"movie/changes"
+                                            params:@{@"page" : @(pageNumber),
+                                                     @"start_date" : startDate,
+                                                     @"end_date" : endDate}
+                                          complete:complete];
+    return task;
+    
+}
+
+
+-(NSURLSessionDataTask *)latestPersonChangesFrom:(NSDate*)from
+                                              to:(NSDate*)to
+                                          inPage:(NSInteger)pageNumber
+                                        complete:(KMMNetworkingCompletionBlock)complete {
+    NSString *startDate = [self.formatter stringFromDate:from];
+    NSString *endDate = [self.formatter stringFromDate:to];
+    NSURLSessionDataTask *task = [self getWithPath: @"person/changes"
+                                            params:@{@"page" : @(pageNumber),
+                                                     @"start_date" : startDate,
+                                                     @"end_date" : endDate}
+                                          complete:complete];
+    return task;
+    
+}
+
+
+-(NSURLSessionDataTask *)latestTVChangesFrom:(NSDate*)from
+                                          to:(NSDate*)to
+                                      inPage:(NSInteger)pageNumber
+                                    complete:(KMMNetworkingCompletionBlock)complete {
+    NSString *startDate = [self.formatter stringFromDate:from];
+    NSString *endDate = [self.formatter stringFromDate:to];
+    NSURLSessionDataTask *task = [self getWithPath: @"tv/changes"
+                                            params:@{@"page" : @(pageNumber),
+                                                     @"start_date" : startDate,
+                                                     @"end_date" : endDate}
+                                          complete:complete];
+    return task;
+    
+}
+
+#pragma mark -- Collections
+
+-(NSURLSessionDataTask *)collectionWithId:(NSInteger)collectionId
+                                 complete:(KMMNetworkingCompletionBlock)complete {
+    NSString *path = [NSString stringWithFormat:@"collection/%d", collectionId];
+    NSURLSessionDataTask *task = [self getWithPath:path
+                                            params:@{@"append_to_response" : @"images"}
+                                          complete:complete];
+    return task;
+}
+
+
+-(NSURLSessionDataTask *)imagesForCollection:(NSInteger)collectionId
+                                    complete:(KMMNetworkingCompletionBlock)complete {
+    NSString *path = [NSString stringWithFormat:@"collection/%d/images", collectionId];
+    NSURLSessionDataTask *task = [self getWithPath:path
+                                            params:@{}
+                                          complete:complete];
+    return task;
+}
+
+
+#pragma mark -- Companies
+
+-(NSURLSessionDataTask *)companyWithID:(NSInteger)companyID
+                              complete:(KMMNetworkingCompletionBlock)complete {
+    NSString *path = [NSString stringWithFormat:@"company/%d", companyID];
+    NSURLSessionDataTask *task = [self getWithPath:path
+                                            params:@{@"append_to_response" : @"movies"}
+                                          complete:complete];
+    return task;
+}
+
+-(NSURLSessionDataTask *)moviesForCompany:(NSInteger)companyID
+                                   inPage:(NSInteger)page
+                                 complete:(KMMNetworkingCompletionBlock)complete {
+    NSString *path = [NSString stringWithFormat:@"company/%d/movies", companyID];
+    NSURLSessionDataTask *task = [self getWithPath:path
+                                            params:@{@"page" : @(page)}
+                                          complete:complete];
+    return task;
+}
+
+
+#pragma mark -- Credits
+
+-(NSURLSessionDataTask *)creditWithId:(NSInteger)creditID
+                             complete:(KMMNetworkingCompletionBlock)complete {
+    NSString *path = [NSString stringWithFormat:@"credit/%d", creditID];
+    NSURLSessionDataTask *task = [self getWithPath:path
+                                            params:@{}
+                                          complete:complete];
+    return task;
+}
+
+#pragma mark -- Discover
+
+
+-(NSURLSessionDataTask *)discoverMoviesWithCriteria:(KMMMovieCriteria *)criteria
+                                             inPage:(NSInteger)pageNumber
+                                           complete:(KMMNetworkingCompletionBlock)complete {
+    NSDictionary *params = [NSDictionary dictionaryWithMovieCriteria:criteria inPage:pageNumber dateFormatter:self.formatter];
+    NSURLSessionDataTask *task = [self getWithPath:@"discover/movie"
+                                            params:params
+                                          complete:complete];
+    return task;
+}
+
+
+-(NSURLSessionDataTask *)discoverTVWithCriteria:(KMMTVCriteria *)criteria
+                                         inPage:(NSInteger)pageNumber
+                                       complete:(KMMNetworkingCompletionBlock)complete {
+    NSDictionary *params = [NSDictionary dictionaryWithTVCriteria:criteria inPage:pageNumber dateFormatter:self.formatter];
+    NSURLSessionDataTask *task = [self getWithPath:@"discover/tv"
+                                            params:params
+                                          complete:complete];
+    return task;
+}
+
+
+#pragma mark -- Find
+
+
+-(NSURLSessionDataTask *)findResource:(NSInteger)resourceId
+                     inExternalSource:(TMDBExternalSource)source
+                             complete:(KMMNetworkingCompletionBlock)complete {
+    NSString *sourceString = NSStringFromTMDBExternalSource(source);
+    NSString *path = [NSString stringWithFormat:@"find/%d", resourceId];
+    NSURLSessionDataTask *task = [self getWithPath:path
+                                            params:@{ @"external_source" : sourceString }
                                           complete:complete];
     return task;
 }
@@ -109,163 +271,828 @@
 
 #pragma mark -- Genres
 
-/**
- *  Fetches al genres available
- *
- *  @param complete the block to execute once the request has finished
- *
- *  @return  an NSURLSessionDataTask with the current request
- */
--(NSURLSessionDataTask *)allGenres:(KMMNetworkingCompletionBlock) complete {
-    NSURLSessionDataTask *task = [self getWithPath:@"genre/list"
+
+-(NSURLSessionDataTask *)allMovieGenresWithBlock:(KMMNetworkingCompletionBlock)complete {
+    NSURLSessionDataTask *task = [self getWithPath:@"genre/movie/list"
                                             params:@{}
                                           complete:complete];
     return task;
 }
 
-/**
- *  Fetches the movies with a particular genre
- *
- *  @param genreID  the ID of the genre to fetch
- *  @param page     the page number to fetch movies for
- *  @param complete the block to execute once the request has finished
- *
- *  @return  an NSURLSessionDataTask with the current request
- */
--(NSURLSessionDataTask *)moviesWithGenre:(NSInteger)genreID inPage:(NSInteger)page complete:(KMMNetworkingCompletionBlock) complete {
-    NSURLSessionDataTask *task = [self getWithPath:[NSString stringWithFormat: @"genre/%ld/movies", (long)genreID]
+
+-(NSURLSessionDataTask *)allTVGenresWithBlock:(KMMNetworkingCompletionBlock)complete {
+    NSURLSessionDataTask *task = [self getWithPath:@"genre/tv/list"
+                                            params:@{}
+                                          complete:complete];
+    return task;
+}
+
+
+-(NSURLSessionDataTask *)moviesWithGenre:(NSInteger)genreID
+                                  inPage:(NSInteger)page
+                                complete:(KMMNetworkingCompletionBlock)complete {
+    NSString *path = [NSString stringWithFormat:@"genre/%d/movies", genreID];
+    NSURLSessionDataTask *task = [self getWithPath:path
                                             params:@{@"page" : @(page)}
                                           complete:complete];
     return task;
 }
 
-
-#pragma mark -- Filtering
-
-/**
- *  Fetches movies with a particular filter
- *
- *  @param filter     the filter to apply to the movie query
- *  @param pageNumber the page number to fetch with that query
- *  @param complete   the block to execute once the request has finished
- *
- *  @return an NSURLSessionDataTask with the current request
- */
--(NSURLSessionDataTask *)filterMovies:(KMMMovieFilter *)filter
-                               inPage:(NSInteger)pageNumber
-                             complete:(KMMNetworkingCompletionBlock)complete {
-
-    NSMutableDictionary *params = [@{@"page" : @(pageNumber)} mutableCopy];
-
-    if(filter.yearRange.location != NSNotFound && filter.yearRange.length != NSNotFound) {
-        NSString *releaseDateGTE = [[NSString alloc] initWithFormat:@"%lu-01-01", (unsigned long)filter.yearRange.location];
-        NSString *releaseDateLTE = [[NSString alloc] initWithFormat:@"%lu-12-31", (unsigned long)(filter.yearRange.location+filter.yearRange.length)];
-        params[@"release_date.gte"] = releaseDateGTE;
-        params[@"release_date.lte"] = releaseDateLTE;
-    }
-
-    if(filter.genres.count != 0) {
-        params[@"with_genres"] = [filter.genres componentsJoinedByString:@","];
-    }
-
-    params[@"sort_by"] = NSStringFromKMMFilterSortBy(filter.sortBy);
-
-    //For top rated, include also a vote count to avoid all the crap with 1-2 votes
-    if (filter.sortBy == KMMFilterSortByTopRated) {
-        params[@"vote_count.gte"] = @"10";
-    }
-
-    NSURLSessionDataTask *task = [self getWithPath:@"discover/movie"
-                                            params:params
-                                          complete:complete];
-
-    return task;
-}
+#pragma mark -- Jobs
 
 
-#pragma mark -- Searching
-
-/**
- *  Searches the cast for a particular term
- *
- *  @param searchTerm the term to search for
- *  @param pageNumber the page number to retrieve based on the search
- *  @param complete   the block to execute once the request has finished
- *
- *  @return an NSURLSessionDataTask with the current request
- */
--(NSURLSessionDataTask *)searchCastForTerm:(NSString*)searchTerm page:(NSInteger)pageNumber complete:(KMMNetworkingCompletionBlock) complete {
-    NSDictionary *params = @{@"query": searchTerm, @"page" : @(pageNumber), @"search_type" : @"ngram"};
-    NSURLSessionDataTask *task = [self getWithPath:@"search/person"
-                                            params:params
-                                          complete:complete];
-    return task;
-}
-
-/**
- *  Searches the movies for a particular term
- *
- *  @param searchTerm the term to search for
- *  @param pageNumber the page number to retrieve
- *  @param complete   the block to execute once the request has finished
- *
- *  @return an NSURLSessionDataTask with the current request
- */
--(NSURLSessionDataTask *)searchMoviesForTerm:(NSString*)searchTerm page:(NSInteger)pageNumber complete:(KMMNetworkingCompletionBlock) complete {
-    NSDictionary *params = @{@"query": searchTerm, @"page" : @(pageNumber), @"search_type" : @"ngram"};
-    NSURLSessionDataTask *task = [self getWithPath:@"search/movie"
-                                            params:params
-                                          complete:complete];
-    return task;
-}
-
-/**
- *  Searches multiple sources for a given term
- *
- *  @param searchTerm the term to search for
- *  @param pageNumber the page number to retrieve
- *  @param complete   the block to execute once the request has finished
- *
- *  @return an NSURLSessionDataTask with the current request
- */
--(NSURLSessionDataTask *)searchForTerm:(NSString *)searchTerm page:(NSInteger)pageNumber complete:(KMMNetworkingCompletionBlock)complete {
-    NSDictionary *params = @{@"query": searchTerm, @"page" : @(pageNumber), @"search_type" : @"ngram"};
-    NSURLSessionDataTask *task = [self getWithPath:@"search/multi"
-                                            params:params
-                                          complete:complete];
-    return task;
-}
-
-
-#pragma mark -- People
-
-/**
- *  Retrieves the credits for a particular person (i.e. the movie's they've been in)
- *
- *  @param personId the ID of the person to fetch the credits for
- *  @param complete the block to execute once the request has finished
- *
- *  @return an NSURLSessionDataTask with the current request
- */
--(NSURLSessionDataTask *)movieCreditsForPerson:(NSInteger)personId complete:(KMMNetworkingCompletionBlock) complete {
-    NSString *string =[NSString stringWithFormat:@"person/%ld/movie_credits", (long)personId];
-    NSURLSessionDataTask *task = [self getWithPath: string
+-(NSURLSessionDataTask *)allJobsWithBlock:(KMMNetworkingCompletionBlock)complete {
+    NSURLSessionDataTask *task = [self getWithPath:@"job/list"
                                             params:@{}
                                           complete:complete];
     return task;
 }
 
-/**
- *  Retrieves the details for a particular person
- *
- *  @param personID the ID of the person to fetch the details for
- *  @param complete the block to execute once the request has finished
- *
- *  @return an NSURLSessionDataTask with the current request
- */
--(NSURLSessionDataTask *)fetchPersonWithID:(NSInteger)personID complete:(KMMNetworkingCompletionBlock) complete {
-    NSURLSessionDataTask *task = [self getWithPath:[@"person/" stringByAppendingFormat:@"%ld", (long)personID]
-                                            params:@{@"append_to_response" : @"movie_credits,images,tagged_images"}
+
+#pragma mark -- Keywords
+
+
+-(NSURLSessionDataTask *)keywordWithId:(NSInteger)keywordId
+                              complete:(KMMNetworkingCompletionBlock)complete {
+    NSString *path = [NSString stringWithFormat:@"keyword/%d" , keywordId];
+    NSURLSessionDataTask *task = [self getWithPath:path
+                                            params:@{}
+                                          complete:complete];
+    return task;
+}
+
+
+-(NSURLSessionDataTask *)moviesWithKeywordId:(NSInteger)keywordId
+                                      inPage:(NSInteger)pageNumber
+                                    complete:(KMMNetworkingCompletionBlock)complete {
+    NSString *path = [NSString stringWithFormat:@"keyword/%d/movies", keywordId];
+    NSURLSessionDataTask *task = [self getWithPath:path
+                                            params:@{@"page" : @(pageNumber)}
+                                          complete:complete];
+    return task;
+}
+
+
+#pragma mark -- Lists
+
+-(NSURLSessionDataTask *)listWithId:(NSInteger)listId
+                           complete:(KMMNetworkingCompletionBlock)complete {
+    NSString *path = [NSString stringWithFormat:@"list/%d", listId];
+    NSURLSessionDataTask *task = [self getWithPath:path
+                                            params:@{}
+                                          complete:complete];
+    return task;
+}
+
+
+
+-(NSURLSessionDataTask *)checkMovie:(NSInteger)movieId
+                           isInList:(NSInteger)listId
+                           complete:(KMMNetworkingCompletionBlock)complete {
+    NSString *path = [NSString stringWithFormat:@"list/%d/item_status", listId];
+    NSURLSessionDataTask *task = [self getWithPath:path
+                                            params:@{@"movie_id" : @(movieId)}
+                                          complete:complete];
+    return task;
+}
+
+#pragma mark -- Movies
+
+
+-(NSURLSessionDataTask *)movieWithId:(NSInteger)movieID
+                            complete:(KMMNetworkingCompletionBlock)complete {
+    NSURLSessionDataTask *task = [self getWithPath:[@"movie/" stringByAppendingFormat:@"%d", movieID]
+                                            params:@{@"append_to_response" : @"alternative_titles,videos,credits,images,keywords,releases,similar,reviews"}
+                                          complete:complete];
+    return task;
+}
+
+
+-(NSURLSessionDataTask *)alternativeTitlesForMovie:(NSInteger)movieId
+                                         inCountry:(NSString*)countryCode
+                                          complete:(KMMNetworkingCompletionBlock)complete {
+    NSString *path = [NSString stringWithFormat:@"movie/%d/alternative_titles", movieId];
+    NSURLSessionDataTask *task = [self getWithPath:path
+                                            params:@{@"country" : countryCode}
+                                          complete:complete];
+    return task;
+}
+
+
+-(NSURLSessionDataTask *)creditsForMovie:(NSInteger)movieID
+                                complete:(KMMNetworkingCompletionBlock)complete {
+    NSString *path = [NSString stringWithFormat:@"movie/%d/credits", movieID];
+    NSURLSessionDataTask *task = [self getWithPath:path
+                                            params:@{}
+                                          complete:complete];
+    return task;
+}
+
+
+-(NSURLSessionDataTask *)imagesForMovie:(NSInteger)movieID
+                               complete:(KMMNetworkingCompletionBlock)complete {
+    NSString *path = [NSString stringWithFormat:@"movie/%d/images", movieID];
+    NSURLSessionDataTask *task = [self getWithPath:path
+                                            params:@{}
+                                          complete:complete];
+    return task;
+}
+
+
+-(NSURLSessionDataTask *)keywordsForMovie:(NSInteger)movieID
+                                 complete:(KMMNetworkingCompletionBlock)complete {
+    NSString *path = [NSString stringWithFormat:@"movie/%d/keywords", movieID];
+    NSURLSessionDataTask *task = [self getWithPath:path
+                                            params:@{}
+                                          complete:complete];
+    return task;
+}
+
+
+-(NSURLSessionDataTask *)releasesForMovie:(NSInteger)movieID
+                                 complete:(KMMNetworkingCompletionBlock)complete {
+    NSString *path = [NSString stringWithFormat:@"movie/%d/releases", movieID];
+    NSURLSessionDataTask *task = [self getWithPath:path
+                                            params:@{}
+                                          complete:complete];
+    return task;
+}
+
+
+-(NSURLSessionDataTask *)videosForMovie:(NSInteger)movieID
+                               complete:(KMMNetworkingCompletionBlock)complete {
+    NSString *path = [NSString stringWithFormat:@"movie/%d/videos", movieID];
+    NSURLSessionDataTask *task = [self getWithPath:path
+                                            params:@{}
+                                          complete:complete];
+    return task;
+}
+
+
+-(NSURLSessionDataTask *)translationsForMovie:(NSInteger)movieID
+                                     complete:(KMMNetworkingCompletionBlock)complete {
+    NSString *path = [NSString stringWithFormat:@"movie/%d/translations", movieID];
+    NSURLSessionDataTask *task = [self getWithPath:path
+                                            params:@{}
+                                          complete:complete];
+    return task;
+}
+
+
+-(NSURLSessionDataTask *)similarMoviesForMovie:(NSInteger)movieID
+                                        inPage:(NSInteger)pageNumber
+                                      complete:(KMMNetworkingCompletionBlock)complete {
+    NSString *path = [NSString stringWithFormat:@"movie/%d/similar", movieID];
+    NSURLSessionDataTask *task = [self getWithPath:path
+                                            params:@{@"page" : @(pageNumber)}
+                                          complete:complete];
+    return task;
+}
+
+
+-(NSURLSessionDataTask *)reviewsForMovie:(NSInteger)movieID
+                                  inPage:(NSInteger)pageNumber
+                                complete:(KMMNetworkingCompletionBlock)complete {
+    NSString *path = [NSString stringWithFormat:@"movie/%d/reviews", movieID];
+    NSURLSessionDataTask *task = [self getWithPath:path
+                                            params:@{@"page" : @(pageNumber)}
+                                          complete:complete];
+    return task;
+}
+
+
+-(NSURLSessionDataTask *)listsForMovie:(NSInteger)movieID
+                                inPage:(NSInteger)pageNumber
+                              complete:(KMMNetworkingCompletionBlock)complete {
+    NSString *path = [NSString stringWithFormat:@"movie/%d/lists", movieID];
+    NSURLSessionDataTask *task = [self getWithPath:path
+                                            params:@{@"page" : @(pageNumber)}
+                                          complete:complete];
+    return task;
+}
+
+
+-(NSURLSessionDataTask *)changesForMovie:(NSInteger)movieID
+                                    from:(NSDate*)from
+                                      to:(NSDate*)to
+                                complete:(KMMNetworkingCompletionBlock)complete {
+    NSString *path = [NSString stringWithFormat:@"movie/%d/changes", movieID];
+    NSString *startDate = [self.formatter stringFromDate:from];
+    NSString *endDate = [self.formatter stringFromDate:to];
+    NSURLSessionDataTask *task = [self getWithPath:path
+                                            params:@{@"start_date" : startDate,
+                                                     @"end_date" : endDate}
+                                          complete:complete];
+    return task;
+}
+
+
+-(NSURLSessionDataTask *)latestMovieWithBlock:(KMMNetworkingCompletionBlock)complete {
+    NSURLSessionDataTask *task = [self getWithPath:@"movie/latest"
+                                            params:@{}
+                                          complete:complete];
+    return task;
+}
+
+
+-(NSURLSessionDataTask *)upcomingMoviesInPage:(NSInteger)pageNumber
+                                     complete:(KMMNetworkingCompletionBlock)complete {
+    NSURLSessionDataTask *task = [self getWithPath:@"movie/upcoming"
+                                            params:@{@"page" : @(pageNumber)}
+                                          complete:complete];
+    return task;
+}
+
+
+-(NSURLSessionDataTask *)nowPlayingMoviesInPage:(NSInteger)pageNumber
+                                       complete:(KMMNetworkingCompletionBlock)complete {
+    NSURLSessionDataTask *task = [self getWithPath:@"movie/now_playing"
+                                            params:@{@"page" : @(pageNumber)}
+                                          complete:complete];
+    return task;
+}
+
+
+-(NSURLSessionDataTask *)popularMoviesInPage:(NSInteger)pageNumber
+                                    complete:(KMMNetworkingCompletionBlock)complete {
+    NSURLSessionDataTask *task = [self getWithPath:@"movie/popular"
+                                            params:@{@"page" : @(pageNumber)}
+                                          complete:complete];
+    return task;
+}
+
+
+-(NSURLSessionDataTask *)topRatedMoviesInPage:(NSInteger)pageNumber
+                                     complete:(KMMNetworkingCompletionBlock)complete {
+    NSURLSessionDataTask *task = [self getWithPath:@"movie/top_rated"
+                                            params:@{@"page" : @(pageNumber)}
+                                          complete:complete];
+    return task;
+}
+
+
+
+#pragma mark -- Networks
+
+
+-(NSURLSessionDataTask *)TVNetworkWithId:(NSInteger)networkId
+                                complete:(KMMNetworkingCompletionBlock)complete {
+    NSString *path = [NSString stringWithFormat:@"network/%d", networkId];
+    NSURLSessionDataTask *task = [self getWithPath:path
+                                            params:@{}
+                                          complete:complete];
+    return task;
+}
+
+#pragma mark -- People
+
+
+-(NSURLSessionDataTask *)personWithId:(NSInteger)personID
+                             complete:(KMMNetworkingCompletionBlock)complete {
+    NSString *path = [NSString stringWithFormat:@"person/%d", personID];
+    NSURLSessionDataTask *task = [self getWithPath:path
+                                            params:@{@"append_to_response" : @"combined_credits,external_ids,images,tagged_images"}
+                                          complete:complete];
+    return task;
+}
+
+
+-(NSURLSessionDataTask *)movieCreditsForPerson:(NSInteger)personId
+                                      complete:(KMMNetworkingCompletionBlock)complete {
+    NSString *path = [NSString stringWithFormat:@"person/%d/movie_credits", personId];
+    NSURLSessionDataTask *task = [self getWithPath:path
+                                            params:@{}
+                                          complete:complete];
+    return task;
+}
+
+
+-(NSURLSessionDataTask *)TVCreditsForPerson:(NSInteger)personID
+                                   complete:(KMMNetworkingCompletionBlock)complete {
+    NSString *path = [NSString stringWithFormat:@"person/%d/tv_credits", personID];
+    NSURLSessionDataTask *task = [self getWithPath:path
+                                            params:@{}
+                                          complete:complete];
+    return task;
+}
+
+
+-(NSURLSessionDataTask *)combinedCreditsForPerson:(NSInteger)personID
+                                         complete:(KMMNetworkingCompletionBlock)complete {
+    NSString *path = [NSString stringWithFormat:@"person/%d/combined_credits", personID];
+    NSURLSessionDataTask *task = [self getWithPath:path
+                                            params:@{}
+                                          complete:complete];
+    return task;
+}
+
+
+-(NSURLSessionDataTask *)externalIdsForPerson:(NSInteger)personID
+                                     complete:(KMMNetworkingCompletionBlock)complete {
+    NSString *path = [NSString stringWithFormat:@"person/%d/external_ids", personID];
+    NSURLSessionDataTask *task = [self getWithPath:path
+                                            params:@{}
+                                          complete:complete];
+    return task;
+}
+
+
+-(NSURLSessionDataTask *)imagesForPerson:(NSInteger)personID
+                                complete:(KMMNetworkingCompletionBlock)complete {
+    NSString *path = [NSString stringWithFormat:@"person/%d/images", personID];
+    NSURLSessionDataTask *task = [self getWithPath:path
+                                            params:@{}
+                                          complete:complete];
+    return task;
+}
+
+
+-(NSURLSessionDataTask *)taggedImagesForPerson:(NSInteger)personID
+                                        inPage:(NSInteger)pageNumber
+                                      complete:(KMMNetworkingCompletionBlock)complete {
+    NSString *path = [NSString stringWithFormat:@"person/%d/tagged_images", personID];
+    NSURLSessionDataTask *task = [self getWithPath:path
+                                            params:@{@"page" : @(pageNumber)}
+                                          complete:complete];
+    return task;
+}
+
+
+-(NSURLSessionDataTask *)changesForPerson:(NSInteger)personID
+                                     from:(NSDate*)from
+                                       to:(NSDate*)to
+                                 complete:(KMMNetworkingCompletionBlock)complete {
+    NSString *path = [NSString stringWithFormat:@"person/%d", personID];
+    NSString *startDate = [self.formatter stringFromDate:from];
+    NSString *endDate = [self.formatter stringFromDate:to];
+    NSURLSessionDataTask *task = [self getWithPath:path
+                                            params:@{@"start_date" : startDate,
+                                                     @"end_date" : endDate}
+                                          complete:complete];
+    return task;
+}
+
+
+-(NSURLSessionDataTask *)popularPeopleInPage:(NSInteger)pageNumber
+                                    complete:(KMMNetworkingCompletionBlock)complete {
+    NSURLSessionDataTask *task = [self getWithPath:@"person/popular"
+                                            params:@{@"page" : @(pageNumber)}
+                                          complete:complete];
+    return task;
+}
+
+
+-(NSURLSessionDataTask *)latestPersonWithBlock:(KMMNetworkingCompletionBlock)complete {
+    NSURLSessionDataTask *task = [self getWithPath:@"person/latest"
+                                            params:@{}
+                                          complete:complete];
+    return task;
+}
+
+#pragma mark -- Reviews
+
+
+-(NSURLSessionDataTask *)reviewWithId:(NSInteger)reviewId
+                             complete:(KMMNetworkingCompletionBlock)complete {
+    NSString *path = [NSString stringWithFormat:@"review/%d", reviewId];
+    NSURLSessionDataTask *task = [self getWithPath:path
+                                            params:@{}
+                                          complete:complete];
+    return task;
+}
+
+#pragma mark -- Search
+
+
+-(NSURLSessionDataTask *)searchPeopleForTerm:(NSString*)searchTerm
+                                      inPage:(NSInteger)pageNumber
+                                    withType:(TMDBSearchType)type
+                                    complete:(KMMNetworkingCompletionBlock)complete {
+    NSURLSessionDataTask *task = [self getWithPath:@"search/person"
+                                            params:@{@"page" : @(pageNumber),
+                                                     @"search_type" : NSStringFromTMDBSearchType(type),
+                                                     @"query" : searchTerm}
+                                          complete:complete];
+    return task;
+}
+
+
+-(NSURLSessionDataTask *)searchMoviesForTerm:(NSString*)searchTerm
+                                 releaseYear:(NSInteger)releaseYear
+                                    withType:(TMDBSearchType)type
+                                      inPage:(NSInteger)pageNumber
+                                    complete:(KMMNetworkingCompletionBlock)complete {
+    NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
+    parameters[@"page"] = @(pageNumber);
+    parameters[@"search_type"] = NSStringFromTMDBSearchType(type);
+    parameters[@"query"] = searchTerm;
+    if(releaseYear) {
+        parameters[@"year"] = @(releaseYear);
+    }
+    NSURLSessionDataTask *task = [self getWithPath:@"search/movie"
+                                            params:[parameters copy]
+                                          complete:complete];
+    return task;
+}
+
+
+-(NSURLSessionDataTask *)searchForTerm:(NSString*)searchTerm
+                                inPage:(NSInteger)pageNumber
+                              complete:(KMMNetworkingCompletionBlock)complete {
+    NSURLSessionDataTask *task = [self getWithPath:@"search/multi"
+                                            params:@{@"page" : @(pageNumber),
+                                                     @"query" : searchTerm}
+                                          complete:complete];
+    return task;
+}
+
+
+-(NSURLSessionDataTask *)searchCompaniesForTerm:(NSString*)searchTerm
+                                         inPage:(NSInteger)pageNumber
+                                       complete:(KMMNetworkingCompletionBlock)complete {
+    NSURLSessionDataTask *task = [self getWithPath:@"search/company"
+                                            params:@{@"page" : @(pageNumber),
+                                                     @"query" : searchTerm}
+                                          complete:complete];
+    return task;
+}
+
+
+-(NSURLSessionDataTask *)searchCollectionForTerm:(NSString*)searchTerm
+                                          inPage:(NSInteger)pageNumber
+                                        complete:(KMMNetworkingCompletionBlock)complete {
+    NSURLSessionDataTask *task = [self getWithPath:@"search/collection"
+                                            params:@{@"page" : @(pageNumber),
+                                                     @"query" : searchTerm}
+                                          complete:complete];
+    return task;
+}
+
+
+-(NSURLSessionDataTask *)searchKeywordsForTerm:(NSString*)searchTerm
+                                        inPage:(NSInteger)pageNumber
+                                      complete:(KMMNetworkingCompletionBlock)complete {
+    NSURLSessionDataTask *task = [self getWithPath:@"search/keyword"
+                                            params:@{@"page" : @(pageNumber),
+                                                     @"query" : searchTerm}
+                                          complete:complete];
+    return task;
+}
+
+
+-(NSURLSessionDataTask *)searchListsForTerm:(NSString*)searchTerm
+                                     inPage:(NSInteger)pageNumber
+                                   complete:(KMMNetworkingCompletionBlock)complete {
+    NSURLSessionDataTask *task = [self getWithPath:@"search/list"
+                                            params:@{@"page" : @(pageNumber),
+                                                     @"query" : searchTerm}
+                                          complete:complete];
+    return task;
+}
+
+
+-(NSURLSessionDataTask *)searchTVForTerm:(NSString*)searchTerm
+                                  inPage:(NSInteger)pageNumber
+                          firstAiredYear:(NSInteger)firstAiredYear
+                              searchType:(TMDBSearchType)searchType
+                                complete:(KMMNetworkingCompletionBlock)complete {
+    NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
+    parameters[@"page"] = @(pageNumber);
+    parameters[@"search_type"] = NSStringFromTMDBSearchType(searchType);
+    parameters[@"query"] = searchTerm;
+    if(firstAiredYear) {
+        parameters[@"first_air_date_year"] = @(firstAiredYear);
+    }
+    NSURLSessionDataTask *task = [self getWithPath:@"search/tv"
+                                            params:[parameters copy]
+                                          complete:complete];
+    return task;
+}
+
+#pragma mark -- Timezones
+
+
+-(NSURLSessionDataTask *)timezonesWithBlock:(KMMNetworkingCompletionBlock)complete {
+    NSURLSessionDataTask *task = [self getWithPath:@"timezones/list"
+                                            params:@{}
+                                          complete:complete];
+    return task;
+}
+
+#pragma mark -- TV
+
+
+-(NSURLSessionDataTask *)TVSeriesWithId:(NSInteger)seriesId
+                               complete:(KMMNetworkingCompletionBlock)complete {
+    NSString *path = [NSString stringWithFormat:@"tv/%d", seriesId];
+    NSURLSessionDataTask *task = [self getWithPath:path
+                                            params:@{@"append_to_response" : @"alternative_titles,content_ratings,credits,external_ids,images,keywords,similar,translations,videos"}
+                                          complete:complete];
+    return task;
+}
+
+
+
+-(NSURLSessionDataTask *)alternativeTitlesForTVSeries:(NSInteger)seriesId
+                                            inCountry:(NSString *)countryCode
+                                             complete:(KMMNetworkingCompletionBlock)complete {
+    NSString *path = [NSString stringWithFormat:@"tv/%d/alternative_titles", seriesId];
+    NSURLSessionDataTask *task = [self getWithPath:path
+                                            params:@{}
+                                          complete:complete];
+    return task;
+    
+}
+
+
+-(NSURLSessionDataTask *)changesForTVSeries:(NSInteger)seriesId
+                                       from:(NSDate*)from
+                                         to:(NSDate*)to
+                                   complete:(KMMNetworkingCompletionBlock)complete {
+    NSString *startDate = [self.formatter stringFromDate:from];
+    NSString *endDate = [self.formatter stringFromDate:to];
+    NSString *path = [NSString stringWithFormat:@"tv/%d/changes", seriesId];
+    NSURLSessionDataTask *task = [self getWithPath:path
+                                            params:@{@"start_date" : startDate,
+                                                     @"end_date" : endDate}
+                                          complete:complete];
+    return task;
+}
+
+
+-(NSURLSessionDataTask *)contentRatingsForTVSeries:(NSInteger)seriesId
+                                          complete:(KMMNetworkingCompletionBlock)complete {
+    NSString *path = [NSString stringWithFormat:@"tv/%d/content_ratings", seriesId];
+    NSURLSessionDataTask *task = [self getWithPath:path
+                                            params:@{}
+                                          complete:complete];
+    return task;
+}
+
+
+-(NSURLSessionDataTask *)creditsForTVSeries:(NSInteger)seriesId
+                                   complete:(KMMNetworkingCompletionBlock)complete {
+    NSString *path = [NSString stringWithFormat:@"tv/%d/credits", seriesId];
+    NSURLSessionDataTask *task = [self getWithPath:path
+                                            params:@{}
+                                          complete:complete];
+    return task;
+}
+
+
+-(NSURLSessionDataTask *)externalIdsForTVSeries:(NSInteger)seriesId
+                                       complete:(KMMNetworkingCompletionBlock)complete {
+    NSString *path = [NSString stringWithFormat:@"tv/%d/external_ids", seriesId];
+    NSURLSessionDataTask *task = [self getWithPath:path
+                                            params:@{}
+                                          complete:complete];
+    return task;
+}
+
+
+-(NSURLSessionDataTask *)imagesForTVSeries:(NSInteger)seriesId
+                                  complete:(KMMNetworkingCompletionBlock)complete {
+    NSString *path = [NSString stringWithFormat:@"tv/%d/alternative_titles", seriesId];
+    NSURLSessionDataTask *task = [self getWithPath:path
+                                            params:@{}
+                                          complete:complete];
+    return task;
+}
+
+
+-(NSURLSessionDataTask *)keywordsForTVSeries:(NSInteger)seriesId
+                                    complete:(KMMNetworkingCompletionBlock)complete {
+    NSString *path = [NSString stringWithFormat:@"tv/%d/keywords", seriesId];
+    NSURLSessionDataTask *task = [self getWithPath:path
+                                            params:@{}
+                                          complete:complete];
+    return task;
+}
+
+
+-(NSURLSessionDataTask *)similarSeriesForTVSeries:(NSInteger)seriesId
+                                           inPage:(NSInteger)pageNumber
+                                         complete:(KMMNetworkingCompletionBlock)complete {
+    NSString *path = [NSString stringWithFormat:@"tv/%d/similar", seriesId];
+    NSURLSessionDataTask *task = [self getWithPath:path
+                                            params:@{@"page" : @(pageNumber)}
+                                          complete:complete];
+    return task;
+}
+
+
+-(NSURLSessionDataTask *)translationsForTVSeries:(NSInteger)seriesId
+                                        complete:(KMMNetworkingCompletionBlock)complete {
+    NSString *path = [NSString stringWithFormat:@"tv/%d/translations", seriesId];
+    NSURLSessionDataTask *task = [self getWithPath:path
+                                            params:@{}
+                                          complete:complete];
+    return task;
+}
+
+
+-(NSURLSessionDataTask *)videosForTVSeries:(NSInteger)seriesId
+                                  complete:(KMMNetworkingCompletionBlock)complete {
+    NSString *path = [NSString stringWithFormat:@"tv/%d/videos", seriesId];
+    NSURLSessionDataTask *task = [self getWithPath:path
+                                            params:@{}
+                                          complete:complete];
+    return task;
+}
+
+
+-(NSURLSessionDataTask *)latestTVSeriesWithBlock:(KMMNetworkingCompletionBlock)complete {
+    NSURLSessionDataTask *task = [self getWithPath:@"tv/latest"
+                                            params:@{}
+                                          complete:complete];
+    return task;
+}
+
+
+-(NSURLSessionDataTask *)currentlyAiringTVSeriesInPage:(NSInteger)pageNumber
+                                              complete:(KMMNetworkingCompletionBlock)complete {
+    NSURLSessionDataTask *task = [self getWithPath:@"tv/on_the_air"
+                                            params:@{}
+                                          complete:complete];
+    return task;
+}
+
+
+-(NSURLSessionDataTask *)TVSeriesAiringTodayInTimezone:(KMMTimezone*)timezone
+                                                inPage:(NSInteger)pageNumber
+                                              complete:(KMMNetworkingCompletionBlock)complete {
+    NSURLSessionDataTask *task = [self getWithPath:@"tv/airing_today"
+                                            params:@{@"page" : @(pageNumber)}
+                                          complete:complete];
+    return task;
+}
+
+
+-(NSURLSessionDataTask *)topRatedTVSeriesInPage:(NSInteger)pageNumber
+                                       complete:(KMMNetworkingCompletionBlock)complete {
+    NSURLSessionDataTask *task = [self getWithPath:@"tv/top_rated"
+                                            params:@{@"page" : @(pageNumber)}
+                                          complete:complete];
+    return task;
+}
+
+
+-(NSURLSessionDataTask *)popularTVSeriesInPage:(NSInteger)pageNumber
+                                      complete:(KMMNetworkingCompletionBlock)complete {
+    NSURLSessionDataTask *task = [self getWithPath:@"tv/popular"
+                                            params:@{@"page" : @(pageNumber)}
+                                          complete:complete];
+    return task;
+}
+
+
+
+#pragma mark -- TV Seasons
+
+
+-(NSURLSessionDataTask *)seasonNumber:(NSInteger)seasonNumber
+                          forTVSeries:(NSInteger)seriesId
+                             complete:(KMMNetworkingCompletionBlock)complete {
+    NSString *path = [NSString stringWithFormat:@"tv/%d/season/%d", seriesId, seasonNumber];
+    NSURLSessionDataTask *task = [self getWithPath:path
+                                            params:@{}
+                                          complete:complete];
+    return task;
+}
+
+
+-(NSURLSessionDataTask *)changesForSeason:(NSInteger)seasonId
+                                     from:(NSDate*)from
+                                       to:(NSDate*)to
+                                 complete:(KMMNetworkingCompletionBlock)complete {
+    NSString *startDate = [self.formatter stringFromDate:from];
+    NSString *endDate = [self.formatter stringFromDate:to];
+    NSString *path = [NSString stringWithFormat:@"tv/season/%d/changes", seasonId];
+    NSURLSessionDataTask *task = [self getWithPath:path
+                                            params:@{@"start_date" : startDate,
+                                                     @"end_date" : endDate}
+                                          complete:complete];
+    return task;
+}
+
+
+-(NSURLSessionDataTask *)creditsForSeason:(NSInteger)seasonNumber
+                              forTVSeries:(NSInteger)seriesId
+                                 complete:(KMMNetworkingCompletionBlock)complete {
+    NSString *path = [NSString stringWithFormat:@"tv/%d/season/%d/credits", seriesId, seasonNumber];
+    NSURLSessionDataTask *task = [self getWithPath:path
+                                            params:@{}
+                                          complete:complete];
+    return task;
+}
+
+
+-(NSURLSessionDataTask *)externalIdsForSeason:(NSInteger)seasonNumber
+                                  forTVSeries:(NSInteger)seriesId
+                                     complete:(KMMNetworkingCompletionBlock)complete {
+    NSString *path = [NSString stringWithFormat:@"tv/%d/season/%d/external_ids", seriesId, seasonNumber];
+    NSURLSessionDataTask *task = [self getWithPath:path
+                                            params:@{}
+                                          complete:complete];
+    return task;
+}
+
+
+-(NSURLSessionDataTask *)imagesForSeason:(NSInteger)seasonNumber
+                             forTVSeries:(NSInteger)seriesId
+                                complete:(KMMNetworkingCompletionBlock)complete {
+    NSString *path = [NSString stringWithFormat:@"tv/%d/season/%d/images", seriesId, seasonNumber];
+    NSURLSessionDataTask *task = [self getWithPath:path
+                                            params:@{}
+                                          complete:complete];
+    return task;
+}
+
+
+-(NSURLSessionDataTask *)videosForSeason:(NSInteger)seasonNumber
+                             forTVSeries:(NSInteger)seriesId
+                                complete:(KMMNetworkingCompletionBlock)complete {
+    NSString *path = [NSString stringWithFormat:@"tv/%d/season/%d/videos", seriesId, seasonNumber];
+    NSURLSessionDataTask *task = [self getWithPath:path
+                                            params:@{}
+                                          complete:complete];
+    return task;
+}
+
+
+#pragma mark -- Episodes
+
+
+-(NSURLSessionDataTask *)episode:(NSInteger)episodeNumber
+                        inSeason:(NSInteger)seasonNumber
+                     forTVSeries:(NSInteger)seriesId
+                        complete:(KMMNetworkingCompletionBlock)complete {
+    NSString *path = [NSString stringWithFormat:@"tv/%d/season/%d/episode/%d", seriesId, seasonNumber, episodeNumber];
+    NSURLSessionDataTask *task = [self getWithPath:path
+                                            params:@{@"append_to_response" : @"credits,external_ids,images,videos"}
+                                          complete:complete];
+    return task;
+}
+
+
+-(NSURLSessionDataTask *)changesForEpisode:(NSInteger)episodeId
+                                      from:(NSDate*)from
+                                        to:(NSDate*)to
+                                  complete:(KMMNetworkingCompletionBlock)complete {
+    NSString *startDate = [self.formatter stringFromDate:from];
+    NSString *endDate = [self.formatter stringFromDate:to];
+    NSString *path = [NSString stringWithFormat:@"tv/episode/%d/changes", episodeId];
+    NSURLSessionDataTask *task = [self getWithPath:path
+                                            params:@{@"start_date" : startDate,
+                                                     @"end_date" :endDate}
+                                          complete:complete];
+    return task;
+}
+
+
+-(NSURLSessionDataTask *)creditsForEpisode:(NSInteger)episodeNumber
+                                  inSeason:(NSInteger)seasonNumber
+                               forTVSeries:(NSInteger)seriesId
+                                  complete:(KMMNetworkingCompletionBlock)complete {
+    NSString *path = [NSString stringWithFormat:@"tv/%d/season/%d/episode/%d/credits", seriesId, seasonNumber, episodeNumber];
+    NSURLSessionDataTask *task = [self getWithPath:path
+                                            params:@{}
+                                          complete:complete];
+    return task;
+}
+
+
+-(NSURLSessionDataTask *)externalIdsForEpisode:(NSInteger)episodeNumber
+                                      inSeason:(NSInteger)seasonNumber
+                                   forTVSeries:(NSInteger)seriesId
+                                      complete:(KMMNetworkingCompletionBlock)complete {
+    NSString *path = [NSString stringWithFormat:@"tv/%d/season/%d/episode/%d/external_ids", seriesId, seasonNumber, episodeNumber];
+    NSURLSessionDataTask *task = [self getWithPath:path
+                                            params:@{}
+                                          complete:complete];
+    return task;
+}
+
+
+-(NSURLSessionDataTask *)imagesForEpisode:(NSInteger)episodeNumber
+                                 inSeason:(NSInteger)seasonNumber
+                              forTVSeries:(NSInteger)seriesId
+                                 complete:(KMMNetworkingCompletionBlock)complete {
+    NSString *path = [NSString stringWithFormat:@"tv/%d/season/%d/episode/%d/images", seriesId, seasonNumber, episodeNumber];
+    NSURLSessionDataTask *task = [self getWithPath:path
+                                            params:@{}
+                                          complete:complete];
+    return task;
+}
+
+
+-(NSURLSessionDataTask *)videosForEpisode:(NSInteger)episodeNumber
+                                 inSeason:(NSInteger)seasonNumber
+                              forTVSeries:(NSInteger)seriesId
+                                 complete:(KMMNetworkingCompletionBlock)complete {
+    NSString *path = [NSString stringWithFormat:@"tv/%d/season/%d/episode/%d/videos", seriesId, seasonNumber, episodeNumber];
+    NSURLSessionDataTask *task = [self getWithPath:path
+                                            params:@{}
                                           complete:complete];
     return task;
 }
@@ -398,5 +1225,7 @@
     
     [self.operationQueue addOperation:getConfigOperation];
 }
+
+
 
 @end

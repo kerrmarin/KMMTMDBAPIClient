@@ -11,7 +11,7 @@
 
 #import "KMMTMDBAPIClient.h"
 
-#import "KMMMovieFilter.h"
+#import "KMMMovieCriteria.h"
 
 @interface KMMTMDBAPIClientTests : XCTestCase
 
@@ -37,13 +37,19 @@
     XCTAssert([[KMMTMDBAPIClient client].language isEqualToString:@"en"]);
 }
 
+-(void)testClientIsSingleton {
+    KMMTMDBAPIClient *client1 = [KMMTMDBAPIClient client];
+    KMMTMDBAPIClient *client2 = [KMMTMDBAPIClient client];
+    XCTAssertEqual(client1, client2);
+}
+
 
 #pragma mark -- Fetch methods tests
 
 -(void)testCanGetPopularMovies {
     XCTestExpectation *fetchedPopularMoviesExpectation = [self expectationWithDescription:@"Popular movies fetched"];
     
-    [[KMMTMDBAPIClient client] fetchPopularMoviesInPage:1 complete:^(id results, NSError *error) {
+    [[KMMTMDBAPIClient client] popularMoviesInPage:1 complete:^(id results, NSError *error) {
         if(!error) {
             [fetchedPopularMoviesExpectation fulfill];
         }
@@ -57,7 +63,7 @@
     
     NSInteger pageNumber = 1;
     
-    [[KMMTMDBAPIClient client] fetchPopularMoviesInPage:pageNumber complete:^(id results, NSError *error) {
+    [[KMMTMDBAPIClient client] popularMoviesInPage:pageNumber complete:^(id results, NSError *error) {
         if(!error) {
             if([results[@"page"] integerValue] == pageNumber) {
                 [fetchedPopularMoviesExpectation fulfill];
@@ -73,7 +79,7 @@
     
     NSInteger movieID = 550;
     
-    [[KMMTMDBAPIClient client] fetchMovieWithID:movieID complete:^(id results, NSError *error) {
+    [[KMMTMDBAPIClient client] movieWithId:movieID complete:^(id results, NSError *error) {
         if(!error) {
             [fetchedMovieIdExpectation fulfill];
         }
@@ -87,7 +93,7 @@
     
     NSInteger companyID = 25; //20th century fox
     
-    [[KMMTMDBAPIClient client] fetchCompanyWithID:companyID complete:^(id results, NSError *error) {
+    [[KMMTMDBAPIClient client] companyWithID:companyID complete:^(id results, NSError *error) {
         if(!error) {
             [fetchedCompanyWithIDExpectation fulfill];
         }
@@ -99,7 +105,7 @@
 -(void)testCanFetchAllGenres {
     XCTestExpectation *fetchedAllGenresExpectation = [self expectationWithDescription:@"All genres fetched"];
     
-    [[KMMTMDBAPIClient client] allGenres:^(id results, NSError *error) {
+    [[KMMTMDBAPIClient client] allMovieGenresWithBlock:^(id results, NSError *error) {
         if(!error) {
             [fetchedAllGenresExpectation fulfill];
         }
@@ -130,7 +136,7 @@
     
     NSInteger personId = 287; //Brad Pitt
     
-    [[KMMTMDBAPIClient client] fetchPersonWithID:personId complete:^(id results, NSError *error) {
+    [[KMMTMDBAPIClient client] personWithId:personId complete:^(id results, NSError *error) {
         if(!error) {
             [fetchedPersonWithId fulfill];
         }
@@ -157,14 +163,18 @@
 -(void)testCanFilterMoviesWithPage {
     XCTestExpectation *fetchFilteredMoviesExpectation = [self expectationWithDescription:@"Filter movies"];
     
-    KMMMovieFilter *filter = [KMMMovieFilter new];
-    filter.yearRange = NSMakeRange(1999, 10); //1999-2009
-    filter.genres = @[@18]; //Drama
-    filter.sortBy = KMMFilterSortByPopular;
+    
+    
+    KMMMovieCriteria *filter = [KMMMovieCriteria new];
+    filter.releaseYear = 1999; //1999-2009
+    filter.genres = [NSSet setWithArray:@[@18]]; //Drama
+    filter.sortBy = KMMMovieDiscoverSortByPopularityDescending;
     
     NSInteger pageNumber = 2;
     
-    [[KMMTMDBAPIClient client] filterMovies:filter inPage:pageNumber complete:^(id results, NSError *error) {
+    [[KMMTMDBAPIClient client] discoverMoviesWithCriteria:filter
+                                                   inPage:pageNumber
+                                                 complete:^(id results, NSError *error) {
         if(!error) {
             [fetchFilteredMoviesExpectation fulfill];
         }
@@ -179,10 +189,10 @@
     NSInteger pageNumber = 1;
     NSString *searchTerm = @"John";
     
-    [[KMMTMDBAPIClient client] searchCastForTerm:searchTerm page:pageNumber complete:^(id results, NSError *error) {
-        if(!error) {
-            [searchCastExpectation fulfill];
-        }
+    [[KMMTMDBAPIClient client] searchPeopleForTerm:searchTerm inPage:pageNumber withType:TMDBSearchTypePhrase complete:^(id results, NSError *error) {
+            if(!error) {
+                [searchCastExpectation fulfill];
+            }
     }];
     
     [self waitForExpectationsWithTimeout:3 handler:nil];
@@ -194,7 +204,7 @@
     NSInteger pageNumber = 1;
     NSString *searchTerm = @"Hobbit";
     
-    [[KMMTMDBAPIClient client] searchMoviesForTerm:searchTerm page:pageNumber complete:^(id results, NSError *error) {
+    [[KMMTMDBAPIClient client] searchMoviesForTerm:searchTerm releaseYear:NSNotFound withType:TMDBSearchTypePhrase inPage:pageNumber complete:^(id results, NSError *error) {
         if(!error) {
             [searchMoviesExpectation fulfill];
         }
@@ -209,7 +219,7 @@
     NSInteger pageNumber = 1;
     NSString *searchTerm = @"Hobbit";
     
-    [[KMMTMDBAPIClient client] searchForTerm:searchTerm page:pageNumber complete:^(id results, NSError *error) {
+    [[KMMTMDBAPIClient client] searchForTerm:searchTerm inPage:pageNumber complete:^(id results, NSError *error) {
         if(!error) {
             [searchMoviesExpectation fulfill];
         }
