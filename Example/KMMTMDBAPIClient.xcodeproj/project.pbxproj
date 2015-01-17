@@ -16,6 +16,7 @@
 		57C066CA1A6AA49D000EB447 /* KMMTimezoneTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 57C066C91A6AA49D000EB447 /* KMMTimezoneTests.m */; };
 		57C066CC1A6AA9AD000EB447 /* KMMMovieParametersBuilderTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 57C066CB1A6AA9AD000EB447 /* KMMMovieParametersBuilderTests.m */; };
 		57C066CE1A6AA9C2000EB447 /* KMMTVParametersBuilderTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 57C066CD1A6AA9C2000EB447 /* KMMTVParametersBuilderTests.m */; };
+		57C066D01A6AC403000EB447 /* CHANGELOG.md in Sources */ = {isa = PBXBuildFile; fileRef = 57C066CF1A6AC403000EB447 /* CHANGELOG.md */; };
 		5B8D3E67239F3C091CE30C53 /* libPods-KMMTMDBAPIClient.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F8535F26A75406FCDE42686 /* libPods-KMMTMDBAPIClient.a */; };
 		6003F58E195388D20070C39A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F58D195388D20070C39A /* Foundation.framework */; };
 		6003F590195388D20070C39A /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F58F195388D20070C39A /* CoreGraphics.framework */; };
@@ -54,6 +55,7 @@
 		57C066C91A6AA49D000EB447 /* KMMTimezoneTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KMMTimezoneTests.m; sourceTree = "<group>"; };
 		57C066CB1A6AA9AD000EB447 /* KMMMovieParametersBuilderTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KMMMovieParametersBuilderTests.m; sourceTree = "<group>"; };
 		57C066CD1A6AA9C2000EB447 /* KMMTVParametersBuilderTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KMMTVParametersBuilderTests.m; sourceTree = "<group>"; };
+		57C066CF1A6AC403000EB447 /* CHANGELOG.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; name = CHANGELOG.md; path = ../CHANGELOG.md; sourceTree = "<group>"; };
 		5F8535F26A75406FCDE42686 /* libPods-KMMTMDBAPIClient.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-KMMTMDBAPIClient.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6003F58A195388D20070C39A /* KMMTMDBAPIClient.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KMMTMDBAPIClient.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6003F58D195388D20070C39A /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -205,6 +207,7 @@
 				A4DCE786D631F5F9B53D5B78 /* KMMTMDBAPIClient.podspec */,
 				BE1DB98CB27E60B089873525 /* README.md */,
 				FF37ACCA4BE9905237F0268C /* LICENSE */,
+				57C066CF1A6AC403000EB447 /* CHANGELOG.md */,
 			);
 			name = "Podspec Metadata";
 			sourceTree = "<group>";
@@ -384,6 +387,7 @@
 				6003F59E195388D20070C39A /* KMMAppDelegate.m in Sources */,
 				6003F5A7195388D20070C39A /* KMMViewController.m in Sources */,
 				6003F59A195388D20070C39A /* main.m in Sources */,
+				57C066D01A6AC403000EB447 /* CHANGELOG.md in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
