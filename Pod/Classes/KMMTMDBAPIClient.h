@@ -737,7 +737,7 @@ typedef void (^KMMNetworkingCompletionBlock)(id results, NSError *error);
  *
  *  @return an NSURLSessionDataTask with the current task
  */
--(NSURLSessionDataTask *)reviewWithId:(NSInteger)reviewId
+-(NSURLSessionDataTask *)reviewWithId:(NSString*)reviewId
                              complete:(KMMNetworkingCompletionBlock)complete;
 
 #pragma mark -- Search

@@ -476,6 +476,156 @@
     [self waitForExpectationsWithTimeout:3 handler:nil];
 }
 
+#pragma mark -- Network tests
+
+-(void)testCanGetNetworkWithId {
+    XCTestExpectation *getNetworkExpectation = [self expectationWithDescription:@"getNetworkExpectation"];
+    
+    [[KMMTMDBAPIClient client] TVNetworkWithId:49 complete:^(id results, NSError *error) {
+        if(!error) {
+            [getNetworkExpectation fulfill];
+        }
+    }];
+    [self waitForExpectationsWithTimeout:3 handler:nil];
+}
+
+#pragma mark -- People tests
+
+-(void)testCanGetPersonWithId {
+    XCTestExpectation *getPersonExpectation = [self expectationWithDescription:@"getPersonExpectation"];
+    
+    [[KMMTMDBAPIClient client] personWithId:287 complete:^(id results, NSError *error) {
+        if(!error) {
+            [getPersonExpectation fulfill];
+        }
+    }];
+    [self waitForExpectationsWithTimeout:3 handler:nil];
+}
+
+-(void)testCanGetPersonMovieCredits {
+    XCTestExpectation *getPersonMovieCreditsExpectation = [self expectationWithDescription:@"getPersonMovieCreditsExpectation"];
+    
+    [[KMMTMDBAPIClient client] movieCreditsForPerson:287 complete:^(id results, NSError *error) {
+        if(!error) {
+            [getPersonMovieCreditsExpectation fulfill];
+        }
+    }];
+    [self waitForExpectationsWithTimeout:3 handler:nil];
+}
+
+-(void)testCanGetPersonTVCredits {
+    XCTestExpectation *getPersonTVCreditsExpectation = [self expectationWithDescription:@"getPersonTVCreditsExpectation"];
+    
+    [[KMMTMDBAPIClient client] TVCreditsForPerson:287 complete:^(id results, NSError *error) {
+        if(!error) {
+            [getPersonTVCreditsExpectation fulfill];
+        }
+    }];
+    [self waitForExpectationsWithTimeout:3 handler:nil];
+}
+
+-(void)testCanGetPersonCombinedCredits {
+    XCTestExpectation *getPersonCombinedCreditsExpectation = [self expectationWithDescription:@"getPersonCombinedCreditsExpectation"];
+    
+    [[KMMTMDBAPIClient client] TVCreditsForPerson:287 complete:^(id results, NSError *error) {
+        if(!error) {
+            [getPersonCombinedCreditsExpectation fulfill];
+        }
+    }];
+    [self waitForExpectationsWithTimeout:3 handler:nil];
+}
+
+-(void)testCanGetPersonExternalIds {
+    XCTestExpectation *getPersonExternalIdsExpectation = [self expectationWithDescription:@"getPersonExternalIdsExpectation"];
+    
+    [[KMMTMDBAPIClient client] externalIdsForPerson:287 complete:^(id results, NSError *error) {
+        if(!error) {
+            [getPersonExternalIdsExpectation fulfill];
+        }
+    }];
+    [self waitForExpectationsWithTimeout:3 handler:nil];
+}
+
+-(void)testCanGetImagesForPerson {
+    XCTestExpectation *getPersonImagesExpectation = [self expectationWithDescription:@"getPersonImagesExpectation"];
+    
+    [[KMMTMDBAPIClient client] imagesForPerson:287 complete:^(id results, NSError *error) {
+        if(!error) {
+            [getPersonImagesExpectation fulfill];
+        }
+    }];
+    [self waitForExpectationsWithTimeout:3 handler:nil];
+}
+
+-(void)testCanGetPersonTaggedImages {
+    XCTestExpectation *getPersonTaggedImagesExpectation = [self expectationWithDescription:@"getPersonTaggedImagesExpectation"];
+    
+    [[KMMTMDBAPIClient client] taggedImagesForPerson:287 inPage:1 complete:^(id results, NSError *error) {
+        if(!error) {
+            [getPersonTaggedImagesExpectation fulfill];
+        }
+    }];
+    [self waitForExpectationsWithTimeout:3 handler:nil];
+}
+
+-(void)testCanGetPersonChanges {
+    XCTestExpectation *getPersonChangesExpectation = [self expectationWithDescription:@"getPersonChangesExpectation"];
+    
+    [[KMMTMDBAPIClient client] changesForPerson:287 from:[NSDate date] to:[NSDate date] complete:^(id results, NSError *error) {
+        if(!error) {
+            [getPersonChangesExpectation fulfill];
+        }
+    }];
+    [self waitForExpectationsWithTimeout:3 handler:nil];
+}
+
+-(void)testCanGetPopularPeople {
+    XCTestExpectation *getPopularPeopleExpectation = [self expectationWithDescription:@"getPopularPeopleExpectation"];
+    
+    [[KMMTMDBAPIClient client] popularPeopleInPage:1 complete:^(id results, NSError *error) {
+        if(!error) {
+            [getPopularPeopleExpectation fulfill];
+        }
+    }];
+    [self waitForExpectationsWithTimeout:3 handler:nil];
+}
+
+-(void)testCanGetLatestPerson {
+    XCTestExpectation *getLatestPersonExpectation = [self expectationWithDescription:@"getLatestPersonExpectation"];
+    
+    [[KMMTMDBAPIClient client] latestPersonWithBlock:^(id results, NSError *error) {
+        if(!error) {
+            [getLatestPersonExpectation fulfill];
+        }
+    }];
+    [self waitForExpectationsWithTimeout:3 handler:nil];
+}
+
+#pragma mark -- Reviews tests
+
+-(void)testCanGetReviewWithId {
+    XCTestExpectation *getReviewWithIdExpectation = [self expectationWithDescription:@"getReviewWithIdExpectation"];
+    
+    [[KMMTMDBAPIClient client] reviewWithId:@"5013bc76760ee372cb00253e" complete:^(id results, NSError *error) {
+        if(!error) {
+            [getReviewWithIdExpectation fulfill];
+        }
+    }];
+    [self waitForExpectationsWithTimeout:3 handler:nil];
+}
+
+#pragma mark -- Search tests
+
+-(void)testCanSearchForCompanies {
+    XCTestExpectation *searchCompaniesExpectation = [self expectationWithDescription:@"searchCompaniesExpectation"];
+    
+    [[KMMTMDBAPIClient client] searchCompaniesForTerm:@"lucas" inPage:1 complete:^(id results, NSError *error) {
+        if(!error) {
+            [searchCompaniesExpectation fulfill];
+        }
+    }];
+    [self waitForExpectationsWithTimeout:3 handler:nil];
+}
 
 
 @end

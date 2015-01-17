@@ -652,9 +652,9 @@ NSString* NSStringFromTMDBSearchType(TMDBSearchType type) {
 #pragma mark -- Reviews
 
 
--(NSURLSessionDataTask *)reviewWithId:(NSInteger)reviewId
+-(NSURLSessionDataTask *)reviewWithId:(NSString*)reviewId
                              complete:(KMMNetworkingCompletionBlock)complete {
-    NSString *path = [NSString stringWithFormat:@"review/%ld", (long)reviewId];
+    NSString *path = [NSString stringWithFormat:@"review/%@", reviewId];
     NSURLSessionDataTask *task = [self getWithPath:path
                                             params:@{}
                                           complete:complete];
