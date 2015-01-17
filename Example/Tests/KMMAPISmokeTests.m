@@ -12,6 +12,7 @@
 #import <KMMTMDBAPIClient/KMMTMDBAPIClient.h>
 #import <KMMTMDBAPIClient/KMMMovieCriteria.h>
 #import <KMMTMDBAPIClient/KMMTVCriteria.h>
+#import <KMMTMDBAPIClient/KMMTimezone.h>
 
 @interface KMMAPISmokeTests : XCTestCase
 
@@ -626,6 +627,425 @@
     }];
     [self waitForExpectationsWithTimeout:3 handler:nil];
 }
+
+-(void)testCanSearchForCollections {
+    XCTestExpectation *searchCollectionsExpectation = [self expectationWithDescription:@"searchCollectionsExpectation"];
+    
+    [[KMMTMDBAPIClient client] searchCollectionForTerm:@"lucas" inPage:1 complete:^(id results, NSError *error) {
+        if(!error) {
+            [searchCollectionsExpectation fulfill];
+        }
+    }];
+    [self waitForExpectationsWithTimeout:3 handler:nil];
+}
+
+
+-(void)testCanSearchForKeywords {
+    XCTestExpectation *searchKeywordsExpectation = [self expectationWithDescription:@"searchKeywordsExpectation"];
+    
+    [[KMMTMDBAPIClient client] searchKeywordsForTerm:@"fight" inPage:1 complete:^(id results, NSError *error) {
+        if(!error) {
+            [searchKeywordsExpectation fulfill];
+        }
+    }];
+    [self waitForExpectationsWithTimeout:3 handler:nil];
+}
+
+
+-(void)testCanSearchForList{
+    XCTestExpectation *searchListsExpectation = [self expectationWithDescription:@"searchListsExpectation"];
+    
+    [[KMMTMDBAPIClient client] searchListsForTerm:@"lucas" inPage:1 complete:^(id results, NSError *error) {
+        if(!error) {
+            [searchListsExpectation fulfill];
+        }
+    }];
+    [self waitForExpectationsWithTimeout:3 handler:nil];
+}
+
+
+-(void)testCanSearchForMovies {
+    XCTestExpectation *searchMoviesExpectation = [self expectationWithDescription:@"searchMoviesExpectation"];
+    
+    [[KMMTMDBAPIClient client] searchMoviesForTerm:@"star" releaseYear:1999 withType:TMDBSearchTypePhrase inPage:1 complete:^(id results, NSError *error) {
+        if(!error) {
+            [searchMoviesExpectation fulfill];
+        }
+    }];
+    [self waitForExpectationsWithTimeout:3 handler:nil];
+}
+
+
+-(void)testCanSearchMultipleSources {
+    XCTestExpectation *searchMultiExpectation = [self expectationWithDescription:@"searchMultiExpectation"];
+    
+    [[KMMTMDBAPIClient client] searchForTerm:@"lucas" inPage:1 complete:^(id results, NSError *error) {
+        if(!error) {
+            [searchMultiExpectation fulfill];
+        }
+    }];
+    [self waitForExpectationsWithTimeout:3 handler:nil];
+}
+
+-(void)testCanSearchPeople {
+    XCTestExpectation *searchPersonExpectation = [self expectationWithDescription:@"searchPersonExpectation"];
+    
+    [[KMMTMDBAPIClient client] searchPeopleForTerm:@"lucas" inPage:1 withType:TMDBSearchTypePhrase complete:^(id results, NSError *error) {
+        if(!error) {
+            [searchPersonExpectation fulfill];
+        }
+    }];
+    [self waitForExpectationsWithTimeout:3 handler:nil];
+}
+
+-(void)testCanSearchTV {
+    XCTestExpectation *searchTVExpectation = [self expectationWithDescription:@"searchTVExpectation"];
+    
+    [[KMMTMDBAPIClient client] searchTVForTerm:@"lucas" inPage:1 firstAiredYear:2014 searchType:TMDBSearchTypePhrase complete:^(id results, NSError *error) {
+        if(!error) {
+            [searchTVExpectation fulfill];
+        }
+    }];
+    [self waitForExpectationsWithTimeout:3 handler:nil];
+}
+
+#pragma mark -- Timezone tests
+
+-(void)testCanListTimezones {
+    XCTestExpectation *listTimezonesExpectation = [self expectationWithDescription:@"listTimezonesExpectation"];
+    
+    [[KMMTMDBAPIClient client] timezonesWithBlock:^(id results, NSError *error) {
+        if(!error) {
+            [listTimezonesExpectation fulfill];
+        }
+    }];
+    [self waitForExpectationsWithTimeout:3 handler:nil];
+}
+
+#pragma mark -- TV tests
+
+-(void)testCanGetTVSeriesWithId {
+    XCTestExpectation *getSeriesWithIdExpectation = [self expectationWithDescription:@"getSeriesWithIdExpectation"];
+    
+    [[KMMTMDBAPIClient client] TVSeriesWithId:1396 complete:^(id results, NSError *error) {
+        if(!error) {
+            [getSeriesWithIdExpectation fulfill];
+        }
+    }];
+    [self waitForExpectationsWithTimeout:3 handler:nil];
+}
+
+-(void)testCanGetTVSeriesAlternativeTitles {
+    XCTestExpectation *getSeriesAlternativeTitlesExpectation = [self expectationWithDescription:@"getSeriesAlternativeTitlesExpectation"];
+    
+    [[KMMTMDBAPIClient client] alternativeTitlesForTVSeries:1396 inCountry:@"AU" complete:^(id results, NSError *error) {
+        if(!error) {
+            [getSeriesAlternativeTitlesExpectation fulfill];
+        }
+    }];
+    [self waitForExpectationsWithTimeout:3 handler:nil];
+}
+
+-(void)testCanGetTVSeriesChanges {
+    XCTestExpectation *getChangesForSeriesExpectation = [self expectationWithDescription:@"getChangesForSeriesExpectation"];
+    
+    [[KMMTMDBAPIClient client] changesForTVSeries:1396 from:[NSDate date] to:[NSDate date] complete:^(id results, NSError *error) {
+        if(!error) {
+            [getChangesForSeriesExpectation fulfill];
+        }
+    }];
+    [self waitForExpectationsWithTimeout:3 handler:nil];
+}
+
+-(void)testCanGetTVSeriesContentRatings{
+    XCTestExpectation *getContentRatingsForSeriesExpectation = [self expectationWithDescription:@"getContentRatingsForSeriesExpectation"];
+    
+    [[KMMTMDBAPIClient client] contentRatingsForTVSeries:1396 complete:^(id results, NSError *error) {
+        if(!error) {
+            [getContentRatingsForSeriesExpectation fulfill];
+        }
+    }];
+    [self waitForExpectationsWithTimeout:3 handler:nil];
+}
+
+-(void)testCanGetTVSeriesCredits {
+    XCTestExpectation *getCreditsForSeriesExpectation = [self expectationWithDescription:@"getCreditsForSeriesExpectation"];
+    
+    [[KMMTMDBAPIClient client] creditsForTVSeries:1396 complete:^(id results, NSError *error) {
+        if(!error) {
+            [getCreditsForSeriesExpectation fulfill];
+        }
+    }];
+    [self waitForExpectationsWithTimeout:3 handler:nil];
+}
+
+-(void)testCanGetTVSeriesExternalIds {
+    XCTestExpectation *getContentRatingsForSeriesExpectation = [self expectationWithDescription:@"getContentRatingsForSeriesExpectation"];
+    
+    [[KMMTMDBAPIClient client] externalIdsForTVSeries:1396 complete:^(id results, NSError *error) {
+        if(!error) {
+            [getContentRatingsForSeriesExpectation fulfill];
+        }
+    }];
+    [self waitForExpectationsWithTimeout:3 handler:nil];
+}
+
+-(void)testCanGetTVSeriesImages {
+    XCTestExpectation *getImagesForSeriesExpectation = [self expectationWithDescription:@"getImagesForSeriesExpectation"];
+    
+    [[KMMTMDBAPIClient client] imagesForTVSeries:1396 complete:^(id results, NSError *error) {
+        if(!error) {
+            [getImagesForSeriesExpectation fulfill];
+        }
+    }];
+    [self waitForExpectationsWithTimeout:3 handler:nil];
+}
+
+-(void)testCanGetTVSeriesKeywords {
+    XCTestExpectation *getKeywordsForSeriesExpectation = [self expectationWithDescription:@"getKeywordsForSeriesExpectation"];
+    
+    [[KMMTMDBAPIClient client] keywordsForTVSeries:1396 complete:^(id results, NSError *error) {
+        if(!error) {
+            [getKeywordsForSeriesExpectation fulfill];
+        }
+    }];
+    [self waitForExpectationsWithTimeout:3 handler:nil];
+}
+
+-(void)testCanGetTVSeriesSimilar {
+    XCTestExpectation *getSimilarSeriesExpectation = [self expectationWithDescription:@"getSimilarSeriesExpectation"];
+    
+    [[KMMTMDBAPIClient client] similarSeriesForTVSeries:1396 inPage:1 complete:^(id results, NSError *error) {
+        if(!error) {
+            [getSimilarSeriesExpectation fulfill];
+        }
+    }];
+    [self waitForExpectationsWithTimeout:3 handler:nil];
+}
+
+-(void)testCanGetTVSeriesTranslations {
+    XCTestExpectation *getTranslationsForSeriesExpectation = [self expectationWithDescription:@"getTranslationsForSeriesExpectation"];
+    
+    [[KMMTMDBAPIClient client] translationsForTVSeries:1396 complete:^(id results, NSError *error) {
+        if(!error) {
+            [getTranslationsForSeriesExpectation fulfill];
+        }
+    }];
+    [self waitForExpectationsWithTimeout:3 handler:nil];
+}
+
+-(void)testCanGetTVSeriesVideos {
+    XCTestExpectation *getVideosForSeriesExpectation = [self expectationWithDescription:@"getVideosForSeriesExpectation"];
+    
+    [[KMMTMDBAPIClient client] videosForTVSeries:1396 complete:^(id results, NSError *error) {
+        if(!error) {
+            [getVideosForSeriesExpectation fulfill];
+        }
+    }];
+    [self waitForExpectationsWithTimeout:3 handler:nil];
+}
+
+
+-(void)testCanGetTVSeriesLatest {
+    XCTestExpectation *getLatestSeriesExpectation = [self expectationWithDescription:@"getLatestSeriesExpectation"];
+    
+    [[KMMTMDBAPIClient client] latestTVSeriesWithBlock:^(id results, NSError *error) {
+        if(!error) {
+            [getLatestSeriesExpectation fulfill];
+        }
+    }];
+    [self waitForExpectationsWithTimeout:3 handler:nil];
+}
+
+
+-(void)testCanGetTVSeriesOnTheAir {
+    XCTestExpectation *getOnTheAirForSeriesExpectation = [self expectationWithDescription:@"getOnTheAirForSeriesExpectation"];
+    
+    [[KMMTMDBAPIClient client] currentlyAiringTVSeriesInPage:1 complete:^(id results, NSError *error) {
+        if(!error) {
+            [getOnTheAirForSeriesExpectation fulfill];
+        }
+    }];
+    [self waitForExpectationsWithTimeout:3 handler:nil];
+}
+
+
+-(void)testCanGetTVSeriesAiringToday {
+    XCTestExpectation *getAiringTodaySeriesExpectation = [self expectationWithDescription:@"getAiringTodaySeriesExpectation"];
+    KMMTimezone *timezone = [[KMMTimezone alloc] initWithCode:@"GB" zones:@[@"London"]];
+    
+    [[KMMTMDBAPIClient client] TVSeriesAiringTodayInTimezone:timezone inPage:1 complete:^(id results, NSError *error) {
+        if(!error) {
+            [getAiringTodaySeriesExpectation fulfill];
+        }
+    }];
+    [self waitForExpectationsWithTimeout:3 handler:nil];
+}
+
+
+-(void)testCanGetTVSeriesTopRated {
+    XCTestExpectation *getTopRatedSeriesExpectation = [self expectationWithDescription:@"getTopRatedSeriesExpectation"];
+    
+    [[KMMTMDBAPIClient client] topRatedTVSeriesInPage:1 complete:^(id results, NSError *error) {
+        if(!error) {
+            [getTopRatedSeriesExpectation fulfill];
+        }
+    }];
+    [self waitForExpectationsWithTimeout:3 handler:nil];
+}
+
+
+-(void)testCanGetTVSeriesPopular {
+    XCTestExpectation *getPopularSeriesExpectation = [self expectationWithDescription:@"getPopularSeriesExpectation"];
+    
+    [[KMMTMDBAPIClient client] popularTVSeriesInPage:1 complete:^(id results, NSError *error) {
+        if(!error) {
+            [getPopularSeriesExpectation fulfill];
+        }
+    }];
+    [self waitForExpectationsWithTimeout:3 handler:nil];
+}
+
+#pragma mark -- TV Seasons tests
+
+
+-(void)testGetTVSeriesSeason {
+    XCTestExpectation *getSeriesSeasonExpectation = [self expectationWithDescription:@"getSeriesSeasonExpectation"];
+    
+    [[KMMTMDBAPIClient client] seasonNumber:1 forTVSeries:1396 complete:^(id results, NSError *error) {
+        if(!error) {
+            [getSeriesSeasonExpectation fulfill];
+        }
+    }];
+    [self waitForExpectationsWithTimeout:3 handler:nil];
+}
+
+
+-(void)testGetTVSeriesSeasonChanges {
+    XCTestExpectation *getSeriesSeasonChangesExpectation = [self expectationWithDescription:@"getSeriesSeasonChangesExpectation"];
+    
+    [[KMMTMDBAPIClient client] changesForSeason:62085 from:[NSDate date] to:[NSDate date] complete:^(id results, NSError *error) {
+        if(!error) {
+            [getSeriesSeasonChangesExpectation fulfill];
+        }
+    }];
+    [self waitForExpectationsWithTimeout:3 handler:nil];
+}
+
+-(void)testGetTVSeriesSeasonCredits {
+    XCTestExpectation *getSeriesSeasonCreditsExpectation = [self expectationWithDescription:@"getSeriesSeasonCreditsExpectation"];
+    
+    [[KMMTMDBAPIClient client] creditsForSeason:1 forTVSeries:3572 complete:^(id results, NSError *error) {
+     if(!error) {
+            [getSeriesSeasonCreditsExpectation fulfill];
+        }
+    }];
+    [self waitForExpectationsWithTimeout:3 handler:nil];
+}
+
+-(void)testGetTVSeriesSeasonExternalIds {
+    XCTestExpectation *getSeriesSeasonExternalIdsExpectation = [self expectationWithDescription:@"getSeriesSeasonExternalIdsExpectation"];
+    
+    [[KMMTMDBAPIClient client] externalIdsForSeason:1 forTVSeries:3572 complete:^(id results, NSError *error) {
+        if(!error) {
+            [getSeriesSeasonExternalIdsExpectation fulfill];
+        }
+    }];
+    [self waitForExpectationsWithTimeout:3 handler:nil];
+}
+
+-(void)testGetTVSeriesSeasonImages {
+    XCTestExpectation *getSeriesSeasonImagesExpectation = [self expectationWithDescription:@"getSeriesSeasonImagesExpectation"];
+    
+    [[KMMTMDBAPIClient client] imagesForSeason:1 forTVSeries:3572 complete:^(id results, NSError *error) {
+        if(!error) {
+            [getSeriesSeasonImagesExpectation fulfill];
+        }
+    }];
+    [self waitForExpectationsWithTimeout:3 handler:nil];
+}
+
+-(void)testGetTVSeriesSeasonVideos {
+    XCTestExpectation *getSeriesSeasonVideosExpectation = [self expectationWithDescription:@"getSeriesSeasonVideosExpectation"];
+    
+    [[KMMTMDBAPIClient client] videosForSeason:1 forTVSeries:3572 complete:^(id results, NSError *error) {
+        if(!error) {
+            [getSeriesSeasonVideosExpectation fulfill];
+        }
+    }];
+    [self waitForExpectationsWithTimeout:3 handler:nil];
+}
+
+#pragma mark -- TV Episodes tests
+
+-(void)testCanGetTVEpisode {
+    XCTestExpectation *getEpisodeExpectation = [self expectationWithDescription:@"getEpisodeExpectation"];
+    
+    [[KMMTMDBAPIClient client] episode:1 inSeason:1 forTVSeries:3572 complete:^(id results, NSError *error) {
+        if(!error) {
+            [getEpisodeExpectation fulfill];
+        }
+    }];
+    [self waitForExpectationsWithTimeout:3 handler:nil];
+}
+
+
+-(void)testCanGetTVEpisodeChanges {
+    XCTestExpectation *getEpisodeChangesExpectation = [self expectationWithDescription:@"getEpisodeChangesExpectation"];
+    
+    [[KMMTMDBAPIClient client] changesForEpisode:62085 from:[NSDate date] to:[NSDate date] complete:^(id results, NSError *error) {
+        if(!error) {
+            [getEpisodeChangesExpectation fulfill];
+        }
+    }];
+    [self waitForExpectationsWithTimeout:3 handler:nil];
+}
+
+-(void)testCanGetTVEpisodeCredits {
+    XCTestExpectation *getEpisodeCreditsExpectation = [self expectationWithDescription:@"getEpisodeCreditsExpectation"];
+    
+    [[KMMTMDBAPIClient client] creditsForEpisode:1 inSeason:1 forTVSeries:3572 complete:^(id results, NSError *error) {
+        if(!error) {
+            [getEpisodeCreditsExpectation fulfill];
+        }
+    }];
+    [self waitForExpectationsWithTimeout:3 handler:nil];
+}
+
+-(void)testCanGetTVEpisodeExternalIds {
+    XCTestExpectation *getEpisodeExternalIdsExpectation = [self expectationWithDescription:@"getEpisodeExternalIdsExpectation"];
+    
+    [[KMMTMDBAPIClient client] externalIdsForEpisode:1 inSeason:1 forTVSeries:3572 complete:^(id results, NSError *error) {
+        if(!error) {
+            [getEpisodeExternalIdsExpectation fulfill];
+        }
+    }];
+    [self waitForExpectationsWithTimeout:3 handler:nil];
+}
+
+-(void)testCanGetTVEpisodeImages {
+    XCTestExpectation *getEpisodeImagesExpectation = [self expectationWithDescription:@"getEpisodeImagesExpectation"];
+    
+    [[KMMTMDBAPIClient client] imagesForEpisode:1 inSeason:1 forTVSeries:3572 complete:^(id results, NSError *error) {
+        if(!error) {
+            [getEpisodeImagesExpectation fulfill];
+        }
+    }];
+    [self waitForExpectationsWithTimeout:3 handler:nil];
+}
+
+-(void)testCanGetTVEpisodeVideos {
+    XCTestExpectation *getEpisodeVideosExpectation = [self expectationWithDescription:@"getEpisodeVideosExpectation"];
+    
+    [[KMMTMDBAPIClient client] videosForEpisode:1 inSeason:1 forTVSeries:3572 complete:^(id results, NSError *error) {
+        if(!error) {
+            [getEpisodeVideosExpectation fulfill];
+        }
+    }];
+    [self waitForExpectationsWithTimeout:3 handler:nil];
+}
+
+
 
 
 @end
