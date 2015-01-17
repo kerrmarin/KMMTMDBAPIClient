@@ -20,7 +20,7 @@ PODS:
   - AFNetworking/UIKit (2.5.0):
     - AFNetworking/NSURLConnection
     - AFNetworking/NSURLSession
-  - KMMTMDBAPIClient (1.2.1):
+  - KMMTMDBAPIClient (1.3):
     - AFNetworking (~> 2.5)
 
 DEPENDENCIES:
@@ -33,6 +33,6 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   AFNetworking: 0f54cb5d16ce38c1b76948faffb8d5fb705021c7
-  KMMTMDBAPIClient: c4d909e656b67ad7b322f654e6740e25c3eefdc1
+  KMMTMDBAPIClient: e078e8123410aeca640437b182399bef8ffc1983
 
 COCOAPODS: 0.35.0
