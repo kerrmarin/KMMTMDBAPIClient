@@ -209,7 +209,7 @@ typedef void (^KMMNetworkingCompletionBlock)(id results, NSError *error);
  *  @return an NSURLSessionDataTask with the current task
  */
 
--(NSURLSessionDataTask *)creditWithId:(NSInteger)creditID
+-(NSURLSessionDataTask *)creditWithId:(NSString*)creditID
                              complete:(KMMNetworkingCompletionBlock)complete;
 
 #pragma mark -- Discover

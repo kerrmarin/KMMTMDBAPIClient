@@ -220,9 +220,9 @@ NSString* NSStringFromTMDBSearchType(TMDBSearchType type) {
 
 #pragma mark -- Credits
 
--(NSURLSessionDataTask *)creditWithId:(NSInteger)creditID
+-(NSURLSessionDataTask *)creditWithId:(NSString*)creditID
                              complete:(KMMNetworkingCompletionBlock)complete {
-    NSString *path = [NSString stringWithFormat:@"credit/%ld", (long)creditID];
+    NSString *path = [NSString stringWithFormat:@"credit/%@", creditID];
     NSURLSessionDataTask *task = [self getWithPath:path
                                             params:@{}
                                           complete:complete];
