@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 1.4
++ Fixed series id being sent instead of season numbers, added more smoke tests
++ Add smoke tests for all API clients
+
 ## 1.3
 + Updated smoke tests to include more endpoints
 + Updated checkMovie:isInList:complete to take an NSString for listId
