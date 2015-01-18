@@ -1,5 +1,8 @@
 # CHANGELOG
 
+## 1.4.1
++ Add check for NSNotFound in release year
+
 ## 1.4
 + Fixed series id being sent instead of season numbers, added more smoke tests
 + Add smoke tests for all API clients

@@ -686,7 +686,7 @@ NSString* NSStringFromTMDBSearchType(TMDBSearchType type) {
     parameters[@"page"] = @(pageNumber);
     parameters[@"search_type"] = NSStringFromTMDBSearchType(type);
     parameters[@"query"] = searchTerm;
-    if(releaseYear) {
+    if(releaseYear != NSNotFound) {
         parameters[@"year"] = @(releaseYear);
     }
     NSURLSessionDataTask *task = [self getWithPath:@"search/movie"
