@@ -1,5 +1,8 @@
 # CHANGELOG
 
+## 1.4.2
++ Add ability to get a KMMMovieDiscoverSortBy value from an NSString
+
 ## 1.4.1
 + Add check for NSNotFound in release year
 

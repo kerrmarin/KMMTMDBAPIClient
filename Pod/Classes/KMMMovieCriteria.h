@@ -26,6 +26,7 @@ typedef NS_ENUM(NSInteger, KMMMovieDiscoverSortBy) {
 };
 
 NSString * NSStringFromKMMMovieDiscoverSortBy(KMMMovieDiscoverSortBy sortBy);
+KMMMovieDiscoverSortBy KMMMovieDiscoverSortByFromNString(NSString* string);
 
 @class KMMCountry;
 @class KMMCertification;

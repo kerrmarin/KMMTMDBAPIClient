@@ -58,6 +58,26 @@ NSString * NSStringFromKMMMovieDiscoverSortBy(KMMMovieDiscoverSortBy sortBy) {
     }
 }
 
+KMMMovieDiscoverSortBy KMMMovieDiscoverSortByFromNString(NSString* string) {
+    if([string isEqualToString:@"popularity.asc"]) return KMMMovieDiscoverSortByPopularityAscending;
+    if([string isEqualToString:@"popularity.desc"]) return KMMMovieDiscoverSortByPopularityDescending;
+    if([string isEqualToString:@"release_date.asc"]) return KMMMovieDiscoverSortByReleaseDateAscending;
+    if([string isEqualToString:@"release_date.desc"]) return KMMMovieDiscoverSortByReleaseDateDescending;
+    if([string isEqualToString:@"revenue.asc"]) return KMMMovieDiscoverSortByRevenueAscending;
+    if([string isEqualToString:@"revenue.desc"]) return KMMMovieDiscoverSortByRevenueDescending;
+    if([string isEqualToString:@"primary_release_date.asc"]) return KMMMovieDiscoverSortByPrimaryReleaseDateAscending;
+    if([string isEqualToString:@"primary_release_date.desc"]) return KMMMovieDiscoverSortByPrimaryReleaseDateDescending;
+    if([string isEqualToString:@"original_title.asc"]) return KMMMovieDiscoverSortByOriginalTitleAscending;
+    if([string isEqualToString:@"original_title.desc"]) return KMMMovieDiscoverSortByOriginalTitleDescending;
+    if([string isEqualToString:@"vote_average.asc"]) return KMMMovieDiscoverSortByVoteAverageAscending;
+    if([string isEqualToString:@"vote_average.desc"]) return KMMMovieDiscoverSortByVoteAverageDescending;
+    if([string isEqualToString:@"vote_count.asc"]) return KMMMovieDiscoverSortByVoteCountAscending;
+    if([string isEqualToString:@"vote_count.desc"]) return KMMMovieDiscoverSortByVoteCountDescending;
+
+    return KMMMovieDiscoverSortByPopularityDescending;
+}
+
+
 
 @implementation KMMMovieCriteria
 
