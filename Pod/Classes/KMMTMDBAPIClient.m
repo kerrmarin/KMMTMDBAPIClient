@@ -104,6 +104,10 @@ NSString* NSStringFromTMDBSearchType(TMDBSearchType type) {
     return self;
 }
 
+-(NSString *)absoluteURLForPath:(NSString *)path {
+    return [self.configurationURL stringByAppendingString:path];
+}
+
 #pragma mark -- Data fetching
 
 #pragma mark -- Certifications

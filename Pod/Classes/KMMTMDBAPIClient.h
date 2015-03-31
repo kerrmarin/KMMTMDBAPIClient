@@ -58,6 +58,8 @@ typedef void (^KMMNetworkingCompletionBlock)(id results, NSError *error);
 -(void)setAPIKey:(NSString*)apiKey;
 
 
+-(NSString *)absoluteURLForPath:(NSString *)path;
+
 #pragma mark -- Certifications
 
 /**
