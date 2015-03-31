@@ -1,5 +1,9 @@
 # CHANGELOG
 
+
+## 1.5
++ Add ability to get a full URL from a path
+
 ## 1.4.2
 + Add ability to get a KMMMovieDiscoverSortBy value from an NSString
 
