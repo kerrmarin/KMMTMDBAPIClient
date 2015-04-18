@@ -9,6 +9,8 @@
 #import <UIKit/UIKit.h>
 #import <XCTest/XCTest.h>
 
+#import "KMMMovie.h"
+
 @interface KMMMovieTests : XCTestCase
 
 @end
@@ -209,9 +211,9 @@
                                   @"total_results":@1
                                   }
                      };
-//    KMMMovieParser *parser = [KMMMovieParser new];
-//    KMMMovie *movie = [parser parseMovieFromJSON:validJSON];
-//    XCTAssertNotNil(movie);
+    KMMMovieParser *parser = [KMMMovieParser new];
+    KMMMovie *movie = [parser movieFromDictionary:validJSON];
+    XCTAssertNotNil(movie);
 }
 
 

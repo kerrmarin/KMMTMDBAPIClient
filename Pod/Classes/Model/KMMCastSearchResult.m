@@ -34,15 +34,15 @@
 
 @implementation KMMCastSearchResultParser
 
--(KMMCastSearchResult *)parseCastSearchResultFromJSON:(id)json {
+-(KMMCastSearchResult *)castSearchResultFromDictionary:(NSDictionary *)json {
     NSString *name = json[@"name"] == [NSNull null] ? nil : json[@"name"];
     NSString *profilePath = json[@"profile_path"] == [NSNull null] ? nil : json[@"profile_path"];
     
     
     NSArray *knownForArray = json[@"known_for"] == [NSNull null] ? nil : json[@"known_for"];
     KMMMovieSummaryParser *parser = [KMMMovieSummaryParser new];
-    NSArray *knownFor = [knownForArray KMM_map:^id(id obj) {
-        KMMMovieSummary *movie = [parser parseMovieSummaryFromJSON:obj];
+    NSArray *knownFor = [knownForArray kmm_map:^id(id obj) {
+        KMMMovieSummary *movie = [parser movieSummaryFromDictionary:obj];
         return movie;
     }];
     

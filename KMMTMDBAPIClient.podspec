@@ -18,16 +18,18 @@ Pod::Spec.new do |s|
   s.license          = 'MIT'
   s.author           = { "Kerr Marin Miller" => "kerr@kerrmarin.com" }
   s.source           = { :git => "https://github.com/kerrmarin/KMMTMDBAPIClient.git", :tag => s.version.to_s }
-  # s.social_media_url = 'https://twitter.com/kerrmarin'
+
+  s.social_media_url = 'https://twitter.com/kerrmarin'
 
   s.platform     = :ios, '7.0'
   s.requires_arc = true
 
   s.source_files = 'Pod/Classes'
-  s.resource_bundles = {
-    'KMMTMDBAPIClient' => ['Pod/Assets/*.png']
-  }
 
   s.dependency 'AFNetworking', '~> 2.5'
+
+  s.subspec 'Model' do |ss|
+    ss.source_files = 'Pod/Classes/Model'
+  end
 
 end

@@ -132,56 +132,56 @@
     
     NSArray *genresArray = json[@"genres"] == [NSNull null] ? nil : json[@"genres"];
     KMMMovieGenreParser *genreParser = [KMMMovieGenreParser new];
-    NSArray *genres = [genresArray KMM_map:^id(id obj) {
+    NSArray *genres = [genresArray kmm_map:^id(id obj) {
         KMMMovieGenre *genre = [genreParser genreFromDictionary:obj];
         return genre;
     }];
     
     NSArray *spokenLanguagesArray = json[@"spoken_languages"] == [NSNull null] ? nil : json[@"spoken_languages"];
     KMMLanguageParser *languageParser = [KMMLanguageParser new];
-    NSArray *spokenLanguages = [spokenLanguagesArray KMM_map:^id(id obj) {
-        KMMLanguage *language = [languageParser parseMovieLanguageFromJSON:obj];
+    NSArray *spokenLanguages = [spokenLanguagesArray kmm_map:^id(id obj) {
+        KMMLanguage *language = [languageParser movieLanguageFromDictionary:obj];
         return language;
     }];
     
     NSArray *productionCompaniesArray = json[@"production_companies"] == [NSNull null] ? nil : json[@"production_companies"];
     KMMProductionCompanyParser *productionCompaniesParser = [KMMProductionCompanyParser new];
-    NSArray *productionCompanies = [productionCompaniesArray KMM_map:^id(id obj) {
-        KMMProductionCompany *company = [productionCompaniesParser parseCompanyFromJSON:obj];
+    NSArray *productionCompanies = [productionCompaniesArray kmm_map:^id(id obj) {
+        KMMProductionCompany *company = [productionCompaniesParser companyFromDictionary:obj];
         return company;
     }];
     
     NSArray *productionCountriesArray = json[@"production_countries"] == [NSNull null] ? nil : json[@"production_countries"];
     KMMProductionCountryParser *productionCountriesParser = [KMMProductionCountryParser new];
-    NSArray *productionCountries = [productionCountriesArray KMM_map:^id(id obj) {
-        KMMProductionCountry *company = [productionCountriesParser parseProductionCountryFromJSON:obj];
-        return company;
+    NSArray *productionCountries = [productionCountriesArray kmm_map:^id(id obj) {
+        KMMProductionCountry *country = [productionCountriesParser productionCountryFromDictionary:obj];
+        return country;
     }];
     
     NSArray *trailersArray = json[@"videos"][@"results"] == [NSNull null] ? nil : json[@"videos"][@"results"];
     KMMMovieTrailerParser *trailerParser = [KMMMovieTrailerParser new];
-    NSArray *trailers = [trailersArray KMM_map:^id(id obj) {
-        KMMMovieTrailer *trailer = [trailerParser parseMovieTrailerFromJSON:obj];
+    NSArray *trailers = [trailersArray kmm_map:^id(id obj) {
+        KMMMovieTrailer *trailer = [trailerParser movieTrailerFromDictionary:obj];
         return trailer;
     }];
     
     NSArray *similarMovieArray = json[@"similar"][@"results"] == [NSNull null] ? nil : json[@"similar"][@"results"];
     KMMMovieSummaryParser *summaryParser = [KMMMovieSummaryParser new];
-    NSArray *similarMovies = [similarMovieArray KMM_map:^id(id obj) {
-        KMMMovieSummary *summary = [summaryParser parseMovieSummaryFromJSON:obj];
+    NSArray *similarMovies = [similarMovieArray kmm_map:^id(id obj) {
+        KMMMovieSummary *summary = [summaryParser movieSummaryFromDictionary:obj];
         return summary;
     }];
     
     NSArray *movieReleasesArray = json[@"releases"][@"countries"] == [NSNull null] ? nil : json[@"releases"][@"countries"];
     KMMMovieReleaseParser *releaseParser = [KMMMovieReleaseParser new];
-    NSArray *movieReleases = [movieReleasesArray KMM_map:^id(id obj) {
-        KMMMovieRelease *movieRelease = [releaseParser parseMovieReleaseFromJSON:obj];
+    NSArray *movieReleases = [movieReleasesArray kmm_map:^id(id obj) {
+        KMMMovieRelease *movieRelease = [releaseParser movieReleaseFromDictionary:obj];
         return movieRelease;
     }];
     
     
     NSArray *posterPathsArray = json[@"images"][@"posters"] == [NSNull null] ? nil : json[@"images"][@"posters"];
-    NSArray *posterPaths = [posterPathsArray KMM_map:^id(id obj) {
+    NSArray *posterPaths = [posterPathsArray kmm_map:^id(id obj) {
         return obj[@"file_path"];
     }];
     
@@ -212,15 +212,15 @@
     
     NSArray *castArray = json[@"credits"][@"cast"] == [NSNull null] ? nil : json[@"credits"][@"cast"];
     KMMCastSummaryParser *castSummaryParser = [KMMCastSummaryParser new];
-    NSArray *cast = [castArray KMM_map:^id(id obj) {
-        KMMCastSummary *castSummary = [castSummaryParser parseCastSummaryFromJSON:obj];
+    NSArray *cast = [castArray kmm_map:^id(id obj) {
+        KMMCastSummary *castSummary = [castSummaryParser castSummaryFromDictionary:obj];
         return castSummary;
     }];
     
     NSArray *crewArray = json[@"credits"][@"crew"] == [NSNull null] ? nil : json[@"credits"][@"crew"];
     KMMCrewSummaryParser *crewSummaryParser = [KMMCrewSummaryParser new];
-    NSArray *crew = [crewArray KMM_map:^id(id obj) {
-        KMMCrewSummary *crewSummary = [crewSummaryParser parseCrewSummaryFromJSON:obj];
+    NSArray *crew = [crewArray kmm_map:^id(id obj) {
+        KMMCrewSummary *crewSummary = [crewSummaryParser crewSummaryFromDictionary:obj];
         return crewSummary;
     }];
     

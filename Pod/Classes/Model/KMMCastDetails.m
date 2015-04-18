@@ -68,10 +68,10 @@
 
 
 #import "NSArray+Functional.h"
-#import "KMMCastImageDescriptor.h"
+#import "KMMImageDescriptor.h"
 #import "KMMCastMovieCredit.h"
 #import "KMMCastTaggedImage.h"
-#import "NSString+HTML.h"
+//#import "NSString+HTML.h"
 
 @interface KMMCastDetailsParser ()
 
@@ -90,10 +90,9 @@
 }
 
 
--(KMMCastDetails *)parseCastDetailsFromJSON:(id)json {
+-(KMMCastDetails *)castDetailsFromDictionary:(NSDictionary *)json {
     NSArray *alsoKnownAs = json[@"also_known_as"] == [NSNull null] ? nil : json[@"also_known_as"];
-    NSString *dirtyBiography = json[@"biography"] == [NSNull null] ? nil : json[@"biography"];
-    NSString *biography = [self sanitiseString:dirtyBiography];
+    NSString *biography = json[@"biography"] == [NSNull null] ? nil : json[@"biography"];
     
     NSString *dateString = json[@"birthday"] == [NSNull null] ? nil : json[@"birthday"];
     NSDate *birthday = [self.dateFormatter dateFromString:dateString];
@@ -109,9 +108,9 @@
     
     
     NSArray *imagesArray = json[@"images"][@"profiles"] == [NSNull null] ? nil : json[@"images"][@"profiles"];
-    KMMCastImageDescriptorParser *castImageDescriptorParser = [KMMCastImageDescriptorParser new];
-    NSArray *images = [imagesArray KMM_map:^id(id obj) {
-        KMMCastImageDescriptor *descriptor = [castImageDescriptorParser parseCastImageDescriptorFromJSON:obj];
+    KMMImageDescriptorParser *castImageDescriptorParser = [KMMImageDescriptorParser new];
+    NSArray *images = [imagesArray kmm_map:^id(id obj) {
+        KMMImageDescriptor *descriptor = [castImageDescriptorParser imageDescriptorFromDictionary:obj];
         return descriptor;
     }];
     
@@ -124,16 +123,16 @@
     
     NSArray *filteredCredits = [creditsArray filteredArrayUsingPredicate:movieFilter];
     
-    NSArray *credits = [filteredCredits KMM_map:^id(id obj) {
-        KMMCastMovieCredit *movieCredit = [castMovieCreditParser parseCreditFromJSON:obj];
+    NSArray *credits = [filteredCredits kmm_map:^id(id obj) {
+        KMMCastMovieCredit *movieCredit = [castMovieCreditParser creditFromDictionary:obj];
         return movieCredit;
     }];
     
     
     NSArray *taggedImagesArray = json[@"tagged_images"][@"results"] == [NSNull null] ? nil : json[@"tagged_images"][@"results"];
     KMMCastTaggedImageParser *castTaggedImageParser = [KMMCastTaggedImageParser new];
-    NSArray *taggedImages = [taggedImagesArray KMM_map:^id(id obj) {
-        KMMCastTaggedImage *taggedImage = [castTaggedImageParser parseCastTaggedImageFromJSON:obj];
+    NSArray *taggedImages = [taggedImagesArray kmm_map:^id(id obj) {
+        KMMCastTaggedImage *taggedImage = [castTaggedImageParser castTaggedImageFromDictionary:obj];
         return taggedImage;
     }];
     
@@ -153,19 +152,5 @@
                                                              andCastID:castID];
     return castDetails;
 }
-
--(NSString*)sanitiseString:(NSString*)dirty {
-    dirty = [dirty stringByReplacingOccurrencesOfString:@"From Wikipedia, the free encyclopedia." withString:@""];
-    
-    NSRange range = [dirty rangeOfString:@"Description above from the Wikipedia article"];
-    
-    if(range.location != NSNotFound) {
-        dirty = [dirty substringToIndex:range.location];
-    }
-    
-    NSString *clean = [[dirty stringByDecodingHTMLEntities] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
-    return clean;
-}
-
 
 @end

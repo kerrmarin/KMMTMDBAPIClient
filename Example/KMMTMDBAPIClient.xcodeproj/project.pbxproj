@@ -9,6 +9,12 @@
 /* Begin PBXBuildFile section */
 		29A380EFD94B4C7010F19B23 /* libPods-Tests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B8434911AC86AD3DDB91B921 /* libPods-Tests.a */; };
 		572A3AFD1AE2B0D50089B2CB /* KMMMovieTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 572A3AFC1AE2B0D50089B2CB /* KMMMovieTests.m */; };
+		572A3B1B1AE2B76F0089B2CB /* KMMCastSummaryParserTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 572A3B121AE2B76F0089B2CB /* KMMCastSummaryParserTests.m */; };
+		572A3B1C1AE2B76F0089B2CB /* KMMCrewSummaryParserTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 572A3B131AE2B76F0089B2CB /* KMMCrewSummaryParserTests.m */; };
+		572A3B1E1AE2B76F0089B2CB /* KMMMovieGenreParserTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 572A3B151AE2B76F0089B2CB /* KMMMovieGenreParserTests.m */; };
+		572A3B1F1AE2B76F0089B2CB /* KMMMovieReleaseParserTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 572A3B161AE2B76F0089B2CB /* KMMMovieReleaseParserTests.m */; };
+		572A3B201AE2B76F0089B2CB /* KMMMovieSummaryParserTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 572A3B171AE2B76F0089B2CB /* KMMMovieSummaryParserTests.m */; };
+		572A3B211AE2B76F0089B2CB /* KMMMovieTrailerParserTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 572A3B181AE2B76F0089B2CB /* KMMMovieTrailerParserTests.m */; };
 		57C0665A1A62BFCC000EB447 /* KMMTMDBAPIClientTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 57C066591A62BFCC000EB447 /* KMMTMDBAPIClientTests.m */; };
 		57C066C01A6A95D0000EB447 /* KMMCertificationTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 57C066BF1A6A95D0000EB447 /* KMMCertificationTests.m */; };
 		57C066C41A6A9921000EB447 /* KMMCountryTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 57C066C31A6A9921000EB447 /* KMMCountryTests.m */; };
@@ -48,6 +54,12 @@
 /* Begin PBXFileReference section */
 		2D8899BA4065729A403EDC41 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		572A3AFC1AE2B0D50089B2CB /* KMMMovieTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KMMMovieTests.m; sourceTree = "<group>"; };
+		572A3B121AE2B76F0089B2CB /* KMMCastSummaryParserTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KMMCastSummaryParserTests.m; sourceTree = "<group>"; };
+		572A3B131AE2B76F0089B2CB /* KMMCrewSummaryParserTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KMMCrewSummaryParserTests.m; sourceTree = "<group>"; };
+		572A3B151AE2B76F0089B2CB /* KMMMovieGenreParserTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KMMMovieGenreParserTests.m; sourceTree = "<group>"; };
+		572A3B161AE2B76F0089B2CB /* KMMMovieReleaseParserTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KMMMovieReleaseParserTests.m; sourceTree = "<group>"; };
+		572A3B171AE2B76F0089B2CB /* KMMMovieSummaryParserTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KMMMovieSummaryParserTests.m; sourceTree = "<group>"; };
+		572A3B181AE2B76F0089B2CB /* KMMMovieTrailerParserTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KMMMovieTrailerParserTests.m; sourceTree = "<group>"; };
 		57C066591A62BFCC000EB447 /* KMMTMDBAPIClientTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KMMTMDBAPIClientTests.m; sourceTree = "<group>"; };
 		57C066BF1A6A95D0000EB447 /* KMMCertificationTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KMMCertificationTests.m; sourceTree = "<group>"; };
 		57C066C31A6A9921000EB447 /* KMMCountryTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KMMCountryTests.m; sourceTree = "<group>"; };
@@ -124,6 +136,12 @@
 				57C066C71A6AA35F000EB447 /* KMMTVCriteriaTests.m */,
 				57C066C91A6AA49D000EB447 /* KMMTimezoneTests.m */,
 				572A3AFC1AE2B0D50089B2CB /* KMMMovieTests.m */,
+				572A3B121AE2B76F0089B2CB /* KMMCastSummaryParserTests.m */,
+				572A3B131AE2B76F0089B2CB /* KMMCrewSummaryParserTests.m */,
+				572A3B151AE2B76F0089B2CB /* KMMMovieGenreParserTests.m */,
+				572A3B161AE2B76F0089B2CB /* KMMMovieReleaseParserTests.m */,
+				572A3B171AE2B76F0089B2CB /* KMMMovieSummaryParserTests.m */,
+				572A3B181AE2B76F0089B2CB /* KMMMovieTrailerParserTests.m */,
 			);
 			name = "Model tests";
 			sourceTree = "<group>";
@@ -403,13 +421,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				572A3B1B1AE2B76F0089B2CB /* KMMCastSummaryParserTests.m in Sources */,
+				572A3B1F1AE2B76F0089B2CB /* KMMMovieReleaseParserTests.m in Sources */,
 				57C066D21A6ACB6B000EB447 /* KMMAPISmokeTests.m in Sources */,
 				57C066C01A6A95D0000EB447 /* KMMCertificationTests.m in Sources */,
 				57C066CC1A6AA9AD000EB447 /* KMMMovieParametersBuilderTests.m in Sources */,
 				57C066C61A6A99A8000EB447 /* KMMMovieCriteriaTests.m in Sources */,
+				572A3B1C1AE2B76F0089B2CB /* KMMCrewSummaryParserTests.m in Sources */,
 				57C066CA1A6AA49D000EB447 /* KMMTimezoneTests.m in Sources */,
+				572A3B211AE2B76F0089B2CB /* KMMMovieTrailerParserTests.m in Sources */,
 				57C066C81A6AA35F000EB447 /* KMMTVCriteriaTests.m in Sources */,
+				572A3B1E1AE2B76F0089B2CB /* KMMMovieGenreParserTests.m in Sources */,
 				572A3AFD1AE2B0D50089B2CB /* KMMMovieTests.m in Sources */,
+				572A3B201AE2B76F0089B2CB /* KMMMovieSummaryParserTests.m in Sources */,
 				57C066CE1A6AA9C2000EB447 /* KMMTVParametersBuilderTests.m in Sources */,
 				57C066C41A6A9921000EB447 /* KMMCountryTests.m in Sources */,
 				57C0665A1A62BFCC000EB447 /* KMMTMDBAPIClientTests.m in Sources */,
