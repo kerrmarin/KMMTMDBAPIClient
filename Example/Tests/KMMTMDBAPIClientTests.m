@@ -24,11 +24,6 @@
     [[KMMTMDBAPIClient client] setAPIKey:@"dad3be1c54d32a605ed8931859ed6f0f"];
 }
 
-- (void)tearDown {
-    // Put teardown code here. This method is called after the invocation of each test method in the class.
-    [super tearDown];
-}
-
 -(void)testDefaultIncludeAdultIsFalse {
     XCTAssert([[KMMTMDBAPIClient client].includeAdult isEqualToString:@"false"]);
 }

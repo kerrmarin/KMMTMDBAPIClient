@@ -48,11 +48,20 @@
     NSUInteger order = 2;
     
     [self measureBlock:^{
-        for(int i = 0; i < 10000; i++) {
             KMMCertification *certification = [[KMMCertification alloc] initWithCode:code meanging:meaning order:order];
             XCTAssertNotNil(certification);
-        }
     }];
+}
+
+-(void)testCertificationCopy {
+    NSString *code = @"PG";
+    NSString *meaning = @"Parental guidance advised. There is no age restriction but some material may not be suitable for all children.";
+    NSUInteger order = 2;
+    
+    KMMCertification *certification = [[KMMCertification alloc] initWithCode:code meanging:meaning order:order];
+    KMMCertification *otherCertification = [certification copy];
+    
+    XCTAssertEqual(certification, otherCertification);
 }
 
 

@@ -1,0 +1,6 @@
+[
+  "-workspace", "KMMTMDBAPIClient.xcworkspace",
+  "-scheme", "KMMTMDBAPIClient-Example",
+  "-configuration", "Debug",
+  "-sdk", "iphonesimulator",
+]

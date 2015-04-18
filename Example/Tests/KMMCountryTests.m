@@ -29,15 +29,20 @@
     XCTAssertThrows([[KMMCountry alloc] initWithCountryCode:nil]);
 }
 
+
 - (void)testCountryCreationPerformance {
     NSString *code = @"GB";
     
     [self measureBlock:^{
-        for(int i = 0; i < 10000; i++) {
-            KMMCountry *country = [[KMMCountry alloc] initWithCountryCode:code];
-            XCTAssertNotNil(country);
-        }
+        KMMCountry *country = [[KMMCountry alloc] initWithCountryCode:code];
+        XCTAssertNotNil(country);
     }];
+}
+
+-(void)testCountryCopy {
+    KMMCountry *country = [[KMMCountry alloc] initWithCountryCode:@"GB"];
+    KMMCountry *otherCountry = [country copy];
+    XCTAssertEqual(country, otherCountry);
 }
 
 @end

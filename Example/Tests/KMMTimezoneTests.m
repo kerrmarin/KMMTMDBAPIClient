@@ -45,11 +45,16 @@
     NSArray *zones = @[@"London", @"Madrid"];
 
     [self measureBlock:^{
-        for(int i = 0; i < 10000; i++) {
-            KMMTimezone *timezone = [[KMMTimezone alloc] initWithCode:code zones:zones];
-            XCTAssertNotNil(timezone);
-        }
+        KMMTimezone *timezone = [[KMMTimezone alloc] initWithCode:code zones:zones];
+        XCTAssertNotNil(timezone);
     }];
+}
+
+-(void)testTimezoneCopy {
+    KMMTimezone *timezone = [[KMMTimezone alloc] initWithCode:@"GB" zones:@[@"London", @"Madrid"]];
+    KMMTimezone *newTimezone = [timezone copy];
+    
+    XCTAssertEqual(timezone, newTimezone);
 }
 
 @end
