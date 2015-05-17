@@ -24,12 +24,8 @@ Pod::Spec.new do |s|
   s.platform     = :ios, '7.0'
   s.requires_arc = true
 
-  s.source_files = 'Pod/Classes'
+  s.source_files = 'Pod/Classes/**/*'
 
   s.dependency 'AFNetworking', '~> 2.5'
-
-  s.subspec 'Model' do |ss|
-    ss.source_files = 'Pod/Classes/Model'
-  end
 
 end

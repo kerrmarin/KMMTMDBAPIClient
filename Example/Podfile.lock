@@ -22,9 +22,6 @@ PODS:
     - AFNetworking/NSURLSession
   - KMMTMDBAPIClient (1.5):
     - AFNetworking (~> 2.5)
-    - KMMTMDBAPIClient/Model (= 1.5)
-  - KMMTMDBAPIClient/Model (1.5):
-    - AFNetworking (~> 2.5)
 
 DEPENDENCIES:
   - AFNetworking (~> 2.5)
@@ -36,6 +33,6 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   AFNetworking: fefbce9660acb17f48ae0011292d4da0f457bf36
-  KMMTMDBAPIClient: 451859fb59d679479afb34917e20d35c96d0eb6d
+  KMMTMDBAPIClient: e709cd568f697387c5426b75aa22a3c14cb50b76
 
-COCOAPODS: 0.36.4
+COCOAPODS: 0.37.1
