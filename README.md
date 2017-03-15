@@ -5,9 +5,6 @@
 [![License](https://img.shields.io/cocoapods/l/KMMTMDBAPIClient.svg?style=flat)](http://cocoadocs.org/docsets/KMMTMDBAPIClient)
 [![Platform](https://img.shields.io/cocoapods/p/KMMTMDBAPIClient.svg?style=flat)](http://cocoadocs.org/docsets/KMMTMDBAPIClient)
 
-###Warning
-This pod only works with versions < 7.0 of Ghost. Once the public write API comes out I'll look at updating this to support that.
-
 ## Features
 
 A TMDB API client that allows users to easily query movie and cast information.
