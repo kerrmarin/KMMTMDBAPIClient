@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "D2849CBFDA3B2D659859A588"
+               BlueprintIdentifier = "FFC670DE73718EA45F26E899"
                BuildableName = "libPods.a"
                BlueprintName = "Pods"
                ReferencedContainer = "container:Pods/Pods.xcodeproj">
@@ -28,7 +28,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "F1AB30E4563E63A3B96C32FB"
+               BlueprintIdentifier = "9EE5CAF3DA1DA91D7C7E073E"
                BuildableName = "libPods-AFNetworking.a"
                BlueprintName = "Pods-AFNetworking"
                ReferencedContainer = "container:Pods/Pods.xcodeproj">
@@ -42,7 +42,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "F8EB313728DFF357E455BDB6"
+               BlueprintIdentifier = "75872CB53E7E20694B6FA56C"
                BuildableName = "libPods-KMMTMDBAPIClient-AFNetworking.a"
                BlueprintName = "Pods-KMMTMDBAPIClient-AFNetworking"
                ReferencedContainer = "container:Pods/Pods.xcodeproj">
@@ -56,7 +56,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "86FB79FEF1A84848EE3235EC"
+               BlueprintIdentifier = "8D26D22B1218CDBADEA3B445"
                BuildableName = "libPods-KMMTMDBAPIClient-KMMTMDBAPIClient.a"
                BlueprintName = "Pods-KMMTMDBAPIClient-KMMTMDBAPIClient"
                ReferencedContainer = "container:Pods/Pods.xcodeproj">
@@ -70,7 +70,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "FB43D95083DD3C7F1056A344"
+               BlueprintIdentifier = "7260CD2246BBDF25939DF96F"
                BuildableName = "libPods-Tests-AFNetworking.a"
                BlueprintName = "Pods-Tests-AFNetworking"
                ReferencedContainer = "container:Pods/Pods.xcodeproj">
@@ -84,7 +84,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "C0379A6B7C702A27F9AC5259"
+               BlueprintIdentifier = "2293AE0020408A03343E6C7E"
                BuildableName = "libPods-Tests-KMMTMDBAPIClient.a"
                BlueprintName = "Pods-Tests-KMMTMDBAPIClient"
                ReferencedContainer = "container:Pods/Pods.xcodeproj">
@@ -98,7 +98,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "2A0BA017AE163B977D0CB808"
+               BlueprintIdentifier = "C410F2978DFE25A3388452F1"
                BuildableName = "libPods-Tests.a"
                BlueprintName = "Pods-Tests"
                ReferencedContainer = "container:Pods/Pods.xcodeproj">
@@ -112,7 +112,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "3554E7D41081AF4079C79E8D"
+               BlueprintIdentifier = "F2DB6180F42666A7C60851A8"
                BuildableName = "libPods-KMMTMDBAPIClient.a"
                BlueprintName = "Pods-KMMTMDBAPIClient"
                ReferencedContainer = "container:Pods/Pods.xcodeproj">
@@ -170,7 +170,8 @@
       ignoresPersistentStateOnLaunch = "NO"
       debugDocumentVersioning = "YES"
       allowLocationSimulation = "YES">
-      <BuildableProductRunnable>
+      <BuildableProductRunnable
+         runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "6003F589195388D20070C39A"
@@ -188,7 +189,8 @@
       useCustomWorkingDirectory = "NO"
       buildConfiguration = "Release"
       debugDocumentVersioning = "YES">
-      <BuildableProductRunnable>
+      <BuildableProductRunnable
+         runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "6003F589195388D20070C39A"
